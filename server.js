@@ -98,6 +98,7 @@ app.get('/callback', function(req, res) {
             //sets the user's tokens
             userTokens.setTokens(access_token, refresh_token);
 
+
         var options = {
           url: 'https://api.spotify.com/v1/me',
           headers: { 'Authorization': 'Bearer ' + access_token },
