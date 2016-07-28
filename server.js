@@ -8,15 +8,17 @@
  */
 
 //sets user's tokens once we obtain them
-var userTokens = require("./userTokens.js");
+var userTokens = require("./public/app/userTokens.js");
+//gets private credentials for my project
+var spotifyCreds = require("./private/spotifyCreds.js");
 
 var express = require('express'); // Express web server framework
 var request = require('request'); // "Request" library
 var querystring = require('querystring');
 var cookieParser = require('cookie-parser');
 
-var client_id = '200cab8c6a8940f4be9d952603af82d7'; // Your client id
-var client_secret = '27337f111f174c858368497964e91a2e'; // Your secret
+var client_id = spotifyCreds.getClientId(); // Your client id
+var client_secret = spotifyCreds.getClientSecret(); // Your secret
 var redirect_uri = 'http://localhost:8888/callback'; // Your redirect uri
 
 /**

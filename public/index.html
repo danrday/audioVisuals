@@ -16,7 +16,8 @@
     </style>
   </head>
 
-  <body>
+  <body ng-app="AudioVis">
+
     <div class="container">
       <div id="login">
         <h1>This is an example of the Authorization Code flow</h1>
@@ -137,6 +138,20 @@
         }
       })();
     </script>
+
+    <div id="testorama" ng-include="'/app/partials/testPartial.html'"></div>
+
+    <div ng-view></div>
+
+    <script src="lib/bower_components/angular/angular.min.js"></script>
+    <script src="lib/bower_components/angular-route/angular-route.js"></script>
+
+    <script src="app/app.js"></script>
+
+
+    <script src="app/controllers/indexCtrl.js"></script>
+    <script src="app/controllers/testCtrl.js"></script>
+
   </body>
 </html>
 
