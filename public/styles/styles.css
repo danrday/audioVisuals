@@ -1,0 +1,23 @@
+body {
+  background-color: salmon;
+  font-size: 16px;
+  font-family: "Courier New";
+}
+
+h1 {
+  margin-top: 20px;
+  font-size: 17px;
+}
+
+h2 {
+  margin-top: 10px;
+  font-size: 15px;
+}
+
+.media {
+  margin-left: 0x;
+}
+
+#padding {
+  padding-top: 20px;
+}
