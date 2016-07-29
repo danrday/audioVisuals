@@ -30,6 +30,8 @@
         <div id="oauth">
         </div>
         <button class="btn btn-default" id="obtain-new-token">Refresh token</button>
+        <button class="btn btn-default" id="hide">Hide User Info</button>
+
       </div>
     </div>
 
@@ -122,6 +124,10 @@
               $('#loggedin').hide();
           }
 
+          document.getElementById('hide').addEventListener('click', function() {
+            $('#loggedin').hide();
+          })
+
           document.getElementById('obtain-new-token').addEventListener('click', function() {
             $.ajax({
               url: '/refresh_token',
@@ -140,18 +146,19 @@
       })();
     </script>
 
-    <div id="testorama" ng-include="'/app/partials/testPartial.html'"></div>
+    <div id="nav" ng-include="'/app/partials/nav.html'"></div>
 
     <div ng-view></div>
 
-    <script src="lib/bower_components/angular/angular.min.js"></script>
-    <script src="lib/bower_components/angular-route/angular-route.js"></script>
+    <script src="/lib/node_modules/angular/angular.min.js"></script>
+    <script src="lib/node_modules/angular-route/angular-route.js"></script>
+
 
     <script src="app/app.js"></script>
 
 
     <script src="app/controllers/indexCtrl.js"></script>
-    <script src="app/controllers/testCtrl.js"></script>
+    <script src="app/controllers/navCtrl.js"></script>
 
   </body>
 </html>
