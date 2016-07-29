@@ -5,10 +5,29 @@ app.controller("NavCtrl", function($scope, $rootScope) {
 
 $scope.test = "TESTTTTTTING"
 
-$scope.myObj = {
+$scope.searchResults = {
   test1: "test",
   test2: "testtwo"
 };
+
+$scope.searchText;
+
+
+
+$scope.searchAlbums = function (query) {
+    $.ajax({
+        url: 'https://api.spotify.com/v1/search',
+        data: {
+            q: query,
+            type: 'track'
+        },
+        success: function (response) {
+            $scope.searchResults = response.tracks.items;
+        }
+    });
+};
+
+
 
 
 // var templateSource = document.getElementById('results-template').innerHTML,
