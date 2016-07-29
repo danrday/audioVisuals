@@ -25,3 +25,7 @@ h2 {
 .searchPictures {
   height: 75px;
 }
+
+.searchResult {
+  padding-top: 10px;
+}
