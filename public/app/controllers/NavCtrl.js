@@ -2,16 +2,14 @@
 
 app.controller("NavCtrl", function($scope, $rootScope) {
 
+//contains 20 track results matching search criteria
+$scope.searchResults = {};
 
-$scope.test = "TESTTTTTTING"
+//contains basic track information
+$scope.trackAudioFeatures = {};
 
-$scope.searchResults = {
-  test1: "test",
-  test2: "testtwo"
-};
-
-$scope.searchText;
-
+//contains detailed track information
+$scope.trackAnalysis = {};
 
 
 $scope.searchAlbums = function (query) {
@@ -27,7 +25,9 @@ $scope.searchAlbums = function (query) {
     });
 };
 
-
+$scope.goToTrack = function(id) {
+  console.log(id);
+}
 
 
 // var templateSource = document.getElementById('results-template').innerHTML,

@@ -2,9 +2,6 @@
 
 app.controller("indexCtrl", function($scope) {
 
-  
-  $scope.testIndex = "HEY HEY HEY";
-
-  console.log('HELLO');
+  $scope.testIndex = "text from indexCtrl";
 
 });
