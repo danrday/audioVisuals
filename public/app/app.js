@@ -1,6 +1,6 @@
 "use strict";
 
-var app = angular.module("AudioVis", ['ngRoute'])
+var app = angular.module("AudioVis", ['ngRoute', 'spotify'])
 // .constant('FirebaseURL', "https://pinkey-brain.firebaseio.com");
 
 app.config(function($routeProvider) {

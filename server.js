@@ -43,6 +43,12 @@ var app = express();
 app.use(express.static(__dirname + '/public'))
    .use(cookieParser());
 
+var globalAccessToken = {};
+
+app.get('/getToken', function(req, res) {
+  res.send(globalAccessToken);
+});
+
 app.get('/login', function(req, res) {
 
   var state = generateRandomString(16);
@@ -98,6 +104,7 @@ app.get('/callback', function(req, res) {
             //sets the user's tokens
             userTokens.setTokens(access_token, refresh_token);
 
+            globalAccessToken = access_token;
 
         var options = {
           url: 'https://api.spotify.com/v1/me',

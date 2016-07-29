@@ -9,3 +9,7 @@ exports.setTokens = function(accessTokenFromSpotify, refreshTokenFromSpotify) {
   console.log("accessToken", accessToken);
   console.log("refreshToken", refreshToken);
 };
+
+exports.getAccessToken = function () {
+  return accessToken;
+}

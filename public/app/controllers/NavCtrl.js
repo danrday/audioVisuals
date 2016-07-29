@@ -1,6 +1,6 @@
 "use strict";
 
-app.controller("NavCtrl", function($scope, $rootScope) {
+app.controller("NavCtrl", function($http, $scope, $rootScope, Spotify) {
 
 //contains 20 track results matching search criteria
 $scope.searchResults = {};
@@ -11,23 +11,43 @@ $scope.trackAudioFeatures = {};
 //contains detailed track information
 $scope.trackAnalysis = {};
 
-
-$scope.searchAlbums = function (query) {
-    $.ajax({
-        url: 'https://api.spotify.com/v1/search',
-        data: {
-            q: query,
-            type: 'track'
-        },
-        success: function (response) {
-            $scope.searchResults = response.tracks.items;
-        }
-    });
+//search for tracks by search criteria 
+$scope.searchAlbums = function(query) {
+    Spotify.search(query, 'track').then(function (data) {
+    $scope.searchResults = data.tracks.items;
+  });
 };
 
-$scope.goToTrack = function(id) {
-  console.log(id);
+
+$scope.goToTrack = function() {
+
+  // app.config(function (SpotifyProvider) {
+
+  // let authToken = userTokens.getAccessToken();
+
+
+    $.ajax({
+      method: 'GET',
+      url: 'http://localhost:8888/getToken',
+      success: function(data) {
+        console.log(data);
+      }
+    });
+
 }
+
+
+//   SpotifyProvider.setClientId('200cab8c6a8940f4be9d952603af82d7');
+//   SpotifyProvider.setRedirectUri('http://localhost:8888/callback');
+//   // If you already have an auth token
+//   SpotifyProvider.setAuthToken(authToken);
+// });
+
+
+//   Spotify.getTrackAudioFeatures(id).then(function (data) {
+//   console.log(data);
+// });
+
 
 
 // var templateSource = document.getElementById('results-template').innerHTML,
