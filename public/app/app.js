@@ -1,35 +1,30 @@
 "use strict";
 
-var app = angular.module("AudioVis", ['ngRoute', 'spotify', 'ui.router'])
+var app = angular.module("AudioVis", ['spotify', 'ui.router'])
 // .constant('FirebaseURL', "https://pinkey-brain.firebaseio.com");
 
 app.config(function($stateProvider, $urlRouterProvider) {
 
- // For any unmatched url, redirect to /state1
-  $urlRouterProvider.otherwise("/state1");
+ 
   //
   // Now set up the states
   $stateProvider
     .state('state1', {
       url: "/state1",
-      templateUrl: "partials/state1.html"
+      templateUrl: "partials/indexPartial.html"
+    })
+    .state('state2', {
+      url: "/state2",
+      templateUrl: "partials/indexPartial.html"
     });
-    // .state('state1.list', {
-    //   url: "/list",
-    //   templateUrl: "partials/state1.list.html",
-    //   controller: function($scope) {
-    //     $scope.items = ["A", "List", "Of", "Items"];
-    //   }
-    // })
-    // .state('state2', {
-    //   url: "/state2",
-    //   templateUrl: "partials/state2.html"
-    // })
-    // .state('state2.list', {
-    //   url: "/list",
-    //   templateUrl: "partials/state2.list.html",
-    //   controller: function($scope) {
-    //     $scope.things = ["A", "Set", "Of", "Things"];
-    //   }
-    // });
+
+// For any unmatched url, redirect to /state1
+  $urlRouterProvider.otherwise("/state1");
+
+
+    });
+
+app.run(function($rootScope) {
+  $rootScope.$on("$stateChangeError", console.log.bind(console));
 });
+
