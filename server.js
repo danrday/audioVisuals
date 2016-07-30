@@ -7,8 +7,9 @@
  * https://developer.spotify.com/web-api/authorization-guide/#authorization_code_flow
  */
 
-//sets user's tokens once we obtain them
-var userTokens = require("./public/app/userTokens.js");
+//sets user's tokens once we obtain them DELETE???
+// var userTokens = require("./public/app/userTokens.js");
+
 //gets private credentials for my project
 var spotifyCreds = require("./private/spotifyCreds.js");
 
@@ -101,8 +102,8 @@ app.get('/callback', function(req, res) {
         var access_token = body.access_token,
             refresh_token = body.refresh_token;
 
-            //sets the user's tokens
-            userTokens.setTokens(access_token, refresh_token);
+            //sets the user's tokens DELETE???
+            // userTokens.setTokens(access_token, refresh_token);
 
             globalAccessToken = access_token;
 
