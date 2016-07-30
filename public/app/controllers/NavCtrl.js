@@ -47,11 +47,11 @@ $scope.goToTrack = function(id) {
       method:'GET',
       url: `${analysisUrl}?access_token=${authToken}`,
        success: function(returnedAnalysisData) {
-         console.log(data);
+         console.log(returnedAnalysisData);
            $scope.trackAnalysis = returnedAnalysisData;
         },
         error: function() {
-         alert("Error... did you login?")
+         alert("Error... did you login with Spotify?")
         }
      })
    });
