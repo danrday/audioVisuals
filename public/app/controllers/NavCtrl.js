@@ -27,7 +27,7 @@ $scope.searchAlbums = function(query) {
       console.log(returnedToken);
       authToken = returnedToken;
     }
-  })
+  });
 };
 
 $scope.goToTrack = function(id) {
@@ -39,7 +39,7 @@ $scope.goToTrack = function(id) {
     $scope.trackAudioFeatures = basicTrackData;
   },
   error: function() {
-         alert("Error... did you login?")
+         alert("Error... did you login?");
       }
   }).then(function(returnedData) {
     let analysisUrl = returnedData.analysis_url;
@@ -51,9 +51,9 @@ $scope.goToTrack = function(id) {
            $scope.trackAnalysis = returnedAnalysisData;
         },
         error: function() {
-         alert("Error... did you login with Spotify?")
+         alert("Error... did you login with Spotify?");
         }
-     })
+     });
    });
 };
 
