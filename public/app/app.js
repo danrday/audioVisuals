@@ -5,7 +5,7 @@ var app = angular.module("AudioVis", ['spotify', 'ui.router']);
 
 app.config(function($stateProvider, $urlRouterProvider) {
 
-  $urlRouterProvider.when('/', '/nav');
+  $urlRouterProvider.when('/', '/nav/data');
 
   // Now set up the states
   $stateProvider
@@ -19,10 +19,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
       templateUrl: "app/partials/nav.html",
       controller: 'NavCtrl'
     })
-     .state('home.nav.level3', {
-      url: "/level3",
-      templateUrl: 'app/partials/uiTest.html',
-      controller: 'dataCtrl'
+     .state('home.nav.data', {
+      url: "/data",
+      templateUrl: 'app/partials/data.html',
+      controller: 'DataCtrl'
+
     });
 
 // For any unmatched url, redirect to /state1

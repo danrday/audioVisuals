@@ -1,7 +1,7 @@
 "use strict";
 
-app.controller("dataCtrl", function($http, $scope, $rootScope, Spotify) {
+app.controller("DataCtrl", function($http, $scope, $rootScope, Spotify) {
 
-// $scope.trackAudioFeatures;
+d3.select('.item').text('select');
 
 });
