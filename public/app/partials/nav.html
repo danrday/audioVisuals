@@ -6,6 +6,10 @@
           <input type="text" ng-model="searchText" id="query" value="" class="form-control" placeholder="Type an Artist Name"/>
           <input type="submit" ng-click="searchAlbums(searchText)" id="search" class="btn btn-primary" value="Search" />
       </form>
+
+      <a ui-sref="home.nav.level3" id="childElementId">Show Basic Track Data</a>
+
+      <div ui-view></div>
      
       <div id="results" ng-repeat="track in searchResults">
         <div class="searchResult" ng-click="goToTrack(track.id)">
@@ -15,15 +19,4 @@
         </div>
       </div>
   </div>
-
-
-
-
-<!--   HANDLEBARS TO REFACTOR
-  <script id="results-template" type="text/x-handlebars-template">
-      {{#each albums.items}}
-      <div style="background-image:url({{track.album.images[0].url}})" data-album-id="{{id}}" class="cover"></div>
-      {{/each}}
-  </script> -->
-
 </nav>

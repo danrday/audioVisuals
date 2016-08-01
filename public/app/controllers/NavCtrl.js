@@ -37,6 +37,7 @@ $scope.goToTrack = function(id) {
   success: function(basicTrackData) {
     console.log(basicTrackData);
     $scope.trackAudioFeatures = basicTrackData;
+    $scope.$apply();
   },
   error: function() {
          alert("Error... did you login?");
@@ -49,6 +50,7 @@ $scope.goToTrack = function(id) {
        success: function(returnedAnalysisData) {
          console.log(returnedAnalysisData);
            $scope.trackAnalysis = returnedAnalysisData;
+           $scope.$apply();
         },
         error: function() {
          alert("Error... did you login with Spotify?");
