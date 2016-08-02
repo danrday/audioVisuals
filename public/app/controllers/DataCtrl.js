@@ -4,10 +4,37 @@ app.controller("DataCtrl", function($scope) {
 
 // var chartdata = $scope.trackAnalysis.bars;
 
-let trackAnalysis = JSON.parse($scope.trackAnalysis);
+// let trackAnalysis = JSON.parse($scope.trackAnalysis);
 
-console.log("trackAnalysis", trackAnalysis.bars.length);
+// console.log("trackAnalysis", trackAnalysis.bars.length);
 
+
+let trackAnalysis = $scope.trackAnalysis;
+
+let trackBars = trackAnalysis.bars;
+
+let trackBarsLength = trackBars.length;
+
+console.log("trackBarsDuration", trackBars)
+
+console.log("trackBars", typeof(trackBarsLength));
+
+let listOfTrackBars = {};
+
+
+let numOfArrays = Math.ceil(trackBars.length / 100);
+
+console.log(numOfArrays);
+
+
+// let getArrayOfBars = function() {
+//   for (i = 0; i < trackBars.length; i++) {
+
+//   }
+// }
+
+
+// var chartdata = [20, 30, 105, 15, 85, 20, 30, 105, 15, 85, 20, 30, 105, 15, 85, 20, 30, 105, 15, 85];
 
 // var height = 200,
 //     width = 720,
@@ -22,7 +49,7 @@ console.log("trackAnalysis", trackAnalysis.bars.length);
 
 // var xScale = d3.scaleLinear()
 //         .domain([0, chartdata.length])
-//         .range([0, width]);
+//         .range([0,width]);
 
  
 // d3.select('#bar-chart').append('svg')
@@ -32,7 +59,7 @@ console.log("trackAnalysis", trackAnalysis.bars.length);
 //   .selectAll('rect').data(chartdata)
 //   .enter().append('rect')
 //     .style('fill', '#3c763d')
-//     .attr("width", 1)
+//     .attr("width", (width/chartdata.length -1))
 //     .attr('height', function (data) {
 //         return yScale(data);
 //     })

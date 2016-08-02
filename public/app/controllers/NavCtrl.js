@@ -49,7 +49,7 @@ $scope.goToTrack = function(id) {
       url: `${analysisUrl}?access_token=${authToken}`,
        success: function(returnedAnalysisData) {
          // console.log(returnedAnalysisData);
-           $scope.trackAnalysis = returnedAnalysisData;
+           $scope.trackAnalysis = JSON.parse(returnedAnalysisData);
            $scope.$apply();
         },
         error: function() {
