@@ -23,7 +23,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
       url: "/data",
       templateUrl: 'app/partials/data.html',
       controller: 'DataCtrl'
-
+    })
+     .state('home.nav.testChart', {
+      url: "/test",
+      templateUrl: 'app/partials/testChart.html',
+      controller: 'TestingCtrl'
     });
 
 // For any unmatched url, redirect to /state1

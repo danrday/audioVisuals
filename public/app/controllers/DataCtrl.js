@@ -2,18 +2,7 @@
 
 app.controller("DataCtrl", function($scope) {
 
-// let discog = $scope.trackDiscog;
-
-
-// $scope.songGeneralInfo = {
-//   artist: discog.artists[0].name,
-//   song: discog.name,
-//   album: discog.album.name
-// };
-
-
 let trackAnalysis = $scope.trackAnalysis;
-
 
 //track bars OBJECT, if over 99 broken into objects of 99 or less
 let trackBars = trackAnalysis.bars;
@@ -22,7 +11,6 @@ let trackBarsLength = trackBars.length;
 
 //number of array objects within trackBars
 let numOfArrays = Math.ceil(trackBars.length / 100);
-
 
 console.log("trackBars", trackBars)
 
@@ -35,11 +23,6 @@ for (let i = 0; i < trackBarsLength; i++) {
   let currentBarLength = trackBars[i].duration;
   trackBarsArray.push(currentBarLength);
 }
-
-console.log(trackBarsArray)
-
-
-// var chartdata = [20, 30, 105, 15, 85, 20, 30, 105, 15, 85, 20, 30, 105, 15, 85, 20, 30, 105, 15, 85];
 
 var height = 200,
     width = 720,
@@ -76,7 +59,6 @@ d3.select('#bar-chart').append('svg')
         // console.log("yScale(i)", height-yScale(data));
         return height - yScale(data);
     });
-
 
 });
 
