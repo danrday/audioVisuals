@@ -11,7 +11,7 @@ $scope.searchResults = {};
 $scope.trackAudioFeatures = {};
 
 //contains detailed track information
-$scope.trackAnalysis = {};
+$scope.trackAnalysis = null;
 
 //search for tracks by search criteria 
 $scope.searchAlbums = function(query) {
@@ -48,7 +48,7 @@ $scope.goToTrack = function(id) {
       method:'GET',
       url: `${analysisUrl}?access_token=${authToken}`,
        success: function(returnedAnalysisData) {
-         console.log(returnedAnalysisData);
+         // console.log(returnedAnalysisData);
            $scope.trackAnalysis = returnedAnalysisData;
            $scope.$apply();
         },

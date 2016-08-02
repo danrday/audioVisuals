@@ -5,7 +5,7 @@ var app = angular.module("AudioVis", ['spotify', 'ui.router']);
 
 app.config(function($stateProvider, $urlRouterProvider) {
 
-  $urlRouterProvider.when('/', '/nav/data');
+  $urlRouterProvider.when('/', '/nav');
 
   // Now set up the states
   $stateProvider
