@@ -7,11 +7,11 @@
           <input type="submit" ng-click="searchAlbums(searchText)" id="search" class="btn btn-primary" value="Search" />
       </form>
 
-      <a ui-sref="home.nav.data" id="childElementId">Show Basic Track Data</a>
+      <a ui-sref="home.nav.data" id="childElementId" ng-Click="clearSearch()">Show Basic Track Data</a>
 
       <div ui-view></div>
      
-      <div id="results" ng-repeat="track in searchResults">
+      <div id="searchResults" ng-repeat="track in searchResults">
         <div class="searchResult" ng-click="goToTrack(track.id)">
           <img src="{{track.album.images[0].url}}" class="searchPictures">
           Track: {{track.name}}

@@ -13,6 +13,15 @@ $scope.trackAudioFeatures = {};
 //contains detailed track information
 $scope.trackAnalysis = null;
 
+//contains discography information
+$scope.trackDiscog = null;
+
+$scope.songGeneralInfo = {};
+
+$scope.clearSearch = function () {
+  $scope.searchResults = {};
+}
+
 //search for tracks by search criteria 
 $scope.searchAlbums = function(query) {
     Spotify.search(query, 'track').then(function (data) {
@@ -31,6 +40,7 @@ $scope.searchAlbums = function(query) {
 };
 
 $scope.goToTrack = function(id) {
+
   $.ajax({
   method:'GET',
   url: `http://api.spotify.com/v1/audio-features/${id}?access_token=${authToken}`,
@@ -44,19 +54,41 @@ $scope.goToTrack = function(id) {
       }
   }).then(function(returnedData) {
     let analysisUrl = returnedData.analysis_url;
+    let trackSpecs = returnedData.track_href;
     $.ajax({
       method:'GET',
       url: `${analysisUrl}?access_token=${authToken}`,
        success: function(returnedAnalysisData) {
-         // console.log(returnedAnalysisData);
            $scope.trackAnalysis = JSON.parse(returnedAnalysisData);
            $scope.$apply();
+          console.log($scope.trackAnalysis);
         },
         error: function() {
          alert("Error... did you login with Spotify?");
         }
      });
+
+    $.ajax({
+    method: 'GET',
+    url: `${trackSpecs}`,
+    success: function(returnedData) {
+      $scope.trackDiscog = returnedData;
+      console.log("trackDiscog", $scope.trackDiscog);
+      let discog = $scope.trackDiscog;
+      $scope.songGeneralInfo = {
+        artist: discog.artists[0].name,
+        song: discog.name,
+        album: discog.album.name
+    };
+    }
+  })
+
+
+
    });
+
+  
+
 };
 
 

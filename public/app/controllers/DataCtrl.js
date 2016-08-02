@@ -2,11 +2,14 @@
 
 app.controller("DataCtrl", function($scope) {
 
-// var chartdata = $scope.trackAnalysis.bars;
+// let discog = $scope.trackDiscog;
 
-// let trackAnalysis = JSON.parse($scope.trackAnalysis);
 
-// console.log("trackAnalysis", trackAnalysis.bars.length);
+// $scope.songGeneralInfo = {
+//   artist: discog.artists[0].name,
+//   song: discog.name,
+//   album: discog.album.name
+// };
 
 
 let trackAnalysis = $scope.trackAnalysis;
@@ -66,11 +69,11 @@ d3.select('#bar-chart').append('svg')
         return yScale(data);
     })
       .attr('x', function (data, i) {
-        console.log("xScale(i)", xScale(i));
+        // console.log("xScale(i)", xScale(i));
         return xScale(i);
     })
     .attr('y', function (data) {
-        console.log("yScale(i)", height-yScale(data));
+        // console.log("yScale(i)", height-yScale(data));
         return height - yScale(data);
     });
 

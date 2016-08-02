@@ -8,15 +8,39 @@
 </head>
 <body>
 
-<div>{{trackAudioFeatures}}</div>
+<div id="songDetails">
 
-<div class="container">
-  <h2>D3 Graphic</h2>
-  
+<ul>
+    <li>Acousticness: {{trackAudioFeatures.acousticness}}</li>
+    <li>Danceability: {{trackAudioFeatures.danceability}}</li>
+
+    <li>Duration(ms): {{trackAudioFeatures.duration_ms}}</li>
+    <li>Energy: {{trackAudioFeatures.energy}}</li>
+    <li>Instrumentalness: {{trackAudioFeatures.instrumentalness}}</li>
+    <li>Key: {{trackAudioFeatures.key}}</li>
+    <li>Liveness: {{trackAudioFeatures.liveness}}</li>
+    <li>Loudness: {{trackAudioFeatures.loudness}}</li>
+    <li>Tempo: {{trackAudioFeatures.tempo}}</li>
+    <li>Time Signature: {{trackAudioFeatures.time_signature}}</li>
+    <li>Speechiness: {{trackAudioFeatures.speechiness}}</li>
+    <li>Mode: {{trackAudioFeatures.mode}}</li>
+    <li>Valence: {{trackAudioFeatures.valence}}</li>
+  </ul>
+
+</div>
+
+<div id="chart" class="container">
+ <ul>
+    <li>Artist: {{songGeneralInfo.artist}}</li>
+    <li>Album: {{songGeneralInfo.album}}</li>
+  </ul>
+
+  <h2>Song: {{songGeneralInfo.song}}</h2>
+ 
   <div id="bar-chart">
  
     </div>
-  
+
 </div>
   
 </body>
