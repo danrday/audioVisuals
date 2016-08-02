@@ -9,20 +9,30 @@ let trackBars = trackAnalysis.bars;
 
 let trackBarsLength = trackBars.length;
 
-//number of array objects within trackBars
-let numOfArrays = Math.ceil(trackBars.length / 100);
-
 console.log("trackBars", trackBars)
 
 console.log("trackBars typeOf", typeof(trackBarsLength));
 
+//holds an array of the length of each bar
 let trackBarsArray = [];
+
+//holds an array of the "confidence" of each bar
+let barsConfidence = [];
 
 //pushes every bar's duration into a new array
 for (let i = 0; i < trackBarsLength; i++) {
   let currentBarLength = trackBars[i].duration;
   trackBarsArray.push(currentBarLength);
 }
+
+//pushes every bar's duration into a new array
+for (let i = 0; i < trackBarsLength; i++) {
+  let currentConfidence = trackBars[i].confidence;
+  barsConfidence.push(currentConfidence);
+}
+
+console.log("barsConfidence", barsConfidence);
+
 
 var height = 200,
     width = 720,
@@ -35,25 +45,36 @@ var yScale = d3.scaleLinear()
         .domain([0, d3.max(trackBarsArray)])
         .range([0, height]);
 
-var xScale = d3.scaleLinear()
-        .domain([0, trackBarsArray.length])
-        .range([0,width]);
+var xScale = d3.scaleBand()
+        .domain(d3.range(0, trackBarsArray.length))
+        .range(d3.range(0, width))
+        
 
- 
-d3.select('#bar-chart').append('svg')
+var colors = d3.scaleLinear()
+        .domain([d3.min(trackBarsArray), d3.max(trackBarsArray)])
+        .range(['#FFB832', '#C61C6F']);
+
+var padding = d3.scaleLinear()
+        .domain([d3.min(barsConfidence), d3.max(barsConfidence)])
+        .range([0, 1]);
+
+
+var songChart = d3.select('#bar-chart').append('svg')
   .attr('width', width)
   .attr('height', height)
   .style('background', '#dff0d8')
   .selectAll('rect').data(trackBarsArray)
   .enter().append('rect')
-    .style('fill', '#3c763d')
-    .attr("width", (width/trackBarsArray.length -1))
+    .style('fill', colors)
+    .attr("width", function(data) {
+      return xScale.bandwidth()*width;
+    })
     .attr('height', function (data) {
         return yScale(data);
     })
       .attr('x', function (data, i) {
         // console.log("xScale(i)", xScale(i));
-        return xScale(i);
+        return xScale(i)*width;
     })
     .attr('y', function (data) {
         // console.log("yScale(i)", height-yScale(data));

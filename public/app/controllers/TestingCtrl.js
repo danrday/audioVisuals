@@ -21,13 +21,17 @@ var xScale = d3.scaleBand()
         .range(d3.range(0, width))
         .paddingInner([.2])
 
+var colors = d3.scaleLinear()
+        .domain([d3.min(bardata), d3.max(bardata)])
+        .range(['#FFB832', '#C61C6F']);
+
 d3.select('#test-chart').append('svg')
   .attr('width', width)
   .attr('height', height)
   .style('background', '#dff0d8')
   .selectAll('rect').data(bardata)
   .enter().append('rect')
-    .style('fill', '#3c763d')
+    .style('fill', colors)
     .attr("width", function() {
       console.log("xScale.bandwidth", xScale.bandwidth()*width)
       return xScale.bandwidth()*width
