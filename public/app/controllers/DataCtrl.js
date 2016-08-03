@@ -106,16 +106,16 @@ $scope.$watch('colorPicker2', function(newVal, oldVal) {
     })
 });
 
-//  $scope.$watch('colorPicker3', function(newVal, oldVal) {
-//         if (!newVal) {return};
+ $scope.$watch('colorPicker3', function(newVal, oldVal) {
+        if (!newVal) {return};
 
-//         d3.select('svg').style('background', `${newVal}`)
+        d3.select('svg').style('background', `${newVal}`)
 
-//     //     color1 = $scope.color;
-//     //     d3.selectAll('rect').data(trackAnalysis.bars).enter().style('fill', function(data) {
-//     //     return colors(barsDurationFn(data));
-//     // });
-// });
+    //     color1 = $scope.color;
+    //     d3.selectAll('rect').data(trackAnalysis.bars).enter().style('fill', function(data) {
+    //     return colors(barsDurationFn(data));
+    // });
+});
 
 
         
