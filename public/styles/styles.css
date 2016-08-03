@@ -4,6 +4,14 @@
   font-family: "Courier New";
 }*/
 
+#colorPicker {
+  display: inline-block;
+}
+
+#colorPicker2 {
+  display: inline-block;
+}
+
 #chart {
   float:right;
   display: inline-block;

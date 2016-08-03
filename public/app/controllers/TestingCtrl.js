@@ -67,6 +67,24 @@ $scope.testButton = function () {
 });
 
 
+ $scope.$watch('colorTest2', function(newVal, oldVal) {
+        if (!newVal) {return};
+
+        color2 = newVal;
+
+        let colors3 = d3.scaleLinear()
+        .domain([d3.min(bardata), d3.max(bardata)])
+        .range([`${color1}`, `${newVal}`]); 
+
+        colors;
+
+        d3.selectAll('rect').style('fill', colors3)
+
+    //     color1 = $scope.color;
+    //     d3.selectAll('rect').data(trackAnalysis.bars).enter().style('fill', function(data) {
+    //     return colors(barsDurationFn(data));
+    // });
+});
 
 
 
