@@ -1,5 +1,8 @@
 <nav ng-controller="NavCtrl">
   <div class="container">
+
+      <a ng-click="googleLogin()" class="btn btn-primary">Login with Google</a>
+      
       <h1>Search for an Track</h1>
       <p>Search by artist, album or track.</p>
       <form id="search-form">
@@ -10,7 +13,7 @@
       <a ui-sref="home.nav.data" id="childElementId" ng-Click="clearSearch()">Show Basic Track Data</a>
 
       <div ui-view></div>
-     
+
       <div id="searchResults" ng-repeat="track in searchResults">
         <div class="searchResult" ng-click="goToTrack(track.id)">
           <img src="{{track.album.images[0].url}}" class="searchPictures">

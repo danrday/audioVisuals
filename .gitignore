@@ -2,3 +2,4 @@
 node_modules
 public/lib/bower_components
 private
+public/app/private

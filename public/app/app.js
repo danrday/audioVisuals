@@ -1,9 +1,19 @@
 "use strict";
 
-var app = angular.module("AudioVis", ['spotify', 'ui.router', 'mp.colorPicker']);
-// .constant('FirebaseURL', "https://pinkey-brain.firebaseio.com");
+var app = angular.module("AudioVis", ['spotify', 'ui.router', 'mp.colorPicker', 'LocalStorageModule'])
+.constant('FirebaseURL', "https://audiovisuals-85fa6.firebaseio.com");
 
-app.config(function($stateProvider, $urlRouterProvider) {
+app.config(function($stateProvider, $urlRouterProvider, FBCreds) {
+
+  let authConfig = {
+    apiKey: FBCreds.apiKey,
+    authDomain: FBCreds.authDomain,
+    databaseURL: FBCreds.databaseURL,
+    storageBucket: FBCreds.storageBucket
+  };
+
+  firebase.initializeApp(authConfig);
+  
 
   $urlRouterProvider.when('/', '/nav');
 
