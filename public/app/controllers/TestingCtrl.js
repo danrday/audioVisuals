@@ -87,6 +87,18 @@ $scope.testButton = function () {
 });
 
 
+  $scope.$watch('colorTest3', function(newVal, oldVal) {
+        if (!newVal) {return};
+
+        d3.select('svg').style('background', `${newVal}`)
+
+    //     color1 = $scope.color;
+    //     d3.selectAll('rect').data(trackAnalysis.bars).enter().style('fill', function(data) {
+    //     return colors(barsDurationFn(data));
+    // });
+});
+
+
 
 d3.select('#test-chart').append('svg')
   .attr('width', width)
