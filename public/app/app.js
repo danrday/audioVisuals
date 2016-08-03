@@ -1,6 +1,6 @@
 "use strict";
 
-var app = angular.module("AudioVis", ['spotify', 'ui.router']);
+var app = angular.module("AudioVis", ['spotify', 'ui.router', 'mp.colorPicker']);
 // .constant('FirebaseURL', "https://pinkey-brain.firebaseio.com");
 
 app.config(function($stateProvider, $urlRouterProvider) {

@@ -2,6 +2,12 @@
 
 app.controller("DataCtrl", function($scope) {
 
+$scope.color = "";
+
+$scope.selectedColor = function () {
+  d3.selectAll('rect').data(trackAnalysis.bars).enter().style('fill', '#dff0d8');
+}
+
 let trackAnalysis = $scope.trackAnalysis;
 
 //track bars OBJECT, if over 99 broken into objects of 99 or less
@@ -41,6 +47,10 @@ var barsDurationFn = function(d) { return d.duration; }
 
 // var padding = (function(d) { return 1 - d.confidence; })()
 
+// var padding = d3.scaleLinear()
+//         .domain(d3.extent(trackAnalysis.bars, confidenceFn))
+//         .range([0, 1]);
+
 var height = 200,
     width = 720,
     barWidth = 40,
@@ -56,16 +66,24 @@ var xScale = d3.scaleBand()
         .domain(d3.range(0, trackAnalysis.bars.length))
         .range(d3.range(0, width))
         .paddingInner(.2);
-        
 
+let color1 = '#2ead16';
+let color2 = '#C61C6F';
+        
 var colors = d3.scaleLinear()
         .domain(d3.extent(trackAnalysis.bars, barsDurationFn))
-        .range(['#FFB832', '#C61C6F']);
+        .range([`${color1}`, `${color2}`]);
 
 
-// var padding = d3.scaleLinear()
-//         .domain(d3.extent(trackAnalysis.bars, confidenceFn))
-//         .range([0, 1]);
+//  $scope.$watch('color', function(newVal, oldVal) {
+//         if (!newVal) {return};
+
+
+//     //     color1 = $scope.color;
+//     //     d3.selectAll('rect').data(trackAnalysis.bars).enter().style('fill', function(data) {
+//     //     return colors(barsDurationFn(data));
+//     // });
+// });
 
 var songChart = d3.select('#bar-chart').append('svg')
   .attr('width', width)
@@ -92,6 +110,7 @@ var songChart = d3.select('#bar-chart').append('svg')
     });
 
 });
+
 
 
 // var bardata = [20, 30, 105, 15, 85, 20, 30, 105, 15, 85, 20, 30, 105, 15, 85, 20, 30, 105, 15, 85];

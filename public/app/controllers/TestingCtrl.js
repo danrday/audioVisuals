@@ -21,9 +21,54 @@ var xScale = d3.scaleBand()
         .range(d3.range(0, width))
         .paddingInner([.2])
 
+let color1 = '#2ead16';
+let color2 = '#C61C6F';
+
 var colors = d3.scaleLinear()
         .domain([d3.min(bardata), d3.max(bardata)])
-        .range(['#FFB832', '#C61C6F']);
+        .range([`${color1}`, `${color2}`]);
+
+var colors2 = d3.scaleLinear()
+        .domain([d3.min(bardata), d3.max(bardata)])
+        .range(['#FFFFFF', '#FFB832']); 
+
+$scope.colorTest = ""      
+
+$scope.testButton = function () {
+  console.log("buttonpressed");
+  // d3.select('#test-chart').style('background', '#FFFFFF')
+  // d3.selectAll('elementsyouwanttochange').data().enter().style(newcolors)
+
+  // this works
+  // d3.select('svg').style('background', '#FFFFFF')
+
+  d3.selectAll('rect').style('fill', colors2)
+}
+
+
+
+ $scope.$watch('colorTest', function(newVal, oldVal) {
+        if (!newVal) {return};
+
+        color1 = newVal;
+
+        let colors3 = d3.scaleLinear()
+        .domain([d3.min(bardata), d3.max(bardata)])
+        .range([`${newVal}`, `${color2}`]); 
+
+        colors;
+
+        d3.selectAll('rect').style('fill', colors3)
+
+    //     color1 = $scope.color;
+    //     d3.selectAll('rect').data(trackAnalysis.bars).enter().style('fill', function(data) {
+    //     return colors(barsDurationFn(data));
+    // });
+});
+
+
+
+
 
 d3.select('#test-chart').append('svg')
   .attr('width', width)

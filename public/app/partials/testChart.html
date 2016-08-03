@@ -13,5 +13,17 @@
     </div>
 
 
+    <div id="colorPicker">
+      <color-picker ng-model="colorTest">
+      </color-picker>
+      <input type="text"
+       ng-model="color"
+       ng-init="color = '#f05a28'">
+    </div>
+
+
+       <button id="selectedColor" type="button" ng-click="testButton()">selected color</button>
+
+
 </body>
 </html>
