@@ -33,44 +33,54 @@ for (let i = 0; i < trackBarsLength; i++) {
 
 console.log("barsConfidence", barsConfidence);
 
+//these two functions allow us to work with multiple dimensions of the json data
+
+var confidenceFn = function(d) { return d.confidence; }
+
+var barsDurationFn = function(d) { return d.duration; }
+
+// var padding = (function(d) { return 1 - d.confidence; })()
 
 var height = 200,
     width = 720,
     barWidth = 40,
     barOffset = 20;
 
-var x = d3.scaleBand().rangeRound([0, width]).paddingInner(0.05);
+var x = d3.scaleBand().rangeRound([0, width])
  
 var yScale = d3.scaleLinear()
-        .domain([0, d3.max(trackBarsArray)])
+        .domain(d3.extent(trackAnalysis.bars, barsDurationFn))
         .range([0, height]);
 
 var xScale = d3.scaleBand()
-        .domain(d3.range(0, trackBarsArray.length))
+        .domain(d3.range(0, trackAnalysis.bars.length))
         .range(d3.range(0, width))
+        .paddingInner(.2);
         
 
 var colors = d3.scaleLinear()
-        .domain([d3.min(trackBarsArray), d3.max(trackBarsArray)])
+        .domain(d3.extent(trackAnalysis.bars, barsDurationFn))
         .range(['#FFB832', '#C61C6F']);
 
-var padding = d3.scaleLinear()
-        .domain([d3.min(barsConfidence), d3.max(barsConfidence)])
-        .range([0, 1]);
 
+// var padding = d3.scaleLinear()
+//         .domain(d3.extent(trackAnalysis.bars, confidenceFn))
+//         .range([0, 1]);
 
 var songChart = d3.select('#bar-chart').append('svg')
   .attr('width', width)
   .attr('height', height)
   .style('background', '#dff0d8')
-  .selectAll('rect').data(trackBarsArray)
+  .selectAll('rect').data(trackAnalysis.bars)
   .enter().append('rect')
-    .style('fill', colors)
+    .style('fill', function(data) {
+      return colors(barsDurationFn(data));
+    })
     .attr("width", function(data) {
       return xScale.bandwidth()*width;
     })
     .attr('height', function (data) {
-        return yScale(data);
+        return yScale(barsDurationFn(data));
     })
       .attr('x', function (data, i) {
         // console.log("xScale(i)", xScale(i));
@@ -78,7 +88,7 @@ var songChart = d3.select('#bar-chart').append('svg')
     })
     .attr('y', function (data) {
         // console.log("yScale(i)", height-yScale(data));
-        return height - yScale(data);
+        return height - yScale(barsDurationFn(data));
     });
 
 });
