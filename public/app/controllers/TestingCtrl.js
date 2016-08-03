@@ -50,13 +50,13 @@ $scope.testButton = function () {
  $scope.$watch('colorTest', function(newVal, oldVal) {
         if (!newVal) {return};
 
-        color1 = newVal;
+        // color1 = newVal;
 
         let colors3 = d3.scaleLinear()
         .domain([d3.min(bardata), d3.max(bardata)])
         .range([`${newVal}`, `${color2}`]); 
 
-        colors;
+        // colors;
 
         d3.selectAll('rect').style('fill', colors3)
 

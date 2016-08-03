@@ -5,7 +5,7 @@ app.controller("DataCtrl", function($scope) {
 $scope.color = "";
 
 $scope.selectedColor = function () {
-  d3.selectAll('rect').data(trackAnalysis.bars).enter().style('fill', '#dff0d8');
+  console.log($scope.color);
 }
 
 let trackAnalysis = $scope.trackAnalysis;
@@ -45,12 +45,6 @@ var confidenceFn = function(d) { return d.confidence; }
 
 var barsDurationFn = function(d) { return d.duration; }
 
-// var padding = (function(d) { return 1 - d.confidence; })()
-
-// var padding = d3.scaleLinear()
-//         .domain(d3.extent(trackAnalysis.bars, confidenceFn))
-//         .range([0, 1]);
-
 var height = 200,
     width = 720,
     barWidth = 40,
@@ -67,23 +61,67 @@ var xScale = d3.scaleBand()
         .range(d3.range(0, width))
         .paddingInner(.2);
 
+
+// initial chart colors on page load
 let color1 = '#2ead16';
 let color2 = '#C61C6F';
-        
-var colors = d3.scaleLinear()
+
+let bardata = [20, 30, 20, 15, 40, 80,20, 30, 20, 15, 40, 80,20, 30, 20, 15, 40, 80,20, 30, 20, 15, 40, 80, 20, 30, 20, 15, 40, 80,20, 30, 20, 15, 40, 80,20, 30, 20, 15, 40, 80,20, 30, 20, 15, 40, 80, 20, 30, 20, 15, 40, 80,20, 30, 20, 15, 40, 80,20, 30, 20, 15, 40, 80,20, 30, 20, 15, 40, 80, 20, 30, 20, 15, 40, 80,20, 30, 20, 15, 40, 80,20, 30, 20, 15, 40, 80,20, 30, 20, 15, 40, 80, 20, 30, 20, 15, 40, 80,20, 30, 20, 15, 40, 80,20, 30, 20, 15, 40, 80,20, 30, 20, 15, 40, 80];
+
+
+$scope.$watch('colorPicker1', function(newVal, oldVal) {
+        if (!newVal) {return};
+
+        console.log("newVal", newVal);
+
+        color1 = newVal;
+
+        let colors3 = d3.scaleLinear()
         .domain(d3.extent(trackAnalysis.bars, barsDurationFn))
-        .range([`${color1}`, `${color2}`]);
+        .range([`${newVal}`, `${color2}`]); 
+
+        // colors;
+
+        d3.selectAll('rect').style('fill', function(data) {
+      return colors3(barsDurationFn(data));
+    })
+});
 
 
-//  $scope.$watch('color', function(newVal, oldVal) {
+$scope.$watch('colorPicker2', function(newVal, oldVal) {
+        if (!newVal) {return};
+
+        console.log("newVal", newVal);
+
+        color2 = newVal;
+
+        let colors3 = d3.scaleLinear()
+        .domain(d3.extent(trackAnalysis.bars, barsDurationFn))
+        .range([`${color1}`, `${newVal}`]); 
+
+        // colors;
+
+        d3.selectAll('rect').style('fill', function(data) {
+      return colors3(barsDurationFn(data));
+    })
+});
+
+//  $scope.$watch('colorPicker3', function(newVal, oldVal) {
 //         if (!newVal) {return};
 
+//         d3.select('svg').style('background', `${newVal}`)
 
 //     //     color1 = $scope.color;
 //     //     d3.selectAll('rect').data(trackAnalysis.bars).enter().style('fill', function(data) {
 //     //     return colors(barsDurationFn(data));
 //     // });
 // });
+
+
+        
+var colors = d3.scaleLinear()
+        .domain(d3.extent(trackAnalysis.bars, barsDurationFn))
+        .range([`${color1}`, `${color2}`]);
 
 var songChart = d3.select('#bar-chart').append('svg')
   .attr('width', width)
@@ -110,67 +148,3 @@ var songChart = d3.select('#bar-chart').append('svg')
     });
 
 });
-
-
-
-// var bardata = [20, 30, 105, 15, 85, 20, 30, 105, 15, 85, 20, 30, 105, 15, 85, 20, 30, 105, 15, 85];
-
-// var height = 400,
-//     width = 600,
-//     barWidth = 50,
-//     barOffset = 5;
-
-
-// d3.select('#chart').append('svg')
-//     .attr('width', width)
-//     .attr('height', height)
-//     .style('background', '#C9D7D6')
-//     .selectAll('rect').data(bardata)
-//     .enter().append('rect')
-//         .style('fill', '#C61C6F')
-//         .attr('width', barWidth)
-//         .attr('height', function(d) {
-//             return d;
-//         })
-//         .attr('x', function(d,i) {
-//             return i * (barWidth + barOffset);
-//         })
-//         .attr('y', function(d) {
-//             return height - d;
-//         })
-
-
-/////////////////////////
-
-// let bardata = [20, 30, 20, 15, 40, 80,20, 30, 20, 15, 40, 80,20, 30, 20, 15, 40, 80,20, 30, 20, 15, 40, 80];
-
-// let height = 400,
-//     width = 600,
-//     barWidth = 50,
-//     barOffset = 5;
-
-// let yScale = d3.scale.linear()
-//         .domain([0, d3.max(bardata)])
-//         .range([0, height]);
-
-// let xScale = d3.scale.ordinal()
-//         .domain(d3.range(0, bardata.length))
-//         .rangeBands([0, width])
-
-// d3.select('#chart').append('svg')
-//     .attr('width', width)
-//     .attr('height', height)
-//     .style('background', '#C9D7D6')
-//     .selectAll('rect').data(bardata)
-//     .enter().append('rect')
-//         .style('fill', '#C61C6F')
-//         .attr('width', xScale.rangeBand())
-//         .attr('height', function(d) {
-//             return yScale(d);
-//         })
-//         .attr('x', function(d,i) {
-//             return xScale(i);
-//         })
-//         .attr('y', function(d) {
-//             return height - yScale(d);
-//         })
