@@ -5,15 +5,18 @@ app.controller("DataCtrl", function($scope, $rootScope, $sce, GraphStorage) {
 //SAVE TRACK
 
 // initial chart colors on page load
-let color1 = '#2ead16';
-let color2 = '#C61C6F';
-let color3 = "";
+// let color1 = '#2ead16';
+// let color2 = '#C61C6F';
+// let color3 = "";
 
   $scope.newGraph = {
     graphType: "barChartTrackBars",
-    color1: color1,
-    color2: color2,
-    color3: color3
+    renderColor1: "#2ead16",
+    renderColor2: "#C61C6F",
+    renderColor3: "#dff0d8",
+    updateColor1: "#2ead16",
+    updateColor2: "#C61C6F",
+    updateColor3: ""
   }
 
   let trackId = $scope.trackAudioFeatures.id;
@@ -94,16 +97,16 @@ let spotifyEmbed = "https://embed.spotify.com/?uri=" + $scope.trackAudioFeatures
 $rootScope.someUrl = $sce.trustAsResourceUrl(`${spotifyEmbed}`);
 
 
-$scope.$watch('colorPicker1', function(newVal, oldVal) {
+$scope.$watch('newGraph.updateColor1', function(newVal, oldVal) {
         if (!newVal) {return};
 
-        color1 = newVal;
+        // color1 = newVal;
 
-        console.log("color1", color1);
+        // console.log("color1", color1);
 
         let colors3 = d3.scaleLinear()
         .domain(d3.extent(trackAnalysis.bars, barsDurationFn))
-        .range([`${newVal}`, `${color2}`]); 
+        .range([`${newVal}`, `${$scope.newGraph.updateColor2}`]); 
 
         // colors;
 
@@ -113,16 +116,16 @@ $scope.$watch('colorPicker1', function(newVal, oldVal) {
 });
 
 
-$scope.$watch('colorPicker2', function(newVal, oldVal) {
+$scope.$watch('newGraph.updateColor2', function(newVal, oldVal) {
         if (!newVal) {return};
 
-        color2 = newVal;
+        // color2 = newVal;
 
-        console.log("color2", color2);
+        // console.log("color2", color2);
 
         let colors3 = d3.scaleLinear()
         .domain(d3.extent(trackAnalysis.bars, barsDurationFn))
-        .range([`${color1}`, `${newVal}`]); 
+        .range([`${$scope.newGraph.updateColor1}`, `${newVal}`]); 
 
         // colors;
 
@@ -131,12 +134,12 @@ $scope.$watch('colorPicker2', function(newVal, oldVal) {
     })
 });
 
- $scope.$watch('colorPicker3', function(newVal, oldVal) {
+ $scope.$watch('newGraph.updateColor3', function(newVal, oldVal) {
         if (!newVal) {return};
 
-        color3 = newVal;
+        // color3 = newVal;
 
-        console.log("color2", color3);
+        // console.log("color2", color3);
 
         d3.select('svg').style('background', `${newVal}`)
 
@@ -150,12 +153,12 @@ $scope.$watch('colorPicker2', function(newVal, oldVal) {
         
 var colors = d3.scaleLinear()
         .domain(d3.extent(trackAnalysis.bars, barsDurationFn))
-        .range([`${color1}`, `${color2}`]);
+        .range([`${$scope.newGraph.renderColor1}`, `${$scope.newGraph.renderColor2}`]);
 
 var songChart = d3.select('#bar-chart').append('svg')
   .attr('width', width)
   .attr('height', height)
-  .style('background', '#dff0d8')
+  .style('background', $scope.newGraph.renderColor3)
   .selectAll('rect').data(trackAnalysis.bars)
   .enter().append('rect')
     .style('fill', function(data) {
