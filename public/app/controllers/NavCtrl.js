@@ -1,15 +1,39 @@
 "use strict";
 
-app.controller("NavCtrl", function($http, $scope, $rootScope, $location, Spotify, AuthFactory) {
-
-let authToken = null;
+app.controller("NavCtrl", function($http, $scope, $rootScope, $location, Spotify, AuthFactory, localStorageService) {
 
 // BEGINNING LOGIN STUFF
+
+$scope.notLoggedIn = true; 
+
+// let currentUser = localStorageService.get("currentUser");
+// console.log("localstorageserviceget user",currentUser)
+
+let refreshItems = function() {
+  // ItemStorage.getItemList()
+  // .then(function(itemCollection) {
+  //   $scope.items = itemCollection;
+  // });
+  
+  
+  
+}
+
+firebase.auth().onAuthStateChanged(function(){
+  let user = AuthFactory.getUser();
+  console.log("STATE CHANGE", user);
+  if (user !== null) {
+  $scope.notLoggedIn = false;
+  $scope.$apply();
+  console.log("AAAuser", AuthFactory.getUser())
+  }
+});
+
 
   $scope.googleLogin = function() {
     AuthFactory.authWithProvider()
    .then(function(result) {
-     var user = result.user.uid;
+     AuthFactory.setUser(result.user.uid);
      console.log("logged in user fer sure", user);
      // Load to dos?
      // $location.path("/boards");
@@ -27,12 +51,14 @@ let authToken = null;
   };
 
   // logout function
-  $scope.logout = function() {
+  $scope.googleLogout = function() {
     AuthFactory.signOut();
+    $scope.notLoggedIn = true;
   }
 
-
 //END  LOGIN STUFF
+
+let authToken = null;
 
 //contains 20 track results matching search criteria
 $scope.searchResults = {};
