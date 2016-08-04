@@ -9,7 +9,7 @@
 <body>
 
   <div id="trackResults" ng-repeat="track in trackResults">
-        <div class="trackResult" ng-click="getTrack(track.id)">
+        <div class="trackResult" ui-sref="home.nav.savedtrack" ng-click="goToTrack(track.id)">
           Track: {{track.song}}
           Artist: {{track.artist}}
           Album: {{track.album}}

@@ -39,6 +39,11 @@ app.config(function($stateProvider, $urlRouterProvider, FBCreds) {
       templateUrl: 'app/partials/myTracks.html',
       controller: 'TracksCtrl'
     })
+     .state('home.nav.savedtrack', {
+      url: "/savedtrack",
+      templateUrl: 'app/partials/savedTrack.html',
+      controller: 'SavedTrackCtrl'
+    })
      .state('home.nav.testChart', {
       url: "/test",
       templateUrl: 'app/partials/testChart.html',
