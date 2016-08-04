@@ -19,11 +19,13 @@ let trackId = $scope.trackAudioFeatures.id;
     renderColor3: "#dff0d8",
     updateColor1: "#2ead16",
     updateColor2: "#C61C6F",
-    updateColor3: "",
+    updateColor3: "#dff0d8",
     song: $scope.songGeneralInfo.song,
     artist: $scope.songGeneralInfo.artist,
     album: $scope.songGeneralInfo.album
   }
+
+  console.log("scopeCustomColors", $scope.customColors)
 
 
   $scope.saveNewGraph = function() {
@@ -51,6 +53,30 @@ let trackId = $scope.trackAudioFeatures.id;
 
 
 //SAVE TRACK
+
+// edit track
+
+
+
+// update stuff
+
+$scope.putEditTrack = function() {
+  $scope.newGraph.uid = AuthFactory.getUser();
+  console.log("SCOPE ID", $scope.fbId)
+    GraphStorage.putTrack($scope.fbId, $scope.newGraph)
+    .then(function(message) {
+
+      console.log(message);
+      // $location.url("/boards");
+    })
+
+  };
+
+
+
+// update stuff
+
+// edit track
 
 $scope.color = "";
 
@@ -173,12 +199,12 @@ $scope.$watch('newGraph.updateColor2', function(newVal, oldVal) {
         
 var colors = d3.scaleLinear()
         .domain(d3.extent(trackAnalysis.bars, barsDurationFn))
-        .range([`${$scope.newGraph.renderColor1}`, `${$scope.newGraph.renderColor2}`]);
+        .range([`${$scope.newGraph.updateColor1}`, `${$scope.newGraph.updateColor2}`]);
 
 var songChart = d3.select('#bar-chart').append('svg')
   .attr('width', width)
   .attr('height', height)
-  .style('background', $scope.newGraph.renderColor3)
+  .style('background', $scope.newGraph.updateColor3)
   .selectAll('rect').data(trackAnalysis.bars)
   .enter().append('rect')
     .style('fill', function(data) {

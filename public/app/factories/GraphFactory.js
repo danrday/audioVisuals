@@ -21,23 +21,23 @@ app.factory("GraphStorage", function(FirebaseURL, $q, $http) {
   //   });
   // };
 
-  // let putPin = function(pinId, pinObj) {
-  //   return $q(function(resolve, reject) {
-  //     $http.patch(
-  //       `${FirebaseURL}/pin/${pinId}.json`,
-  //         JSON.stringify(pinObj)   
-  //     )
-  //     .success(function(message) {
-  //       resolve(message);
-  //     })
-  //     .error(function(error) {
-  //       reject(error);
-  //     });
-  //   });
-  // };
+  let putTrack = function(fbTrackId, newTrackObj) {
+    return $q(function(resolve, reject) {
+      $http.patch(
+        `${FirebaseURL}/graph/${fbTrackId}.json`,
+          JSON.stringify(newTrackObj)   
+      )
+      .success(function(message) {
+        resolve(message);
+      })
+      .error(function(error) {
+        reject(error);
+      });
+    });
+  };
 
   let postNewGraph = function (newGraph, trackId) {
-    
+
     return $q(function(resolve, reject) {
       $http.post(
         `${FirebaseURL}/graph.json`,
@@ -87,7 +87,7 @@ app.factory("GraphStorage", function(FirebaseURL, $q, $http) {
   // };
 
   return {
-    postNewGraph, postJSONData
+    postNewGraph, postJSONData, putTrack
   };
 
 });

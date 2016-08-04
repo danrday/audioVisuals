@@ -3,6 +3,11 @@
 app.controller("NavCtrl", function($http, $scope, $rootScope, $location, Spotify, AuthFactory, localStorageService, TrackStorage) {
 
 
+  $scope.customColors = null;
+
+
+
+
 // mytracks STUFF
 
  $scope.deleteTrack = function(trackID) {
@@ -21,6 +26,7 @@ app.controller("NavCtrl", function($http, $scope, $rootScope, $location, Spotify
   }
 
   $scope.myTrackResults = [];
+
 
   
 
@@ -140,7 +146,23 @@ $scope.searchAlbums = function(query) {
   });
 };
 
-$scope.goToTrack = function(id) {
+$scope.fbId = null;
+
+$scope.goToTrack = function(id, fbId, customColor1, customColor2, customColor3) {
+
+if (customColor1) {
+
+  console.log("CUSTOMCOLOR1 NOT UNDEDINED")
+  // $scope.customColors = {
+  //   customColor1: customColor1,
+  //   customColor2: customColor2,
+  //   customColor3: customColor3
+  // }
+}
+
+
+$scope.fbId = fbId;
+console.log("fbId", fbId)
 
   $.ajax({
   method:'GET',
