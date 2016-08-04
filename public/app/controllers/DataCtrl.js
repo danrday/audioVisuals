@@ -1,6 +1,6 @@
 "use strict";
 
-app.controller("DataCtrl", function($scope) {
+app.controller("DataCtrl", function($scope, $rootScope, $sce) {
 
 $scope.color = "";
 
@@ -68,6 +68,17 @@ let color2 = '#C61C6F';
 
 let bardata = [20, 30, 20, 15, 40, 80,20, 30, 20, 15, 40, 80,20, 30, 20, 15, 40, 80,20, 30, 20, 15, 40, 80, 20, 30, 20, 15, 40, 80,20, 30, 20, 15, 40, 80,20, 30, 20, 15, 40, 80,20, 30, 20, 15, 40, 80, 20, 30, 20, 15, 40, 80,20, 30, 20, 15, 40, 80,20, 30, 20, 15, 40, 80,20, 30, 20, 15, 40, 80, 20, 30, 20, 15, 40, 80,20, 30, 20, 15, 40, 80,20, 30, 20, 15, 40, 80,20, 30, 20, 15, 40, 80, 20, 30, 20, 15, 40, 80,20, 30, 20, 15, 40, 80,20, 30, 20, 15, 40, 80,20, 30, 20, 15, 40, 80];
 
+
+let testtest = "https://embed.spotify.com/?uri=" + $scope.trackAudioFeatures.uri; 
+
+
+$rootScope.someUrl = $sce.trustAsResourceUrl(`${testtest}`);
+
+
+
+$scope.embedURL = testtest
+
+console.log("EMBED URL", $scope.embedURL)
 
 $scope.$watch('colorPicker1', function(newVal, oldVal) {
         if (!newVal) {return};
