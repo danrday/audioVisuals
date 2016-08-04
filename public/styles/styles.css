@@ -4,6 +4,11 @@
   font-family: "Courier New";
 }*/
 
+#saveNewGraph {
+  display: inline-block;
+  float: right;
+}
+
 #saveGraph {
   display: inline-block;
   float: right;

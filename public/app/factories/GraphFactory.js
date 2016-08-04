@@ -37,7 +37,7 @@ app.factory("GraphStorage", function(FirebaseURL, $q, $http) {
   // };
 
   let postNewGraph = function (newGraph, trackId) {
-    newGraph.fb_track_id = trackId;
+    
     return $q(function(resolve, reject) {
       $http.post(
         `${FirebaseURL}/graph.json`,
@@ -51,6 +51,22 @@ app.factory("GraphStorage", function(FirebaseURL, $q, $http) {
       });
     });
   };
+
+  let postJSONData = function (trackJSON) {
+       return $q(function(resolve, reject) {
+      $http.post(
+        `${FirebaseURL}/trackJSON.json`,
+        // trackJSON;
+        JSON.stringify(trackJSON)
+      )
+      .success(function(ObjFromFirebase) {
+        resolve(ObjFromFirebase);
+      })
+      .error(function(error) {
+        reject(error);
+      });
+    });
+  }
 
   // let deletePin = function (id) {
   //   return $q(function (resolve, reject) {
@@ -71,7 +87,7 @@ app.factory("GraphStorage", function(FirebaseURL, $q, $http) {
   // };
 
   return {
-    postNewGraph
+    postNewGraph, postJSONData
   };
 
 });

@@ -1,6 +1,6 @@
 "use strict";
 
-app.controller("DataCtrl", function($scope, $rootScope, $sce, GraphStorage) {
+app.controller("DataCtrl", function($scope, $rootScope, $sce, GraphStorage, AuthFactory) {
 
 //SAVE TRACK
 
@@ -9,8 +9,11 @@ app.controller("DataCtrl", function($scope, $rootScope, $sce, GraphStorage) {
 // let color2 = '#C61C6F';
 // let color3 = "";
 
+let trackId = $scope.trackAudioFeatures.id;
+
   $scope.newGraph = {
     graphType: "barChartTrackBars",
+    trackId: trackId,
     renderColor1: "#2ead16",
     renderColor2: "#C61C6F",
     renderColor3: "#dff0d8",
@@ -19,11 +22,25 @@ app.controller("DataCtrl", function($scope, $rootScope, $sce, GraphStorage) {
     updateColor3: ""
   }
 
-  let trackId = $scope.trackAudioFeatures.id;
 
-  $scope.saveGraph = function() {
+  $scope.saveNewGraph = function() {
+
+    let trackJSON = {
+      trackId: trackId,
+      trackAudioFeatures: $scope.trackAudioFeatures,
+      trackAnalysis: $scope.trackAnalysis,
+      trackDiscog: $scope.trackDiscog
+    }
+
+    console.log("trackJSON from dataCTRL", trackJSON)
+
+    $scope.newGraph.uid = AuthFactory.getUser();
+
     GraphStorage.postNewGraph($scope.newGraph, trackId)
     .then(function() {
+      GraphStorage.postJSONData(trackJSON)
+      // $location.url("/boards");
+    }).then(function() {
       console.log("success")
       // $location.url("/boards");
     })
