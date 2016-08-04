@@ -4,10 +4,35 @@
   font-family: "Courier New";
 }*/
 
-#saveTrack {
+#saveGraph {
   display: inline-block;
   float: right;
 }
+
+#armTrack {
+  display: inline-block;
+  float: right;
+}
+
+#title {
+  display: inline-block
+  float: left;
+}
+
+#navContainer {
+    display: inline-block;
+    float: right;
+}
+
+#loginSpotify {
+   display: inline;
+   float: right;
+}
+
+#spotifyLogin {
+  height: 50px;
+}
+
 
 #colorRadioButtons {
   display: inline-block;

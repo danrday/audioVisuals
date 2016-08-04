@@ -31,16 +31,17 @@
 
 <div id="chart" class="container">
 
- <ul>
-    <li>Artist: {{songGeneralInfo.artist}}</li>
-    <li>Album: {{songGeneralInfo.album}}</li>
-  </ul>
 
+    <h2>Artist: {{songGeneralInfo.artist}}</h2>
+    <h2>Album: {{songGeneralInfo.album}}</h2>
   <h2>Song: {{songGeneralInfo.song}}</h2> 
 
   <iframe ng-src="{{someUrl}}" width="300" height="80" frameborder="0" allowtransparency="true"></iframe>
  
-  <a id="saveTrack" ng-click="saveTrack()" class="btn btn-primary">Save Track</a>
+
+  <a id="armTrack" ng-click="armTrack()" class="btn btn-primary">Sync</a>
+
+  <a id="saveGraph" ng-click="saveGraph()" class="btn btn-primary">Save</a>
 
   <div id="bar-chart">
  

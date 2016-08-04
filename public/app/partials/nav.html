@@ -1,6 +1,6 @@
 <nav ng-controller="NavCtrl">
   <div class="container">
-
+    <div id="navContainer">
       <div ng-show="notLoggedIn" id="notLoggedIn">
       <a ng-click="googleLogin()" class="btn btn-primary">Login with Google</a>
       </div>
@@ -9,6 +9,7 @@
       <a ng-click="googleLogout()" class="btn btn-primary">Logout Of Google</a>
       <a ng-click="savedTracks()" class="btn btn-primary">Saved Tracks</a>
       </div>
+    </div>
       
       <h1>Search for an Track</h1>
       <p>Search by artist, album or track.</p>

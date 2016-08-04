@@ -1,6 +1,33 @@
 "use strict";
 
-app.controller("DataCtrl", function($scope, $rootScope, $sce) {
+app.controller("DataCtrl", function($scope, $rootScope, $sce, GraphStorage) {
+
+//SAVE TRACK
+
+// initial chart colors on page load
+let color1 = '#2ead16';
+let color2 = '#C61C6F';
+let color3 = "";
+
+  $scope.newGraph = {
+    graphType: "barChartTrackBars",
+    color1: color1,
+    color2: color2,
+    color3: color3
+  }
+
+  let trackId = $scope.trackAudioFeatures.id;
+
+  $scope.saveGraph = function() {
+    GraphStorage.postNewGraph($scope.newGraph, trackId)
+    .then(function() {
+      console.log("success")
+      // $location.url("/boards");
+    })
+  };
+
+
+//SAVE TRACK
 
 $scope.color = "";
 
@@ -62,30 +89,17 @@ var xScale = d3.scaleBand()
         .paddingInner(.2);
 
 
-// initial chart colors on page load
-let color1 = '#2ead16';
-let color2 = '#C61C6F';
 
-let bardata = [20, 30, 20, 15, 40, 80,20, 30, 20, 15, 40, 80,20, 30, 20, 15, 40, 80,20, 30, 20, 15, 40, 80, 20, 30, 20, 15, 40, 80,20, 30, 20, 15, 40, 80,20, 30, 20, 15, 40, 80,20, 30, 20, 15, 40, 80, 20, 30, 20, 15, 40, 80,20, 30, 20, 15, 40, 80,20, 30, 20, 15, 40, 80,20, 30, 20, 15, 40, 80, 20, 30, 20, 15, 40, 80,20, 30, 20, 15, 40, 80,20, 30, 20, 15, 40, 80,20, 30, 20, 15, 40, 80, 20, 30, 20, 15, 40, 80,20, 30, 20, 15, 40, 80,20, 30, 20, 15, 40, 80,20, 30, 20, 15, 40, 80];
+let spotifyEmbed = "https://embed.spotify.com/?uri=" + $scope.trackAudioFeatures.uri; 
+$rootScope.someUrl = $sce.trustAsResourceUrl(`${spotifyEmbed}`);
 
-
-let testtest = "https://embed.spotify.com/?uri=" + $scope.trackAudioFeatures.uri; 
-
-
-$rootScope.someUrl = $sce.trustAsResourceUrl(`${testtest}`);
-
-
-
-$scope.embedURL = testtest
-
-console.log("EMBED URL", $scope.embedURL)
 
 $scope.$watch('colorPicker1', function(newVal, oldVal) {
         if (!newVal) {return};
 
-        console.log("newVal", newVal);
-
         color1 = newVal;
+
+        console.log("color1", color1);
 
         let colors3 = d3.scaleLinear()
         .domain(d3.extent(trackAnalysis.bars, barsDurationFn))
@@ -102,9 +116,9 @@ $scope.$watch('colorPicker1', function(newVal, oldVal) {
 $scope.$watch('colorPicker2', function(newVal, oldVal) {
         if (!newVal) {return};
 
-        console.log("newVal", newVal);
-
         color2 = newVal;
+
+        console.log("color2", color2);
 
         let colors3 = d3.scaleLinear()
         .domain(d3.extent(trackAnalysis.bars, barsDurationFn))
@@ -119,6 +133,10 @@ $scope.$watch('colorPicker2', function(newVal, oldVal) {
 
  $scope.$watch('colorPicker3', function(newVal, oldVal) {
         if (!newVal) {return};
+
+        color3 = newVal;
+
+        console.log("color2", color3);
 
         d3.select('svg').style('background', `${newVal}`)
 

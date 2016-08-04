@@ -30,10 +30,10 @@
   <body ng-app="AudioVis">
 
 
-    <div class="container">
+    <div id="spotifyLogin" class="container">
       <div id="login">
-        <h1>audio visualizer</h1>
-        <a href="/login" class="btn btn-primary">Log in with Spotify</a>
+        <h1 id="title">audio visualizer</h1>
+        <a id="loginSpotify" href="/login" class="btn btn-primary">Log in with Spotify</a>
       </div>
       <div id="loggedin">
         <div id="user-profile">
@@ -179,12 +179,14 @@
 
 
     <script src="app/factories/AuthFactory.js"></script>
+    <script src="app/factories/GraphFactory.js"></script>
 
 
     <script src="app/controllers/NavCtrl.js"></script>
     <script src="app/controllers/DataCtrl.js"></script>
     <script src="app/controllers/TestingCtrl.js"></script>
     <script src="app/controllers/LoginCtrl.js"></script>
+    <script src="app/controllers/NewGraphCtrl.js"></script>
 
 
   </body>
