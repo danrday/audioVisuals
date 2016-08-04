@@ -15,8 +15,6 @@ let trackDiscog = null;
 let songGeneralInfo = {};
 
 let authToken = null;
-
-
   $.ajax({
     method: 'GET',
     url: 'http://localhost:8888/getToken',
@@ -30,7 +28,6 @@ let authToken = null;
 
 
 
-
 let getSpotifyData = function(id) {
 
   return $q(function(resolve, reject) {
@@ -41,25 +38,47 @@ let getSpotifyData = function(id) {
   success: function(basicTrackData) {
     console.log(basicTrackData);
     trackAudioFeatures = basicTrackData;
+    let analysisUrl = basicTrackData.analysis_url;
+    let trackSpecs = basicTrackData.track_href;
+    resolve(basicTrackData)
   },
   error: function() {
          alert("Error... did you login?");
+         reject(error)
       }
-  }).then(function(returnedData) {
-    let analysisUrl = returnedData.analysis_url;
-    let trackSpecs = returnedData.track_href;
-    $.ajax({
+  })
+
+}
+
+
+let getData2 = function(analysisUrl) {
+
+  return $q(function(resolve, reject) {
+
+   $.ajax({
       method:'GET',
       url: `${analysisUrl}?access_token=${authToken}`,
        success: function(returnedAnalysisData) {
            trackAnalysis = JSON.parse(returnedAnalysisData);
           console.log(trackAnalysis);
+          resolve(returnedAnalysisData)
         },
         error: function() {
          alert("Error... did you login with Spotify?");
+         reject(error)
         }
-     }).then(function() {
-       $.ajax({
+     })
+
+})
+
+}
+
+
+let getData3 = function(tracSpecs) {
+
+return $q(function(resolve, reject) {
+
+$.ajax({
     method: 'GET',
     url: `${trackSpecs}`,
     success: function(returnedData) {
@@ -77,14 +96,10 @@ let getSpotifyData = function(id) {
       reject(error)
     }
   })
-     })
+  
 
-   });
-
-})
-
+  })
 }
-
 
 
 
@@ -93,8 +108,4 @@ let getSpotifyData = function(id) {
   };
 
 });
-
-
-
-
 

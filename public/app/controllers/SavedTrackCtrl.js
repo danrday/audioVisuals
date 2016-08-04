@@ -2,22 +2,51 @@
 
 app.controller("SavedTrackCtrl", function($scope, $rootScope, $sce, GraphStorage, AuthFactory, SpotifyFactory) {
 
+  let trackId = SpotifyFactory.trackId
+
+
+  //contains basic track information
+$scope.trackAudioFeatures = {};
+
+//contains detailed track information
+$scope.trackAnalysis = null;
+
+//contains discography information
+$scope.trackDiscog = null;
+
+$scope.songGeneralInfo = {};
+
+
+
+
+  SpotifyFactory.getSpotifyData(trackId)
+  .then(function() {
+    
+    //contains basic track information
+$scope.trackAudioFeatures = SpotifyFactory.trackAudioFeatures;
+
+//contains detailed track information
+$scope.trackAnalysis = SpotifyFactory.trackAnalysis;
+
+//contains discography information
+$scope.trackDiscog = SpotifyFactory.trackDiscog;
+
+$scope.songGeneralInfo = SpotifyFactory.songGeneralInfo;
+
+  })
+
+
+console.log("$scope.trackAudioFeatures", $scope.trackAudioFeatures)
+console.log("$scope.trackAnalysis", $scope.trackAnalysis)
+
+console.log("$scope.trackDiscog", $scope.trackDiscog)
+console.log("$scope.songGeneralInfo", $scope.songGeneralInfo)
 
 
 
 });
 
 
-// //contains basic track information
-// $scope.trackAudioFeatures = {};
-
-// //contains detailed track information
-// $scope.trackAnalysis = null;
-
-// //contains discography information
-// $scope.trackDiscog = null;
-
-// $scope.songGeneralInfo = {};
 
 
 

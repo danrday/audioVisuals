@@ -13,12 +13,17 @@ app.controller("TracksCtrl", function($scope, AuthFactory, TrackStorage, Spotify
     });
  }
 
- $scope.goToSavedTrack = function(trackId) {
-  console.log("track id from tracksCtrl", trackId)
-  SpotifyFactory.getSpotifyData(trackId)
-  .then(function(resolve) {
-    console.log("data", resolve)
-  })
+//  $scope.goToSavedTrack = function(trackId) {
+//   console.log("track id from tracksCtrl", trackId)
+//   SpotifyFactory.getSpotifyData(trackId)
+//   .then(function(resolve) {
+//     console.log("data", resolve)
+//   })
+// }
+
+$scope.goToSavedTrack = function(trackId) {
+  SpotifyFactory.trackId = trackId
+  console.log("tracks ctrl spotify track id", SpotifyFactory.trackId)
 }
 
 

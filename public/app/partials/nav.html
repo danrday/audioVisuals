@@ -7,7 +7,7 @@
 
       <div ng-show="!notLoggedIn" id="notLoggedIn">
       <a ng-click="googleLogout()" class="btn btn-primary">Logout Of Google</a>
-      <a ng-click="savedTracks()" class="btn btn-primary">Saved Tracks</a>
+      <a ng-click="getMyTracks()" class="btn btn-primary">Saved Tracks</a>
       </div>
     </div>
       
@@ -29,5 +29,29 @@
           Artist: {{track.artists[0].name}}
         </div>
       </div>
+
+<!-- 
+      <div id="savedTracks" ng-repeat="track in myTrackResults">
+        <div class="savedTrack" ng-click="goToTrack(track.id)">
+          <img src="{{track.album.images[0].url}}" class="searchPictures">
+          Track: {{track.name}}
+          Artist: {{track.artists[0].name}}
+        </div>
+      </div>
+ -->
+
+      <div id="trackResults" ng-repeat="track in myTrackResults">
+        <div class="trackResult" ng-click="goToTrack(track.trackId)">
+          Track: {{track.song}}
+          Artist: {{track.artist}}
+          Album: {{track.album}}
+        </div>
+
+         <a id="deleteTrack" class="btn btn-primary" ng-click="deleteTrack(track.id)">Delete</a>
+
+      </div>
+
+
+
   </div>
 </nav>

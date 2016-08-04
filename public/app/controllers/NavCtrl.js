@@ -1,6 +1,46 @@
 "use strict";
 
-app.controller("NavCtrl", function($http, $scope, $rootScope, $location, Spotify, AuthFactory, localStorageService) {
+app.controller("NavCtrl", function($http, $scope, $rootScope, $location, Spotify, AuthFactory, localStorageService, TrackStorage) {
+
+
+// mytracks STUFF
+
+ $scope.deleteTrack = function(trackID) {
+    TrackStorage.deleteTrack(trackID)
+    .then(function() {
+      TrackStorage.getTracks(AuthFactory.getUser())
+    .then( function (trackCollection) {
+    $scope.myTrackResults = trackCollection;
+    console.log("tracks", $scope.trackResults);
+     });
+    });
+ }
+
+  $scope.clearMyTracks = function () {
+    $scope.myTrackResults = {};
+  }
+
+  $scope.myTrackResults = [];
+
+  
+
+
+ $scope.getMyTracks = function () {
+
+  $scope.clearSearch();
+
+     TrackStorage.getTracks(AuthFactory.getUser())
+  .then( function (trackCollection) {
+    $scope.myTrackResults = trackCollection;
+    console.log("my track results", $scope.myTrackResults);
+  });
+
+}
+
+
+// my tracks stuff
+
+
 
 // BEGINNING LOGIN STUFF
 
@@ -80,6 +120,10 @@ $scope.clearSearch = function () {
 
 //search for tracks by search criteria 
 $scope.searchAlbums = function(query) {
+
+    // clears myTracks if open
+    $scope.clearMyTracks();
+
     Spotify.search(query, 'track').then(function (data) {
     $scope.searchResults = data.tracks.items;
     console.log($scope.searchResults)
