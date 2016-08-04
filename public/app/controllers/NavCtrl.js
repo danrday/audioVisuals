@@ -82,6 +82,7 @@ $scope.clearSearch = function () {
 $scope.searchAlbums = function(query) {
     Spotify.search(query, 'track').then(function (data) {
     $scope.searchResults = data.tracks.items;
+    console.log($scope.searchResults)
   });
 
 //gets user token when user searches

@@ -19,7 +19,10 @@ let trackId = $scope.trackAudioFeatures.id;
     renderColor3: "#dff0d8",
     updateColor1: "#2ead16",
     updateColor2: "#C61C6F",
-    updateColor3: ""
+    updateColor3: "",
+    song: $scope.songGeneralInfo.song,
+    artist: $scope.songGeneralInfo.artist,
+    album: $scope.songGeneralInfo.album
   }
 
 

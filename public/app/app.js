@@ -13,7 +13,7 @@ app.config(function($stateProvider, $urlRouterProvider, FBCreds) {
   };
 
   firebase.initializeApp(authConfig);
-  
+
 
   $urlRouterProvider.when('/', '/nav');
 
@@ -33,6 +33,11 @@ app.config(function($stateProvider, $urlRouterProvider, FBCreds) {
       url: "/data",
       templateUrl: 'app/partials/data.html',
       controller: 'DataCtrl'
+    })
+     .state('home.nav.mytracks', {
+      url: "/mytracks",
+      templateUrl: 'app/partials/myTracks.html',
+      controller: 'TracksCtrl'
     })
      .state('home.nav.testChart', {
       url: "/test",
