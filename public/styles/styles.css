@@ -50,19 +50,29 @@
   height: 50px;
 }
 
+#boxSize {
+  width: 30px;
+}
+
 
 #colorRadioButtons {
   display: inline-block;
-  vertical-align: top;
+  float: right;
 }
 
 #colorPickerGroup {
   display: inline-block;
 }
 
+#colorPicker01 {
+  display: inline-block;
+  width: 50px;
+  background-color: black;
+}
+
 #colorPicker {
   display: inline-block;
-  clear: both;
+  width: 50px;
 }
 
 #colorPicker2 {

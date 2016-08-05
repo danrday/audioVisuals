@@ -1,5 +1,5 @@
 <div id="chart" class="container">
-
+<!-- 
 
     <h1>Artist: {{songGeneralInfo.artist}} ::::::::
    Album: {{songGeneralInfo.album}} ::::::::
@@ -16,38 +16,12 @@
 
   <div id="bar-chart">
  
+    </div> -->
+
+    <div id="boxSize">
+    <div id="colorPicker" ui-view></div>
     </div>
 
-    <div ui-view></div>
-
-
-    <div id=colorPickerGroup>
-
-    <div class="colorPicker">
-      <color-picker ng-model="newGraph.updateColor1">
-      </color-picker>
-   <!--    <input type="text"
-       ng-model="colorTest"
-       ng-init="color = '#f05a28'"> -->
-    </div>
-
-    <div class="colorPicker">
-      <color-picker ng-model="newGraph.updateColor2">
-      </color-picker>
-    <!--   <input type="text"
-       ng-model="colorTest2"
-       ng-init="color = '#f05a28'"> -->
-    </div>
-
-    <div class="colorPicker">
-      <color-picker ng-model="newGraph.updateColor3">
-      </color-picker>
-      <!-- <input type="text"
-       ng-model="colorTest2"
-       ng-init="color = '#f05a28'"> -->
-    </div>
-
-    </div>
 
 
     <form id="colorRadioButtons">
@@ -59,7 +33,7 @@
 
 <div id="songDetails">
 
-<ul>
+<!-- <ul>
     <li>Acousticness: {{trackAudioFeatures.acousticness}}</li>
     <li>Danceability: {{trackAudioFeatures.danceability}}</li>
 
@@ -74,7 +48,7 @@
     <li>Speechiness: {{trackAudioFeatures.speechiness}}</li>
     <li>Mode: {{trackAudioFeatures.mode}}</li>
     <li>Valence: {{trackAudioFeatures.valence}}</li>
-  </ul>
+  </ul> -->
 
 </div>
 
