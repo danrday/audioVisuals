@@ -121,8 +121,8 @@ var confidenceFn = function(d) { return d.confidence; }
 
 var barsDurationFn = function(d) { return d.duration; }
 
-var height = 200,
-    width = 720,
+var height = 250,
+    width = 950,
     barWidth = 40,
     barOffset = 20;
 

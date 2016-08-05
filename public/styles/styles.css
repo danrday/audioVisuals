@@ -4,6 +4,18 @@
   font-family: "Courier New";
 }*/
 
+#loader {
+  margin: auto;
+}
+
+#nav {
+  background-color: #EAE3CB;
+}
+
+#data {
+  background-color: #A57706;
+}
+
 #saveNewGraph {
   display: inline-block;
   float: right;
@@ -62,15 +74,15 @@
 }
 
 #chart {
-  float:right;
   display: inline-block;
+}
 }
 
 #songDetails {
   font-size: 14px;
   width: 30px;
-  float: left;
-  display: inline;
+  float: right;
+  display: inline-block;
   line-height: 1.5;
 }
 

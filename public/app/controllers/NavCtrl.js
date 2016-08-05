@@ -5,7 +5,7 @@ app.controller("NavCtrl", function($http, $scope, $rootScope, $location, Spotify
 
   $scope.customColors = null;
 
-
+$scope.loader = "";
 
 
 // mytracks STUFF
@@ -34,6 +34,8 @@ app.controller("NavCtrl", function($http, $scope, $rootScope, $location, Spotify
  $scope.getMyTracks = function () {
 
   $scope.clearSearch();
+  $scope.loader = "loading..."
+
 
      TrackStorage.getTracks(AuthFactory.getUser())
   .then( function (trackCollection) {
@@ -161,6 +163,8 @@ if (customColor1) {
 }
 
 
+
+
 $scope.fbId = fbId;
 console.log("fbId", fbId)
 
@@ -185,6 +189,8 @@ console.log("fbId", fbId)
            $scope.trackAnalysis = JSON.parse(returnedAnalysisData);
            $scope.$apply();
           console.log($scope.trackAnalysis);
+          $scope.loader = "Display Track Data"
+          $scope.$apply();
         },
         error: function() {
          alert("Error... did you login with Spotify?");

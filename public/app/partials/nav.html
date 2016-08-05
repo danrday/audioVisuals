@@ -1,5 +1,5 @@
 <nav ng-controller="NavCtrl">
-  <div class="container">
+  <div class="container" id="nav">
     <div id="navContainer">
       <div ng-show="notLoggedIn" id="notLoggedIn">
       <a ng-click="googleLogin()" class="btn btn-primary">Login with Google</a>
@@ -18,7 +18,7 @@
           <input type="submit" ng-click="searchAlbums(searchText)" id="search" class="btn btn-primary" value="Search" />
       </form>
 
-      <a ui-sref="home.nav.data" id="childElementId" ng-Click="clearSearch()">Show Basic Track Data</a>
+      <a ui-sref="home.nav.data" id="loader" ng-model="loader"ng-Click="clearSearch()">{{loader}}</a>
 
       <div ui-view></div>
 
