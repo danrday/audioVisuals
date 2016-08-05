@@ -34,6 +34,16 @@ app.config(function($stateProvider, $urlRouterProvider, FBCreds) {
       templateUrl: 'app/partials/data.html',
       controller: 'DataCtrl'
     })
+     .state('home.nav.chart2', {
+      url: "/chart2",
+      templateUrl: 'app/partials/chart2.html',
+      controller: 'Chart2Ctrl'
+    })
+     .state('home.nav.chart2.colorpicker1', {
+      url: "/colorpicker1",
+      templateUrl: 'app/partials/colorpicker/chart2.colorpicker1.html',
+      controller: 'ColorPicker1'
+    })
      .state('home.nav.mytracks', {
       url: "/mytracks",
       templateUrl: 'app/partials/myTracks.html',
