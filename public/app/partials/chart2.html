@@ -19,19 +19,27 @@
     </div> -->
 
     <div id="boxSize">
-    <div id="colorPicker" ui-view></div>
-    </div>
+    <div id="colorPicker01" ui-view></div>
+
+    <button class="minimizeColorButton" type="button" ng-click="minimizeColorPicker()">Minimize Colors</button>
 
 
-
-    <form id="colorRadioButtons">
+     <form id="colorRadioButtons">
        <input type="radio" name="color" value="Low Range" checked>Low Range<br>
        <input type="radio" name="color" value="High Range"> High Range<br>
        <input type="radio" name="color" value="Background"> Background
 </form>
 
 
-<div id="songDetails">
+    </div>
+
+    
+    <button class="testButton" type="button" ng-click="testButton()">Test</button>
+
+
+
+
+<!-- <div id="songDetails"> -->
 
 <!-- <ul>
     <li>Acousticness: {{trackAudioFeatures.acousticness}}</li>

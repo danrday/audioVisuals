@@ -2,6 +2,21 @@
 
 app.controller("Chart2Ctrl", function($scope, $rootScope, $sce, GraphStorage, AuthFactory) {
 
+
+  $scope.minimizeColorPicker = function () {
+    console.log("$scope.updateColor1", $scope.updateColor1)
+  }
+
+
+  $scope.updateColor1 = "hi";
+
+
+
+  $scope.testButton= function () {
+    console.log("$scope.updateColor1:", $scope.updateColor1)
+  }
+
+
 // //SAVE TRACK
 
 // // initial chart colors on page load

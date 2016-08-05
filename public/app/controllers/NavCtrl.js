@@ -28,7 +28,13 @@ $scope.loader = "";
   $scope.myTrackResults = [];
 
 
-  
+  $scope.updateColor1 = "hi";
+
+
+
+  $scope.testButton= function () {
+    console.log("$scope.updateColor1:", $scope.updateColor1)
+  }
 
 
  $scope.getMyTracks = function () {

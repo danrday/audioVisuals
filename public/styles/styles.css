@@ -51,13 +51,22 @@
 }
 
 #boxSize {
-  width: 30px;
+  width: 450px;
+  height: 242px;
+  background-color: #819090;
 }
-
 
 #colorRadioButtons {
   display: inline-block;
-  float: right;
+  margin-left: 3px;
+  margin-top: 45px;
+  position: absolute;
+}
+
+.minimizeColorButton {
+  display: inline-block;
+  margin-left: 3px;
+  position: absolute;
 }
 
 #colorPickerGroup {
@@ -66,8 +75,6 @@
 
 #colorPicker01 {
   display: inline-block;
-  width: 50px;
-  background-color: black;
 }
 
 #colorPicker {
