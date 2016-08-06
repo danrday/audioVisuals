@@ -179,7 +179,7 @@ var songChart = d3.select('#bar-chart').append('svg')
     })
     .attr('y', function (data) {
         // console.log("yScale(i)", height-yScale(data));
-        return height - yScale(barsDurationFn(data));
+        return (height - yScale(barsDurationFn(data)))/2;
     });
 
 });

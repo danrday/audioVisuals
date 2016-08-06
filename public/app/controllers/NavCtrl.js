@@ -2,69 +2,43 @@
 
 app.controller("NavCtrl", function($http, $scope, $rootScope, $location, Spotify, AuthFactory, localStorageService, TrackStorage) {
 
-
-  $scope.customColors = null;
+$scope.customColors = null;
 
 $scope.loader = "";
 
-
 // mytracks STUFF
 
- $scope.deleteTrack = function(trackID) {
-    TrackStorage.deleteTrack(trackID)
-    .then(function() {
-      TrackStorage.getTracks(AuthFactory.getUser())
-    .then( function (trackCollection) {
-    $scope.myTrackResults = trackCollection;
-    console.log("tracks", $scope.trackResults);
-     });
-    });
- }
+$scope.deleteTrack = function(trackID) {
+  TrackStorage.deleteTrack(trackID)
+  .then(function() {
+    TrackStorage.getTracks(AuthFactory.getUser())
+  .then( function (trackCollection) {
+  $scope.myTrackResults = trackCollection;
+  console.log("tracks", $scope.trackResults);
+   });
+  });
+}
 
-  $scope.clearMyTracks = function () {
-    $scope.myTrackResults = {};
-  }
+$scope.clearMyTracks = function () {
+$scope.myTrackResults = {};
+}
 
-  $scope.myTrackResults = [];
+$scope.myTrackResults = [];
 
-
-  
-
- $scope.getMyTracks = function () {
-
+$scope.getMyTracks = function () {
   $scope.clearSearch();
   $scope.loader = "loading..."
 
-
-     TrackStorage.getTracks(AuthFactory.getUser())
+  TrackStorage.getTracks(AuthFactory.getUser())
   .then( function (trackCollection) {
     $scope.myTrackResults = trackCollection;
     console.log("my track results", $scope.myTrackResults);
   });
-
 }
-
-
-// my tracks stuff
-
-
 
 // BEGINNING LOGIN STUFF
 
 $scope.notLoggedIn = true; 
-
-// let currentUser = localStorageService.get("currentUser");
-// console.log("localstorageserviceget user",currentUser)
-
-let refreshItems = function() {
-  // ItemStorage.getItemList()
-  // .then(function(itemCollection) {
-  //   $scope.items = itemCollection;
-  // });
-  
-  
-  
-}
 
 firebase.auth().onAuthStateChanged(function(){
   let user = AuthFactory.getUser();
@@ -76,32 +50,30 @@ firebase.auth().onAuthStateChanged(function(){
   }
 });
 
+$scope.googleLogin = function() {
+  AuthFactory.authWithProvider()
+ .then(function(result) {
+   AuthFactory.setUser(result.user.uid);
+   console.log("logged in user fer sure", user);
+   // Load to dos?
+   // $location.path("/boards");
+   // $scope.$apply();
+ }).catch(function(error) {
+   // Handle Errors here.
+   var errorCode = error.code;
+   var errorMessage = error.message;
+   // The email of the user's account used.
+   var email = error.email;
+   // The firebase.auth.AuthCredential type that was used.
+   var credential = error.credential;
+   // ...
+ });  
+};
 
-  $scope.googleLogin = function() {
-    AuthFactory.authWithProvider()
-   .then(function(result) {
-     AuthFactory.setUser(result.user.uid);
-     console.log("logged in user fer sure", user);
-     // Load to dos?
-     // $location.path("/boards");
-     // $scope.$apply();
-   }).catch(function(error) {
-     // Handle Errors here.
-     var errorCode = error.code;
-     var errorMessage = error.message;
-     // The email of the user's account used.
-     var email = error.email;
-     // The firebase.auth.AuthCredential type that was used.
-     var credential = error.credential;
-     // ...
-   });  
-  };
-
-  // logout function
-  $scope.googleLogout = function() {
-    AuthFactory.signOut();
-    $scope.notLoggedIn = true;
-  }
+$scope.googleLogout = function() {
+  AuthFactory.signOut();
+  $scope.notLoggedIn = true;
+}
 
 //END  LOGIN STUFF
 
@@ -128,15 +100,15 @@ $scope.clearSearch = function () {
 //search for tracks by search criteria 
 $scope.searchAlbums = function(query) {
 
-    // clears myTracks if open
-    $scope.clearMyTracks();
+  // clears myTracks if open
+  $scope.clearMyTracks();
 
-    Spotify.search(query, 'track').then(function (data) {
+  Spotify.search(query, 'track').then(function (data) {
     $scope.searchResults = data.tracks.items;
     console.log($scope.searchResults)
   });
 
-//gets user token when user searches
+  //gets user token when user searches
   $.ajax({
     method: 'GET',
     url: 'http://localhost:8888/getToken',
@@ -149,23 +121,22 @@ $scope.searchAlbums = function(query) {
 
 $scope.fbId = null;
 
+//load track data
 $scope.goToTrack = function(id, fbId, customColor1, customColor2, customColor3) {
 
-if (customColor1) {
+  if (customColor1) {
 
-  console.log("CUSTOMCOLOR1 NOT UNDEDINED")
-  // $scope.customColors = {
-  //   customColor1: customColor1,
-  //   customColor2: customColor2,
-  //   customColor3: customColor3
-  // }
-}
+    console.log("CUSTOMCOLOR1 NOT UNDEDINED")
+    // $scope.customColors = {
+    //   customColor1: customColor1,
+    //   customColor2: customColor2,
+    //   customColor3: customColor3
+    // }
+    
+  }
 
-
-
-
-$scope.fbId = fbId;
-console.log("fbId", fbId)
+  $scope.fbId = fbId;
+  console.log("fbId", fbId)
 
   $.ajax({
   method:'GET',
@@ -211,13 +182,7 @@ console.log("fbId", fbId)
     }
   })
 
-
-
    });
-
-  
-
 };
-
 
 });

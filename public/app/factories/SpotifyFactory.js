@@ -16,19 +16,16 @@ let songGeneralInfo = {};
 
 let authToken = null;
 
+$.ajax({
+  method: 'GET',
+  url: 'http://localhost:8888/getToken',
+  success: function(returnedToken) {
+    console.log(returnedToken);
+    authToken = returnedToken;
+  }
+});
 
-  $.ajax({
-    method: 'GET',
-    url: 'http://localhost:8888/getToken',
-    success: function(returnedToken) {
-      console.log(returnedToken);
-      authToken = returnedToken;
-    }
-  });
-
-  let trackSpecs = null;
-
-
+let trackSpecs = null;
 
 
 let getSpotifyData = function(id) {
