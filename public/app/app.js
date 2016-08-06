@@ -37,17 +37,17 @@ app.config(function($stateProvider, $urlRouterProvider, FBCreds) {
      .state('home.nav.chart2.colorpicker1', {
       url: "/colorpicker1",
       templateUrl: 'app/partials/colorpicker/chart2.colorpicker1.html',
-      controller: 'Chart2Ctrl'
+      // controller: 'ColorPicker1'
     })
      .state('home.nav.chart2.colorpicker2', {
       url: "/colorpicker2",
       templateUrl: 'app/partials/colorpicker/chart2.colorpicker2.html',
-      controller: 'ColorPicker2'
+      // controller: 'ColorPicker2'
     })
      .state('home.nav.chart2.colorpicker3', {
       url: "/colorpicker3",
       templateUrl: 'app/partials/colorpicker/chart2.colorpicker3.html',
-      controller: 'ColorPicker3'
+      // controller: 'ColorPicker3'
     })
      .state('home.nav.data', {
       url: "/data",

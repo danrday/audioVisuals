@@ -11,28 +11,75 @@ app.controller("Chart2Ctrl", function($scope, $rootScope, $sce, GraphStorage, Au
 //   $scope.updateColor3 = "";
 
 
-  
-
-//   $scope.wtf = "";
-
-  
-
 $scope.newnew = {
-    update1: "trest",
+    update1: "working",
     update2: "",
     update3: ""
   }
 
 
-$scope.$watch('newnew.update1', function(newVal, oldVal) {
+  $scope.$watch('newnew.update1', function(newVal, oldVal) {
         if (!newVal) {return};
 
     console.log("newVal", newVal);
 
     // $scope.newnew.update1 = newVal;
 
-    console.log("$scope.updateColor1 from colorpicker1", $scope.newnew.update1)
+    console.log("updateColor1", $scope.newnew.update1)
 });
+
+  $scope.$watch('newnew.update2', function(newVal, oldVal) {
+        if (!newVal) {return};
+
+    console.log("newVal", newVal);
+
+    // $scope.newnew.update1 = newVal;
+
+    console.log("updateColor2", $scope.newnew.update2)
+});
+
+  $scope.$watch('newnew.update3', function(newVal, oldVal) {
+        if (!newVal) {return};
+
+    console.log("newVal", newVal);
+
+    // $scope.newnew.update1 = newVal;
+
+    console.log("updateColor3", $scope.newnew.update3)
+});
+
+
+
+
+
+
+
+  $scope.minimizeColorPicker = function () {
+    console.log("wtf", $scope.newnew.update1)
+  }
+
+
+
+//   $scope.wtf = "";
+
+  
+
+// $scope.newnew = {
+//     update1: "trest",
+//     update2: "",
+//     update3: ""
+//   }
+
+
+// $scope.$watch('newnew.update1', function(newVal, oldVal) {
+//         if (!newVal) {return};
+
+//     console.log("newVal", newVal);
+
+//     // $scope.newnew.update1 = newVal;
+
+//     console.log("$scope.updateColor1 from colorpicker1", $scope.newnew.update1)
+// });
 
 
 
