@@ -14,7 +14,6 @@ app.config(function($stateProvider, $urlRouterProvider, FBCreds) {
 
   firebase.initializeApp(authConfig);
 
-
   $urlRouterProvider.when('/', '/nav');
 
   // Now set up the states
@@ -68,16 +67,18 @@ app.config(function($stateProvider, $urlRouterProvider, FBCreds) {
       url: "/test",
       templateUrl: 'app/partials/testChart.html',
       controller: 'TestingCtrl'
+    })
+     .state('home.nav.loading', {
+      url: "/loading",
+      templateUrl: 'app/partials/loading.html',
+      controller: 'LoadingCtrl'
     });
 
 // For any unmatched url, redirect to /state1
-  $urlRouterProvider.otherwise("/");
-  
+  $urlRouterProvider.otherwise("/");  
     });
-
 
 //apparently this code console logs out any ui-provider errors that would not display by default
 app.run(function($rootScope) {
   $rootScope.$on("$stateChangeError", console.log.bind(console));
 });
-

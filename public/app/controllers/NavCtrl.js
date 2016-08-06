@@ -1,10 +1,9 @@
 "use strict";
 
-app.controller("NavCtrl", function($http, $scope, $rootScope, $location, Spotify, AuthFactory, localStorageService, TrackStorage, SpotifyData ) {
+app.controller("NavCtrl", function($http, $scope, $rootScope, $state, $location, Spotify, AuthFactory, localStorageService, TrackStorage, SpotifyData ) {
 
 $scope.customColors = null;
 
-$scope.loader = "";
 
 // mytracks STUFF
 
@@ -27,7 +26,6 @@ $scope.myTrackResults = [];
 
 $scope.getMyTracks = function () {
   $scope.clearSearch();
-  $scope.loader = "loading..."
 
   TrackStorage.getTracks(AuthFactory.getUser())
   .then( function (trackCollection) {
@@ -120,48 +118,40 @@ $scope.searchAlbums = function(query) {
 };
 
 $scope.goToTrack = function(id) {
-
+$scope.clearSearch();
+$state.go('home.nav.loading')
 SpotifyData.getInitialData(id, authToken)
 .then(function(basicTrackData) {
    console.log(basicTrackData);
     $scope.trackAudioFeatures = basicTrackData;
     let analysisUrl = basicTrackData.analysis_url;
     let discogUrl = basicTrackData.track_href;
-
     getDetailedAnalysis(analysisUrl, authToken);
-
     getTrackDiscog(discogUrl);
-
  }).catch(function(error) {
    // Handle Errors here.
    var errorCode = error.code;
    var errorMessage = error.message;
  }); 
-
 }
 
 
 let getDetailedAnalysis = function (analysisUrl, authToken) {
-
   SpotifyData.getTrackAnalysis(analysisUrl, authToken)
   .then(function(returnedAnalysisData) {
-
    $scope.trackAnalysis = JSON.parse(returnedAnalysisData);
           console.log($scope.trackAnalysis);
-
+    $state.go('home.nav.chart2')
  }).catch(function(error) {
    // Handle Errors here.
    var errorCode = error.code;
    var errorMessage = error.message;
  }); 
-
 }
 
 let getTrackDiscog = function (discogUrl) {
-
-SpotifyData.getTrackDiscog(discogUrl)
+  SpotifyData.getTrackDiscog(discogUrl)
   .then(function(returnedDiscogData) {
-
   $scope.trackDiscog = returnedDiscogData;
         console.log("trackDiscog", $scope.trackDiscog);
         let discog = $scope.trackDiscog;
@@ -170,88 +160,12 @@ SpotifyData.getTrackDiscog(discogUrl)
           song: discog.name,
           album: discog.album.name
       };
-
  }).catch(function(error) {
    // Handle Errors here.
    var errorCode = error.code;
    var errorMessage = error.message;
  }); 
-
 }
 
-
-
-
-
-
-
-
-
-
-// $scope.fbId = null;
-
-// //load track data
-// $scope.goToTrack = function(id, fbId, customColor1, customColor2, customColor3) {
-
-//   if (customColor1) {
-
-//     console.log("CUSTOMCOLOR1 NOT UNDEDINED")
-//     // $scope.customColors = {
-//     //   customColor1: customColor1,
-//     //   customColor2: customColor2,
-//     //   customColor3: customColor3
-//     // }
-    
-//   }
-
-//   $scope.fbId = fbId;
-//   console.log("fbId", fbId)
-
-//   $.ajax({
-//   method:'GET',
-//   url: `http://api.spotify.com/v1/audio-features/${id}?access_token=${authToken}`,
-//   success: function(basicTrackData) {
-//     console.log(basicTrackData);
-//     $scope.trackAudioFeatures = basicTrackData;
-//     $scope.$apply();
-//   },
-//   error: function() {
-//          alert("Error... did you login?");
-//       }
-//   }).then(function(returnedData) {
-//     let analysisUrl = returnedData.analysis_url;
-//     let trackSpecs = returnedData.track_href;
-//     $.ajax({
-//       method:'GET',
-//       url: `${analysisUrl}?access_token=${authToken}`,
-//        success: function(returnedAnalysisData) {
-//            $scope.trackAnalysis = JSON.parse(returnedAnalysisData);
-//            $scope.$apply();
-//           console.log($scope.trackAnalysis);
-//           $scope.loader = "Display Track Data"
-//           $scope.$apply();
-//         },
-//         error: function() {
-//          alert("Error... did you login with Spotify?");
-//         }
-//      });
-
-//     $.ajax({
-//     method: 'GET',
-//     url: `${trackSpecs}`,
-//     success: function(returnedData) {
-//       $scope.trackDiscog = returnedData;
-//       console.log("trackDiscog", $scope.trackDiscog);
-//       let discog = $scope.trackDiscog;
-//       $scope.songGeneralInfo = {
-//         artist: discog.artists[0].name,
-//         song: discog.name,
-//         album: discog.album.name
-//     };
-//     }
-//   })
-
-//    });
-// };
 
 });
