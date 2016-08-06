@@ -3,12 +3,42 @@
 app.controller("Chart2Ctrl", function($scope, $rootScope, $sce, GraphStorage, AuthFactory) {
 
 
-  $scope.minimizeColorPicker = function () {
-    console.log("$scope.updateColor1", $scope.updateColor1)
+// $scope.wtf = $scope.wtf || "";
+
+
+//   let updateColor1 = "";
+//   $scope.updateColor2 = "";
+//   $scope.updateColor3 = "";
+
+
+  
+
+//   $scope.wtf = "";
+
+  
+
+$scope.newnew = {
+    update1: "trest",
+    update2: "",
+    update3: ""
   }
 
 
-  $scope.updateColor1 = "hi";
+$scope.$watch('newnew.update1', function(newVal, oldVal) {
+        if (!newVal) {return};
+
+    console.log("newVal", newVal);
+
+    // $scope.newnew.update1 = newVal;
+
+    console.log("$scope.updateColor1 from colorpicker1", $scope.newnew.update1)
+});
+
+
+
+  $scope.minimizeColorPicker = function () {
+    console.log("wtf", $scope.newnew.update1)
+  }
 
 
 

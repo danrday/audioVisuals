@@ -19,21 +19,28 @@
     </div> -->
 
     <div id="boxSize">
-    <div id="colorPicker01" ui-view></div>
 
-    <button class="minimizeColorButton" type="button" ng-click="minimizeColorPicker()">Minimize Colors</button>
+      <div id="colorPicker01" ui-view></div>
 
+      <button class="minimizeColorButton" type="button" ng-click="minimizeColorPicker()">Minimize Colors</button>
 
-     <form id="colorRadioButtons">
-       <input type="radio" name="color" value="Low Range" checked>Low Range<br>
-       <input type="radio" name="color" value="High Range"> High Range<br>
-       <input type="radio" name="color" value="Background"> Background
-</form>
+      <div id="colorRadioButtons">
 
+        <a ui-sref="home.nav.chart2.colorpicker1"> <input type="radio" name="color" value="Low Range"  checked>Low Range<br> </a>
+
+        <a ui-sref="home.nav.chart2.colorpicker2">
+        <input type="radio" name="color" value="High Range" > High Range<br>
+        </a>
+
+        <a ui-sref="home.nav.chart2.colorpicker3">
+        <input type="radio" name="color" value="Background"> Background
+        </a>
+
+      </form>
 
     </div>
 
-    
+
     <button class="testButton" type="button" ng-click="testButton()">Test</button>
 
 

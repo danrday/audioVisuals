@@ -138,7 +138,6 @@ var xScale = d3.scaleBand()
         .paddingInner(.2);
 
 
-
 let spotifyEmbed = "https://embed.spotify.com/?uri=" + $scope.trackAudioFeatures.uri; 
 $rootScope.someUrl = $sce.trustAsResourceUrl(`${spotifyEmbed}`);
 
