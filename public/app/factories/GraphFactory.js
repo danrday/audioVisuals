@@ -18,7 +18,6 @@ app.factory("GraphStorage", function(FirebaseURL, $q, $http) {
   };
 
   let postNewGraph = function (newGraph, trackId) {
-
     return $q(function(resolve, reject) {
       $http.post(
         `${FirebaseURL}/graph.json`,

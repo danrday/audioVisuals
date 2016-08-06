@@ -2,16 +2,16 @@
 
 app.controller("TracksCtrl", function($scope, AuthFactory, TrackStorage, SpotifyFactory) {
 
-  $scope.deleteTrack = function(trackID) {
-    TrackStorage.deleteTrack(trackID)
-    .then(function() {
-      TrackStorage.getTracks(AuthFactory.getUser())
-    .then( function (trackCollection) {
-    $scope.trackResults = trackCollection;
-    console.log("tracks", $scope.trackResults);
-     });
-    });
- }
+$scope.deleteTrack = function(trackID) {
+  TrackStorage.deleteTrack(trackID)
+  .then(function() {
+    TrackStorage.getTracks(AuthFactory.getUser())
+  .then( function (trackCollection) {
+  $scope.trackResults = trackCollection;
+  console.log("tracks", $scope.trackResults);
+   });
+  });
+}
 
 //  $scope.goToSavedTrack = function(trackId) {
 //   console.log("track id from tracksCtrl", trackId)
@@ -26,24 +26,19 @@ $scope.goToSavedTrack = function(trackId) {
   console.log("tracks ctrl spotify track id", SpotifyFactory.trackId)
 }
 
+$scope.getTrack = function(trackID) {
+  console.log("trackID", trackID)
+}
 
-  $scope.getTrack = function(trackID) {
-    console.log("trackID", trackID)
-  }
+$scope.trackResults = [];
 
-  $scope.trackResults = [];
-
-  firebase.auth().onAuthStateChanged(function(){
-
-     TrackStorage.getTracks(AuthFactory.getUser())
+firebase.auth().onAuthStateChanged(function(){
+ TrackStorage.getTracks(AuthFactory.getUser())
   .then( function (trackCollection) {
-    $scope.trackResults = trackCollection;
-    console.log("tracks", $scope.trackResults);
+  $scope.trackResults = trackCollection;
+  console.log("tracks", $scope.trackResults);
   });
-
-
-
-  });
+});
 
  
   // console.log("tracks", $scope.tracks);
@@ -59,7 +54,5 @@ $scope.goToSavedTrack = function(trackId) {
   //     });
   //   });
   // };
-
-
 
 });
