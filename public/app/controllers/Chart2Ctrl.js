@@ -81,6 +81,11 @@ $scope.newnew = {
 //     console.log("$scope.updateColor1 from colorpicker1", $scope.newnew.update1)
 // });
 
+  $scope.openColorPicker = false;
+
+  $scope.toggleColorPicker = function () {
+    $scope.openColorPicker = !$scope.openColorPicker
+  };
 
 
   $scope.minimizeColorPicker = function () {
@@ -88,10 +93,6 @@ $scope.newnew = {
   }
 
 
-
-  $scope.testButton= function () {
-    console.log("$scope.updateColor1:", $scope.updateColor1)
-  }
 
 
 // //SAVE TRACK
