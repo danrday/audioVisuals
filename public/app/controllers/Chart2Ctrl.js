@@ -2,7 +2,6 @@
 
 app.controller("Chart2Ctrl", function($scope, $rootScope, $sce, GraphStorage, AuthFactory) {
 
-
   $scope.minimizeColorPicker = function () {
     console.log("wtf", $scope.newnew.update1)
   }
@@ -13,11 +12,12 @@ app.controller("Chart2Ctrl", function($scope, $rootScope, $sce, GraphStorage, Au
     $scope.openColorPicker = !$scope.openColorPicker
   };
  
+let trackId = $scope.trackAudioFeatures.id;
 
+let spotifyEmbed = "https://embed.spotify.com/?uri=" + $scope.trackAudioFeatures.uri; 
+$rootScope.someUrl = $sce.trustAsResourceUrl(`${spotifyEmbed}`);
 
 //SAVE TRACK CODE
-
-let trackId = $scope.trackAudioFeatures.id;
 
   $scope.newGraph = {
     graphType: "barChartTrackBars",
@@ -32,85 +32,6 @@ let trackId = $scope.trackAudioFeatures.id;
     artist: $scope.songGeneralInfo.artist,
     album: $scope.songGeneralInfo.album
   }
-
-  console.log("scopeCustomColors", $scope.customColors)
-
-
-  $scope.saveNewGraph = function() {
-
-    let trackJSON = {
-      trackId: trackId,
-      trackAudioFeatures: $scope.trackAudioFeatures,
-      trackAnalysis: $scope.trackAnalysis,
-      trackDiscog: $scope.trackDiscog
-    }
-
-    console.log("trackJSON from dataCTRL", trackJSON)
-
-    $scope.newGraph.uid = AuthFactory.getUser();
-
-    GraphStorage.postNewGraph($scope.newGraph, trackId)
-    .then(function() {
-      GraphStorage.postJSONData(trackJSON)
-      // $location.url("/boards");
-    }).then(function() {
-      console.log("success")
-      // $location.url("/boards");
-    })
-  };
-
-//END SAVE TRACK
-
-
-
-// edit track
-
-$scope.putEditTrack = function() {
-  $scope.newGraph.uid = AuthFactory.getUser();
-  console.log("SCOPE ID", $scope.fbId)
-    GraphStorage.putTrack($scope.fbId, $scope.newGraph)
-    .then(function(message) {
-
-      console.log(message);
-      // $location.url("/boards");
-    })
-
-  };
-
-// end edit track
-
-
-// JSON DATA
-
-let trackAnalysis = $scope.trackAnalysis;
-
-//these two functions allow us to work with multiple dimensions of the json data
-
-var confidenceFn = function(d) { return d.confidence; }
-
-var barsDurationFn = function(d) { return d.duration; }
-
-var height = 250,
-    width = 950,
-    barWidth = 40,
-    barOffset = 20;
-
-var x = d3.scaleBand().rangeRound([0, width])
- 
-var yScale = d3.scaleLinear()
-        .domain(d3.extent(trackAnalysis.bars, barsDurationFn))
-        .range([0, height]);
-
-var xScale = d3.scaleBand()
-        .domain(d3.range(0, trackAnalysis.bars.length))
-        .range(d3.range(0, width))
-        .paddingInner(.2);
-
-
-
-let spotifyEmbed = "https://embed.spotify.com/?uri=" + $scope.trackAudioFeatures.uri; 
-$rootScope.someUrl = $sce.trustAsResourceUrl(`${spotifyEmbed}`);
-
 
 $scope.$watch('newGraph.updateColor1', function(newVal, oldVal) {
         if (!newVal) {return};
@@ -129,7 +50,6 @@ $scope.$watch('newGraph.updateColor1', function(newVal, oldVal) {
       return colors3(barsDurationFn(data));
     })
 });
-
 
 $scope.$watch('newGraph.updateColor2', function(newVal, oldVal) {
         if (!newVal) {return};
@@ -164,7 +84,74 @@ $scope.$watch('newGraph.updateColor2', function(newVal, oldVal) {
     // });
 });
 
+$scope.saveNewGraph = function() {
 
+  let trackJSON = {
+    trackId: trackId,
+    trackAudioFeatures: $scope.trackAudioFeatures,
+    trackAnalysis: $scope.trackAnalysis,
+    trackDiscog: $scope.trackDiscog
+  }
+
+  console.log("trackJSON from dataCTRL", trackJSON)
+
+  $scope.newGraph.uid = AuthFactory.getUser();
+
+  GraphStorage.postNewGraph($scope.newGraph, trackId)
+  .then(function() {
+    GraphStorage.postJSONData(trackJSON)
+    // $location.url("/boards");
+  }).then(function() {
+    console.log("success")
+    // $location.url("/boards");
+  })
+};
+
+//END SAVE TRACK
+
+
+
+// edit track
+
+$scope.putEditTrack = function() {
+  $scope.newGraph.uid = AuthFactory.getUser();
+  console.log("SCOPE ID", $scope.fbId)
+    GraphStorage.putTrack($scope.fbId, $scope.newGraph)
+    .then(function(message) {
+
+      console.log(message);
+      // $location.url("/boards");
+    })
+
+};
+
+// end edit track
+
+
+// JSON DATA
+
+let trackAnalysis = $scope.trackAnalysis;
+
+//these functions allow us to pass a d3 graph multiple dimensions of the json data
+let confidenceFn = function(d) { return d.confidence; }
+let barsDurationFn = function(d) { return d.duration; }
+
+//chart 1 specs
+var height = 250,
+    width = 950,
+    barWidth = 40,
+    barOffset = 20;
+
+var x = d3.scaleBand().rangeRound([0, width])
+
+var yScale = d3.scaleLinear()
+        .domain(d3.extent(trackAnalysis.bars, barsDurationFn))
+        .range([0, height]);
+
+var xScale = d3.scaleBand()
+        .domain(d3.range(0, trackAnalysis.bars.length))
+        .range(d3.range(0, width))
+        .paddingInner(.2);
         
 var colors = d3.scaleLinear()
         .domain(d3.extent(trackAnalysis.bars, barsDurationFn))
