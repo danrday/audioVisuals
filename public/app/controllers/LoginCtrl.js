@@ -4,9 +4,9 @@ app.controller("LoginCtrl", function( $rootScope, $location, $scope, AuthFactory
 
     // register function 
 
-    $scope.googleLogin() = function() {
-      console.log("TEST")
-    }
+    // $scope.googleLogin() = function() {
+    //   console.log("TEST")
+    // }
   
   // $scope.loginGoogle = function() {
   //   AuthFactory.authWithProvider()
