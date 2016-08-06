@@ -3,90 +3,19 @@
 app.controller("Chart2Ctrl", function($scope, $rootScope, $sce, GraphStorage, AuthFactory) {
 
 
-
-  $scope.$watch('newGraph.updateColor1', function(newVal, oldVal) {
-        if (!newVal) {return};
-
-    console.log("newVal", newVal);
-
-    // $scope.newnew.update1 = newVal;
-
-    console.log("updateColor1", $scope.newGraph.updateColor1)
-});
-
-  $scope.$watch('newGraph.updateColor2', function(newVal, oldVal) {
-        if (!newVal) {return};
-
-    console.log("newVal", newVal);
-
-    // $scope.newnew.update1 = newVal;
-
-    console.log("updateColor2", $scope.newGraph.updateColor2)
-});
-
-  $scope.$watch('newGraph.updateColor3', function(newVal, oldVal) {
-        if (!newVal) {return};
-
-    console.log("newVal", newVal);
-
-    // $scope.newnew.update1 = newVal;
-
-    console.log("updateColor3", $scope.newGraph.updateColor3)
-});
-
-
-
-
-
-
-
   $scope.minimizeColorPicker = function () {
     console.log("wtf", $scope.newnew.update1)
   }
 
-
-
-//   $scope.wtf = "";
-
-  
-
-// $scope.newnew = {
-//     update1: "trest",
-//     update2: "",
-//     update3: ""
-//   }
-
-
-// $scope.$watch('newnew.update1', function(newVal, oldVal) {
-//         if (!newVal) {return};
-
-//     console.log("newVal", newVal);
-
-//     // $scope.newnew.update1 = newVal;
-
-//     console.log("$scope.updateColor1 from colorpicker1", $scope.newnew.update1)
-// });
-
-  $scope.openColorPicker = false;
-
+  // toggles the color picker button on a graph
+  $scope.openColorPicker = false
   $scope.toggleColorPicker = function () {
     $scope.openColorPicker = !$scope.openColorPicker
   };
+ 
 
 
-  $scope.minimizeColorPicker = function () {
-    console.log("wtf", $scope.newnew.update1)
-  }
-
-
-
-
-//SAVE TRACK
-
-// initial chart colors on page load
-// let color1 = '#2ead16';
-// let color2 = '#C61C6F';
-// let color3 = "";
+//SAVE TRACK CODE
 
 let trackId = $scope.trackAudioFeatures.id;
 
@@ -130,14 +59,11 @@ let trackId = $scope.trackAudioFeatures.id;
     })
   };
 
+//END SAVE TRACK
 
-//SAVE TRACK
+
 
 // edit track
-
-
-
-// update stuff
 
 $scope.putEditTrack = function() {
   $scope.newGraph.uid = AuthFactory.getUser();
@@ -151,48 +77,12 @@ $scope.putEditTrack = function() {
 
   };
 
+// end edit track
 
 
-// update stuff
-
-// edit track
-
-$scope.color = "";
-
-$scope.selectedColor = function () {
-  console.log($scope.color);
-}
+// JSON DATA
 
 let trackAnalysis = $scope.trackAnalysis;
-
-//track bars OBJECT, if over 99 broken into objects of 99 or less
-let trackBars = trackAnalysis.bars;
-
-let trackBarsLength = trackBars.length;
-
-console.log("trackBars", trackBars)
-
-console.log("trackBars typeOf", typeof(trackBarsLength));
-
-//holds an array of the length of each bar
-let trackBarsArray = [];
-
-//holds an array of the "confidence" of each bar
-let barsConfidence = [];
-
-//pushes every bar's duration into a new array
-for (let i = 0; i < trackBarsLength; i++) {
-  let currentBarLength = trackBars[i].duration;
-  trackBarsArray.push(currentBarLength);
-}
-
-//pushes every bar's duration into a new array
-for (let i = 0; i < trackBarsLength; i++) {
-  let currentConfidence = trackBars[i].confidence;
-  barsConfidence.push(currentConfidence);
-}
-
-console.log("barsConfidence", barsConfidence);
 
 //these two functions allow us to work with multiple dimensions of the json data
 
@@ -279,6 +169,7 @@ $scope.$watch('newGraph.updateColor2', function(newVal, oldVal) {
 var colors = d3.scaleLinear()
         .domain(d3.extent(trackAnalysis.bars, barsDurationFn))
         .range([`${$scope.newGraph.updateColor1}`, `${$scope.newGraph.updateColor2}`]);
+
 
 var songChart = d3.select('#bar-chart').append('svg')
   .attr('width', width)
