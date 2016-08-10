@@ -148,6 +148,12 @@ app.controller("Chart3Ctrl", function($scope, $rootScope, $sce, GraphStorage, Au
           .domain(d3.range(0, trackAnalysis.bars.length))
           .range(d3.range(0, width))
           .paddingInner(.2);
+
+  var tooltip = d3.select('body').append('div')
+        .style('position', 'absolute')
+        .style('padding', '0 10px')
+        .style('background', 'white')
+        .style('opacity', 0)
           
   var colors = d3.scaleLinear()
           .domain(d3.extent(trackAnalysis.bars, barsDurationFn))
@@ -168,18 +174,21 @@ app.controller("Chart3Ctrl", function($scope, $rootScope, $sce, GraphStorage, Au
       .attr("width", function(data) {
         return xScale.bandwidth()*width;
       })
-      .attr('height', function (data) {
-          return yScale(barsDurationFn(data));
-      })
+      .attr('height', 0)
         .attr('x', function (data, i) {
           // console.log("xScale(i)", xScale(i));
           return xScale(i)*width;
       })
-      .attr('y', function (data) {
-          // console.log("yScale(i)", height-yScale(data));
-          return (height - yScale(barsDurationFn(data)))/2;
-      })
+      .attr('y', height)
       .on('mouseover', function(d) {
+
+        tooltip.transition()
+            .style('opacity', .9)
+
+        tooltip.html(barsDurationFn(d))
+            .style('left', (d3.event.pageX - 35) + 'px')
+            .style('top',  (d3.event.pageY - 30) + 'px')
+
         tempColor = this.style.fill;
         d3.select(this)
             .style('opacity', .5)
@@ -187,10 +196,25 @@ app.controller("Chart3Ctrl", function($scope, $rootScope, $sce, GraphStorage, Au
     })
 
     .on('mouseout', function(d) {
+      tooltip.html("")
         d3.select(this)
             .style('opacity', 1)
             .style('fill', tempColor)
+    });
+
+  songChart.transition()
+   .attr('height', function (data) {
+          return yScale(barsDurationFn(data));
+      })
+   .attr('y', function (data) {
+          // console.log("yScale(i)", height-yScale(data));
+          return (height - yScale(barsDurationFn(data)));
+      })
+   .delay(function(d, i) {
+        return i * 20;
     })
+    .duration(1000)
+    // .ease('elastic');
 
 
 });
