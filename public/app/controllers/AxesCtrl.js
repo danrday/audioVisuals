@@ -1,6 +1,6 @@
 "use strict";
 
-app.controller("TestingCtrl", function($scope) {
+app.controller("AxesCtrl", function($scope) {
 
 
 // $scope.hundredthSecond = 0;

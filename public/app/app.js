@@ -88,6 +88,11 @@ app.config(function($stateProvider, $urlRouterProvider, FBCreds) {
       templateUrl: 'app/partials/testChart.html',
       controller: 'TestingCtrl'
     })
+     .state('home.nav.testAxes', {
+      url: "/axes",
+      templateUrl: 'app/partials/axesChart.html',
+      controller: 'AxesCtrl'
+    })
      .state('home.nav.loading', {
       url: "/loading",
       templateUrl: 'app/partials/loading.html'

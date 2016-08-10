@@ -164,6 +164,7 @@ app.controller("Chart3Ctrl", function($scope, $rootScope, $sce, GraphStorage, Au
 
   let tempColor = null;
 
+
   var songChart = d3.select('#bar-chart').append('svg')
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
@@ -206,6 +207,7 @@ app.controller("Chart3Ctrl", function($scope, $rootScope, $sce, GraphStorage, Au
             .style('fill', tempColor)
     });
 
+  
   songChart.transition()
    .attr('height', function (data) {
           return yScale(barsDurationFn(data));
