@@ -153,6 +153,9 @@ app.controller("Chart3Ctrl", function($scope, $rootScope, $sce, GraphStorage, Au
           .domain(d3.extent(trackAnalysis.bars, barsDurationFn))
           .range([`${$scope.newGraph.updateColor1}`, `${$scope.newGraph.updateColor2}`]);
 
+
+  let tempColor = null;
+
   var songChart = d3.select('#bar-chart').append('svg')
     .attr('width', width)
     .attr('height', height)
@@ -175,6 +178,19 @@ app.controller("Chart3Ctrl", function($scope, $rootScope, $sce, GraphStorage, Au
       .attr('y', function (data) {
           // console.log("yScale(i)", height-yScale(data));
           return (height - yScale(barsDurationFn(data)))/2;
-      });
+      })
+      .on('mouseover', function(d) {
+        tempColor = this.style.fill;
+        d3.select(this)
+            .style('opacity', .5)
+            .style('fill', 'yellow')
+    })
+
+    .on('mouseout', function(d) {
+        d3.select(this)
+            .style('opacity', 1)
+            .style('fill', tempColor)
+    })
+
 
 });
