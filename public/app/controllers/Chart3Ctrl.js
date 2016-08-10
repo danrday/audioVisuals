@@ -132,9 +132,11 @@ app.controller("Chart3Ctrl", function($scope, $rootScope, $sce, GraphStorage, Au
   let confidenceFn = function(d) { return d.confidence; }
   let barsDurationFn = function(d) { return d.duration; }
 
+  let margin = {top: 20, right: 30, bottom: 30, left: 40}
+
   //chart 1 specs
-  var height = 250,
-      width = 950,
+  var height = 250 - margin.top - margin.bottom,
+      width = 950 - margin.left - margin.right,
       barWidth = 40,
       barOffset = 20;
 
@@ -163,8 +165,10 @@ app.controller("Chart3Ctrl", function($scope, $rootScope, $sce, GraphStorage, Au
   let tempColor = null;
 
   var songChart = d3.select('#bar-chart').append('svg')
-    .attr('width', width)
-    .attr('height', height)
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
     .style('background', $scope.newGraph.updateColor3)
     .selectAll('rect').data(trackAnalysis.bars)
     .enter().append('rect')
@@ -215,6 +219,9 @@ app.controller("Chart3Ctrl", function($scope, $rootScope, $sce, GraphStorage, Au
     })
     .duration(1000)
     // .ease('elastic');
+
+
+
 
 
 });
