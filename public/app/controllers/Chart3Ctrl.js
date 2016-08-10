@@ -151,6 +151,25 @@ app.controller("Chart3Ctrl", function($scope, $rootScope, $sce, GraphStorage, Au
           .range(d3.range(0, width))
           .paddingInner(.2);
 
+// axis stuff
+let bardata = [20, 30, 20, 15, 40, 80,20, 30, 20, 15, 40, 80,20, 30, 20, 15, 40, 80,20, 30, 20, 15, 40, 80, 20, 30, 20, 15, 40, 80,20, 30, 20, 15, 40, 80,20, 30, 20, 15, 40, 80,20, 30, 20, 15, 40, 80, 20, 30, 20, 15, 40, 80,20, 30, 20, 15, 40, 80,20, 30, 20, 15, 40, 80,20, 30, 20, 15, 40, 80, 20, 30, 20, 15, 40, 80,20, 30, 20, 15, 40, 80,20, 30, 20, 15, 40, 80,20, 30, 20, 15, 40, 80, 20, 30, 20, 15, 40, 80,20, 30, 20, 15, 40, 80,20, 30, 20, 15, 40, 80,20, 30, 20, 15, 40, 80];
+
+var yAxisTicks = d3.scaleLinear()
+        .domain(d3.extent(trackAnalysis.bars, barsDurationFn))
+        .range([height, 0]);
+
+var xAxisTicks = d3.scaleLinear()
+        .domain([0, trackAnalysis.bars.length])
+        .range([0, width]);
+
+var yAxis = d3.axisLeft()
+    .scale(yAxisTicks);
+
+var xAxis = d3.axisBottom()
+    .scale(xAxisTicks);
+
+// axis stuff
+
   var tooltip = d3.select('body').append('div')
         .style('position', 'absolute')
         .style('padding', '0 10px')
@@ -169,8 +188,20 @@ app.controller("Chart3Ctrl", function($scope, $rootScope, $sce, GraphStorage, Au
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
     .append("g")
-    .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
-    .style('background', $scope.newGraph.updateColor3)
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+
+    songChart.append("g")
+            .attr("transform", "translate(" + -5 + ",0)")
+            .call(yAxis);
+
+   // draw x axis with labels and move to the bottom of the chart area
+    songChart.append("g")
+        .attr("class", "xaxis")   // give it a class so it can be used to select only xaxis labels  below
+        .attr("transform", "translate(0," + (height + 5) + ")")
+        .call(xAxis);
+
+    songChart.style('background', $scope.newGraph.updateColor3)
     .selectAll('rect').data(trackAnalysis.bars)
     .enter().append('rect')
       .style('fill', function(data) {
@@ -179,12 +210,17 @@ app.controller("Chart3Ctrl", function($scope, $rootScope, $sce, GraphStorage, Au
       .attr("width", function(data) {
         return xScale.bandwidth()*width;
       })
-      .attr('height', 0)
+      .attr('height', function (data) {
+          return yScale(barsDurationFn(data));
+      })
         .attr('x', function (data, i) {
           // console.log("xScale(i)", xScale(i));
           return xScale(i)*width;
       })
-      .attr('y', height)
+      .attr('y', function (data) {
+          // console.log("yScale(i)", height-yScale(data));
+          return (height - yScale(barsDurationFn(data)));
+      })
       .on('mouseover', function(d) {
 
         tooltip.transition()
@@ -208,20 +244,19 @@ app.controller("Chart3Ctrl", function($scope, $rootScope, $sce, GraphStorage, Au
     });
 
   
-  songChart.transition()
-   .attr('height', function (data) {
-          return yScale(barsDurationFn(data));
-      })
-   .attr('y', function (data) {
-          // console.log("yScale(i)", height-yScale(data));
-          return (height - yScale(barsDurationFn(data)));
-      })
-   .delay(function(d, i) {
-        return i * 20;
-    })
-    .duration(1000)
-    // .ease('elastic');
-
+  // songChart.transition()
+  //  .attr('height', function (data) {
+  //         return yScale(barsDurationFn(data));
+  //     })
+  //  .attr('y', function (data) {
+  //         // console.log("yScale(i)", height-yScale(data));
+  //         return (height - yScale(barsDurationFn(data)));
+  //     })
+  //  .delay(function(d, i) {
+  //       return i * 20;
+  //   })
+  //   .duration(1000)
+  //   // .ease('elastic');
 
 
 

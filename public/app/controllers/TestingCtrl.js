@@ -59,10 +59,25 @@ var yScale = d3.scaleLinear()
         .domain([0, d3.max(bardata)])
         .range([0, height]);
 
+var yAxisTicks = d3.scaleLinear()
+        .domain([0, d3.max(bardata)])
+        .range([height, 0]);
+
+var xAxisTicks = d3.scaleLinear()
+        .domain([0, bardata.length])
+        .range([0, width]);
+
 var xScale = d3.scaleBand()
         .domain(d3.range(0, bardata.length))
         .range(d3.range(0, width))
         .paddingInner([.2])
+
+var yAxis = d3.axisLeft()
+    .scale(yAxisTicks);
+
+var xAxis = d3.axisBottom()
+    .scale(xAxisTicks);
+
 
 let color1 = '#2ead16';
 let color2 = '#C61C6F';
@@ -138,6 +153,8 @@ var songChart = d3.select('#test-chart').append('svg')
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
 
 
+
+
   songChart.selectAll('rect').data(bardata)
   .enter().append('rect')
     .style('fill', colors)
@@ -156,5 +173,15 @@ var songChart = d3.select('#test-chart').append('svg')
         // console.log("yScale(i)", height-yScale(data));
         return height - yScale(data);
     });
+
+    songChart.append("g")
+            .attr("transform", "translate(" + -5 + ",0)")
+            .call(yAxis);
+
+    // draw x axis with labels and move to the bottom of the chart area
+        songChart.append("g")
+            .attr("class", "xaxis")   // give it a class so it can be used to select only xaxis labels  below
+            .attr("transform", "translate(0," + (height + 5) + ")")
+            .call(xAxis);
 
 });

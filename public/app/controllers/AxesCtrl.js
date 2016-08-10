@@ -8,7 +8,7 @@ var width = 700,
             padding = 100;
             
         // create an svg container
-        var vis = d3.select("body").
+        var vis = d3.select('#test-chart').
             append("svg:svg")
                 .attr("width", width)
                 .attr("height", height);
