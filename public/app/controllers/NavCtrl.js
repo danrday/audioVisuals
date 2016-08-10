@@ -140,7 +140,7 @@ app.controller("NavCtrl", function($http, $scope, $rootScope, $state, $location,
     .then(function(returnedAnalysisData) {
      $scope.trackAnalysis = JSON.parse(returnedAnalysisData);
             console.log($scope.trackAnalysis);
-      $state.go('home.nav.chart2')
+      $state.go('home.nav.chart3')
    }).catch(function(error) {
      // Handle Errors here.
      var errorCode = error.code;

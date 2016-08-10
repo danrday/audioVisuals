@@ -48,6 +48,26 @@ app.config(function($stateProvider, $urlRouterProvider, FBCreds) {
       templateUrl: 'app/partials/colorpicker/chart2.colorpicker3.html',
       // controller: 'ColorPicker3'
     })
+     .state('home.nav.chart3', {
+      url: "/chart3",
+      templateUrl: 'app/partials/chart3.html',
+      controller: 'Chart3Ctrl'
+    })
+     .state('home.nav.chart3.colorpicker1', {
+      url: "/colorpicker1",
+      templateUrl: 'app/partials/colorpicker/chart2.colorpicker1.html',
+      // controller: 'ColorPicker1'
+    })
+     .state('home.nav.chart3.colorpicker2', {
+      url: "/colorpicker2",
+      templateUrl: 'app/partials/colorpicker/chart2.colorpicker2.html',
+      // controller: 'ColorPicker2'
+    })
+     .state('home.nav.chart3.colorpicker3', {
+      url: "/colorpicker3",
+      templateUrl: 'app/partials/colorpicker/chart2.colorpicker3.html',
+      // controller: 'ColorPicker3'
+    })
      .state('home.nav.data', {
       url: "/data",
       templateUrl: 'app/partials/data.html',
