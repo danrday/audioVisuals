@@ -2,6 +2,90 @@
 
 app.controller("Chart3Ctrl", function($scope, $rootScope, $sce, GraphStorage, AuthFactory) {
 
+
+// timer stuff
+
+$scope.hundredthSecond = 0;
+
+$scope.second = 0;
+
+$scope.minute = 0;
+
+$scope.countdown = 5;
+
+$scope.hundredthSecCountdown = 0;
+
+
+$scope.setTimer = function () {
+  setInterval(function() {
+ $scope.hundredthSecond++
+ $scope.$apply();
+
+ if ($scope.hundredthSecond%100 === 0) {
+  if($scope.second === 59) {
+    $scope.second = 0;
+    $scope.minute++;
+    $scope.$apply();
+  } else {
+      $scope.second++
+      $scope.$apply();
+    }
+ }
+
+ console.log($scope.hundredthSecond)
+}, 10)
+}
+
+
+$scope.armTrack = function () {
+  setInterval(function() {
+ $scope.hundredthSecCountdown++
+ $scope.$apply();
+
+ if ($scope.hundredthSecCountdown%100 === 0) {
+  if($scope.countdown === 1) {
+    clearInterval(armTrack)
+    $scope.setTimer();
+    $scope.$apply();
+  } else {
+      $scope.countdown --;
+      $scope.$apply();
+    }
+ }
+
+ console.log($scope.hundredthSecond)
+}, 10)
+}
+
+
+
+// let timer = setInterval(function() {
+//  $scope.hundredthSecond++
+//  $scope.$apply();
+
+//  if ($scope.hundredthSecond%100 === 0) {
+//   if($scope.second === 59) {
+//     $scope.second = 0;
+//     $scope.minute++;
+//     $scope.$apply();
+//   } else {
+//       $scope.second++
+//       $scope.$apply();
+//     }
+//  }
+
+//  console.log($scope.hundredthSecond)
+// }, 10)
+
+
+
+// timer stuff
+
+
+
+
+
+
   $scope.minimizeColorPicker = function () {
     console.log("wtf", $scope.newnew.update1)
   }
@@ -247,20 +331,5 @@ app.controller("Chart3Ctrl", function($scope, $rootScope, $sce, GraphStorage, Au
       })
     .delay(function(d, i) { return i * 25; })
     .duration(500)
-    // .ease('elastic');
-
-  // songChart.transition()
-  //  .attr('height', function (data) {
-  //         return yScale(barsDurationFn(data));
-  //     })
-  //  .attr('y', function (data) {
-  //         // console.log("yScale(i)", height-yScale(data));
-  //         return (height - yScale(barsDurationFn(data)));
-  //     })
-  //  .delay(function(d, i) {
-  //       return i * 20;
-  //   })
-    // .duration(1000)
-    // .ease('elastic');
 
 });
