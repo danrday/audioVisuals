@@ -152,23 +152,22 @@ app.controller("Chart3Ctrl", function($scope, $rootScope, $sce, GraphStorage, Au
           .paddingInner(.2);
 
 // axis stuff
-let bardata = [20, 30, 20, 15, 40, 80,20, 30, 20, 15, 40, 80,20, 30, 20, 15, 40, 80,20, 30, 20, 15, 40, 80, 20, 30, 20, 15, 40, 80,20, 30, 20, 15, 40, 80,20, 30, 20, 15, 40, 80,20, 30, 20, 15, 40, 80, 20, 30, 20, 15, 40, 80,20, 30, 20, 15, 40, 80,20, 30, 20, 15, 40, 80,20, 30, 20, 15, 40, 80, 20, 30, 20, 15, 40, 80,20, 30, 20, 15, 40, 80,20, 30, 20, 15, 40, 80,20, 30, 20, 15, 40, 80, 20, 30, 20, 15, 40, 80,20, 30, 20, 15, 40, 80,20, 30, 20, 15, 40, 80,20, 30, 20, 15, 40, 80];
 
-var yAxisTicks = d3.scaleLinear()
-        .domain(d3.extent(trackAnalysis.bars, barsDurationFn))
-        .range([height, 0]);
+  var yAxisTicks = d3.scaleLinear()
+          .domain(d3.extent(trackAnalysis.bars, barsDurationFn))
+          .range([height, 0]);
 
-var xAxisTicks = d3.scaleLinear()
-        .domain([0, trackAnalysis.bars.length])
-        .range([0, width]);
+  var xAxisTicks = d3.scaleLinear()
+          .domain([0, trackAnalysis.bars.length])
+          .range([0, width]);
 
-var yAxis = d3.axisLeft()
-    .scale(yAxisTicks);
+  var yAxis = d3.axisLeft()
+      .scale(yAxisTicks);
 
-var xAxis = d3.axisBottom()
-    .scale(xAxisTicks);
+  var xAxis = d3.axisBottom()
+      .scale(xAxisTicks);
 
-// axis stuff
+  // axis stuff
 
   var tooltip = d3.select('body').append('div')
         .style('position', 'absolute')
@@ -183,7 +182,6 @@ var xAxis = d3.axisBottom()
 
   let tempColor = null;
 
-
   var songChart = d3.select('#bar-chart').append('svg')
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
@@ -191,15 +189,15 @@ var xAxis = d3.axisBottom()
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 
-    songChart.append("g")
-            .attr("transform", "translate(" + -5 + ",0)")
-            .call(yAxis);
+  songChart.append("g")
+          .attr("transform", "translate(" + -5 + ",0)")
+          .call(yAxis);
 
    // draw x axis with labels and move to the bottom of the chart area
-    songChart.append("g")
-        .attr("class", "xaxis")   // give it a class so it can be used to select only xaxis labels  below
-        .attr("transform", "translate(0," + (height + 5) + ")")
-        .call(xAxis);
+  songChart.append("g")
+      .attr("class", "xaxis")   // give it a class so it can be used to select only xaxis labels  below
+      .attr("transform", "translate(0," + (height + 5) + ")")
+      .call(xAxis);
 
     songChart.style('background', $scope.newGraph.updateColor3)
     .selectAll('rect').data(trackAnalysis.bars)
@@ -210,17 +208,12 @@ var xAxis = d3.axisBottom()
       .attr("width", function(data) {
         return xScale.bandwidth()*width;
       })
-      .attr('height', function (data) {
-          return yScale(barsDurationFn(data));
-      })
+      .attr('height', 0)
         .attr('x', function (data, i) {
           // console.log("xScale(i)", xScale(i));
           return xScale(i)*width;
       })
-      .attr('y', function (data) {
-          // console.log("yScale(i)", height-yScale(data));
-          return (height - yScale(barsDurationFn(data)));
-      })
+      .attr('y', height)
       .on('mouseover', function(d) {
 
         tooltip.transition()
@@ -243,7 +236,19 @@ var xAxis = d3.axisBottom()
             .style('fill', tempColor)
     });
 
-  
+
+    d3.selectAll("rect").transition()
+    .attr('height', function (data) {
+          return yScale(barsDurationFn(data));
+      })
+    .attr('y', function (data) {
+          // console.log("yScale(i)", height-yScale(data));
+          return (height - yScale(barsDurationFn(data)));
+      })
+    .delay(function(d, i) { return i * 25; })
+    .duration(500)
+    // .ease('elastic');
+
   // songChart.transition()
   //  .attr('height', function (data) {
   //         return yScale(barsDurationFn(data));
@@ -255,10 +260,7 @@ var xAxis = d3.axisBottom()
   //  .delay(function(d, i) {
   //       return i * 20;
   //   })
-  //   .duration(1000)
-  //   // .ease('elastic');
-
-
-
+    // .duration(1000)
+    // .ease('elastic');
 
 });
