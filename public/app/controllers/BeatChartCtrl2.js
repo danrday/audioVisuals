@@ -122,6 +122,28 @@ app.controller("BeatChartCtrl2", function($scope, $rootScope, $sce, GraphStorage
       })
   });
 
+    //the first 'rect' is the 3rd child of beatChart, so we start at 2
+  let currentBar = 2;
+
+  let indexOfBar = 0;
+
+  $scope.$watch('hundredthSecond', function (newVal, oldVal) {
+    if (!newVal) {return};
+
+
+    if ($scope.hundredthSecond >= (trackAnalysis.bars[indexOfBar].start * 100)) {
+      currentBar++;
+      beatChart2.select(`rect:nth-child(${currentBar})`).style('fill', 'yellow');
+      indexOfBar ++;
+      console.log(indexOfBar)
+    }
+
+    
+
+    // beatChart2.select("rect:nth-child(3)").style('fill', 'yellow');
+    
+    });
+
  // $scope.$watch('newGraph.updateColor3', function(newVal, oldVal) {
  //        if (!newVal) {return};
  //        d3.select('svg').style('background', `${newVal}`)

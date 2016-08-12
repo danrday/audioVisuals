@@ -122,17 +122,25 @@ app.controller("BeatChartCtrl", function($scope, $rootScope, $sce, GraphStorage,
       })
   });
 
+  //the first 'rect' is the 3rd child of beatChart, so we start at 2
+  let currentBeat = 2;
 
-  let currentBeat = -1;
+  let indexOfBeat = 0;
 
-  $scope.$watch('second', function (newVal, oldVal) {
+  $scope.$watch('hundredthSecond', function (newVal, oldVal) {
     if (!newVal) {return};
 
-    currentBeat++;
 
-    console.log(newVal)
+    if ($scope.hundredthSecond >= (trackAnalysis.beats[indexOfBeat].start * 100)) {
+      currentBeat++;
+      beatChart.select(`rect:nth-child(${currentBeat})`).style('fill', 'yellow');
+      indexOfBeat ++;
+      console.log(indexOfBeat)
+    }
 
-    beatChart.select(`rect:nth-child(${currentBeat})`).style('fill', 'yellow');
+    
+
+    // beatChart.select("rect:nth-child(3)").style('fill', 'yellow');
     
     });
 
