@@ -90,6 +90,11 @@ app.controller("NavCtrl", function($http, $scope, $rootScope, $state, $location,
 
   $scope.songGeneralInfo = {};
 
+  $scope.savedColors = {};
+
+  //if true, chartCtrl will load last saved colors
+  $scope.isLoadingSavedTrack = false;
+
   $scope.clearSearch = function () {
     $scope.searchResults = {};
   }
@@ -117,8 +122,35 @@ app.controller("NavCtrl", function($http, $scope, $rootScope, $state, $location,
   };
 
   $scope.goToTrack = function(id) {
+  $scope.isLoadingSavedTrack = false;
   $scope.clearSearch();
   $state.go('home.nav.loading')
+  SpotifyData.getInitialData(id, authToken)
+  .then(function(basicTrackData) {
+     console.log(basicTrackData);
+      $scope.trackAudioFeatures = basicTrackData;
+      let analysisUrl = basicTrackData.analysis_url;
+      let discogUrl = basicTrackData.track_href;
+      getDetailedAnalysis(analysisUrl, authToken);
+      getTrackDiscog(discogUrl);
+   }).catch(function(error) {
+     // Handle Errors here.
+     var errorCode = error.code;
+     var errorMessage = error.message;
+   }); 
+  }
+
+  $scope.fbId = null;
+
+  $scope.goToSavedTrack = function(id, fbid, color1, color2, color3) {
+  $scope.clearSearch();
+  $state.go('home.nav.loading')
+  $scope.fbId = fbid;
+  $scope.isLoadingSavedTrack = true;
+  $scope.savedColors.color1 = color1;
+  $scope.savedColors.color2 = color2;
+  $scope.savedColors.color3 = color3;
+  console.log("$scope.savedColors", $scope.savedColors)
   SpotifyData.getInitialData(id, authToken)
   .then(function(basicTrackData) {
      console.log(basicTrackData);

@@ -5,61 +5,19 @@ app.controller("Chart3Ctrl", function($scope, $rootScope, $sce, GraphStorage, Au
 
 // timer stuff
 
-$scope.hundredthSecond = 0;
+// $scope.hundredthSecond = 0;
 
-$scope.second = 0;
+// $scope.second = 0;
 
-$scope.minute = 0;
+// $scope.minute = 0;
 
-$scope.countdown = 5;
+// $scope.countdown = 5;
 
-$scope.hundredthSecCountdown = 0;
-
-
-$scope.setTimer = function () {
-  setInterval(function() {
- $scope.hundredthSecond++
- $scope.$apply();
-
- if ($scope.hundredthSecond%100 === 0) {
-  if($scope.second === 59) {
-    $scope.second = 0;
-    $scope.minute++;
-    $scope.$apply();
-  } else {
-      $scope.second++
-      $scope.$apply();
-    }
- }
-
- console.log($scope.hundredthSecond)
-}, 10)
-}
+// $scope.hundredthSecCountdown = 0;
 
 
-$scope.armTrack = function () {
-  setInterval(function() {
- $scope.hundredthSecCountdown++
- $scope.$apply();
-
- if ($scope.hundredthSecCountdown%100 === 0) {
-  if($scope.countdown === 1) {
-    clearInterval(armTrack)
-    $scope.setTimer();
-    $scope.$apply();
-  } else {
-      $scope.countdown --;
-      $scope.$apply();
-    }
- }
-
- console.log($scope.hundredthSecond)
-}, 10)
-}
-
-
-
-// let timer = setInterval(function() {
+// $scope.setTimer = function () {
+//   setInterval(function() {
 //  $scope.hundredthSecond++
 //  $scope.$apply();
 
@@ -76,7 +34,28 @@ $scope.armTrack = function () {
 
 //  console.log($scope.hundredthSecond)
 // }, 10)
+// }
 
+
+// $scope.armTrack = function () {
+//   setInterval(function() {
+//  $scope.hundredthSecCountdown++
+//  $scope.$apply();
+
+//  if ($scope.hundredthSecCountdown%100 === 0) {
+//   if($scope.countdown === 1) {
+//     clearInterval(armTrack)
+//     $scope.setTimer();
+//     $scope.$apply();
+//   } else {
+//       $scope.countdown --;
+//       $scope.$apply();
+//     }
+//  }
+
+//  console.log($scope.hundredthSecond)
+// }, 10)
+// }
 
 
 // timer stuff
@@ -85,13 +64,10 @@ $scope.armTrack = function () {
 
 
 
-
-  $scope.minimizeColorPicker = function () {
-    console.log("wtf", $scope.newnew.update1)
-  }
-
   // toggles the color picker button on a graph
+  //starts out display = false
   $scope.openColorPicker = false;
+
   $scope.toggleColorPicker = function () {
     $scope.openColorPicker = !$scope.openColorPicker
   };
@@ -106,9 +82,6 @@ $scope.armTrack = function () {
   $scope.newGraph = {
     graphType: "barChartTrackBars",
     trackId: trackId,
-    renderColor1: "#2ead16",
-    renderColor2: "#C61C6F",
-    renderColor3: "#dff0d8",
     updateColor1: "#2ead16",
     updateColor2: "#C61C6F",
     updateColor3: "#dff0d8",
@@ -117,18 +90,19 @@ $scope.armTrack = function () {
     album: $scope.songGeneralInfo.album
   }
 
+  if ($scope.isLoadingSavedTrack === true) {
+    $scope.newGraph.updateColor1 = $scope.savedColors.color1;
+    $scope.newGraph.updateColor2 = $scope.savedColors.color2;
+    $scope.newGraph.updateColor3 = $scope.savedColors.color3;
+    console.log("newGraph old color bg = dff0d8, new:", $scope.newGraph);
+  }
+
   $scope.$watch('newGraph.updateColor1', function(newVal, oldVal) {
           if (!newVal) {return};
-
-          // color1 = newVal;
-
-          // console.log("color1", color1);
 
           let colors3 = d3.scaleLinear()
           .domain(d3.extent(trackAnalysis.bars, barsDurationFn))
           .range([`${newVal}`, `${$scope.newGraph.updateColor2}`]); 
-
-          // colors;
 
           d3.selectAll('rect').style('fill', function(data) {
         return colors3(barsDurationFn(data));
@@ -138,15 +112,9 @@ $scope.armTrack = function () {
   $scope.$watch('newGraph.updateColor2', function(newVal, oldVal) {
           if (!newVal) {return};
 
-          // color2 = newVal;
-
-          // console.log("color2", color2);
-
           let colors3 = d3.scaleLinear()
           .domain(d3.extent(trackAnalysis.bars, barsDurationFn))
           .range([`${$scope.newGraph.updateColor1}`, `${newVal}`]); 
-
-          // colors;
 
           d3.selectAll('rect').style('fill', function(data) {
         return colors3(barsDurationFn(data));
@@ -155,17 +123,7 @@ $scope.armTrack = function () {
 
  $scope.$watch('newGraph.updateColor3', function(newVal, oldVal) {
         if (!newVal) {return};
-
-        // color3 = newVal;
-
-        // console.log("color2", color3);
-
         d3.select('svg').style('background', `${newVal}`)
-
-    //     color1 = $scope.color;
-    //     d3.selectAll('rect').data(trackAnalysis.bars).enter().style('fill', function(data) {
-    //     return colors(barsDurationFn(data));
-    // });
   });
 
   $scope.saveNewGraph = function() {

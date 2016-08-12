@@ -42,7 +42,7 @@
  -->
 
       <div id="trackResults" ng-repeat="track in myTrackResults">
-        <div class="trackResult" ng-click="goToTrack(track.trackId, track.id, track.customColor1, track.customColor2, track.customColor3)">
+        <div class="trackResult" ng-click="goToSavedTrack(track.trackId, track.id, track.updateColor1, track.updateColor2, track.updateColor3)">
           Track: {{track.song}}
           Artist: {{track.artist}}
           Album: {{track.album}}
