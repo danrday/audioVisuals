@@ -98,29 +98,29 @@ app.controller("BeatChartCtrl", function($scope, $rootScope, $sce, GraphStorage,
   //   console.log("newGraph old color bg = dff0d8, new:", $scope.newGraph);
   // }
 
- //  $scope.$watch('newGraph.updateColor1', function(newVal, oldVal) {
- //          if (!newVal) {return};
+  $scope.$watch('newGraph.updateColor1', function(newVal, oldVal) {
+          if (!newVal) {return};
 
- //          let colors3 = d3.scaleLinear()
- //          .domain(d3.extent(trackAnalysis.bars, barsDurationFn))
- //          .range([`${newVal}`, `${$scope.newGraph.updateColor2}`]); 
+          let colors3 = d3.scaleLinear()
+          .domain(d3.extent(trackAnalysis.beats, barsDurationFn))
+          .range([`${newVal}`, `${$scope.newGraph.updateColor2}`]); 
 
- //          d3.selectAll('rect').style('fill', function(data) {
- //        return colors3(barsDurationFn(data));
- //      })
- //  });
+          beatChart.selectAll('rect').style('fill', function(data) {
+        return colors3(barsDurationFn(data));
+      })
+  });
 
- //  $scope.$watch('newGraph.updateColor2', function(newVal, oldVal) {
- //          if (!newVal) {return};
+  $scope.$watch('newGraph.updateColor2', function(newVal, oldVal) {
+          if (!newVal) {return};
 
- //          let colors3 = d3.scaleLinear()
- //          .domain(d3.extent(trackAnalysis.bars, barsDurationFn))
- //          .range([`${$scope.newGraph.updateColor1}`, `${newVal}`]); 
+          let colors3 = d3.scaleLinear()
+          .domain(d3.extent(trackAnalysis.beats, barsDurationFn))
+          .range([`${$scope.newGraph.updateColor1}`, `${newVal}`]); 
 
- //          d3.selectAll('rect').style('fill', function(data) {
- //        return colors3(barsDurationFn(data));
- //      })
- //  });
+          beatChart.selectAll('rect').style('fill', function(data) {
+        return colors3(barsDurationFn(data));
+      })
+  });
 
  // $scope.$watch('newGraph.updateColor3', function(newVal, oldVal) {
  //        if (!newVal) {return};
@@ -186,22 +186,22 @@ app.controller("BeatChartCtrl", function($scope, $rootScope, $sce, GraphStorage,
   var x = d3.scaleBand().rangeRound([0, width])
 
   var yScale = d3.scaleLinear()
-          .domain(d3.extent(trackAnalysis.bars, barsDurationFn))
+          .domain(d3.extent(trackAnalysis.beats, barsDurationFn))
           .range([0, height]);
 
   var xScale = d3.scaleBand()
-          .domain(d3.range(0, trackAnalysis.bars.length))
+          .domain(d3.range(0, trackAnalysis.beats.length))
           .range(d3.range(0, width))
           .paddingInner(.2);
 
 // axis stuff
 
   var yAxisTicks = d3.scaleLinear()
-          .domain(d3.extent(trackAnalysis.bars, barsDurationFn))
+          .domain(d3.extent(trackAnalysis.beats, barsDurationFn))
           .range([height, 0]);
 
   var xAxisTicks = d3.scaleLinear()
-          .domain([0, trackAnalysis.bars.length])
+          .domain([0, trackAnalysis.beats.length])
           .range([0, width]);
 
   var yAxis = d3.axisLeft()
@@ -219,7 +219,7 @@ app.controller("BeatChartCtrl", function($scope, $rootScope, $sce, GraphStorage,
         .style('opacity', 0)
           
   var colors = d3.scaleLinear()
-          .domain(d3.extent(trackAnalysis.bars, barsDurationFn))
+          .domain(d3.extent(trackAnalysis.beats, barsDurationFn))
           .range([`${$scope.newGraph.updateColor1}`, `${$scope.newGraph.updateColor2}`]);
 
 
@@ -244,7 +244,7 @@ app.controller("BeatChartCtrl", function($scope, $rootScope, $sce, GraphStorage,
 
     d3.selectAll('svg').style('background', `{$scope.newGraph.updateColor3}`)
 
-    beatChart.selectAll('rect').data(trackAnalysis.bars)
+    beatChart.selectAll('rect').data(trackAnalysis.beats)
     .enter().append('rect')
       .style('fill', function(data) {
         return colors(barsDurationFn(data));
@@ -281,7 +281,7 @@ app.controller("BeatChartCtrl", function($scope, $rootScope, $sce, GraphStorage,
     });
 
 
-    d3.selectAll("rect").transition()
+    beatChart.selectAll("rect").transition()
     .attr('height', function (data) {
           return yScale(barsDurationFn(data));
       })
@@ -289,7 +289,7 @@ app.controller("BeatChartCtrl", function($scope, $rootScope, $sce, GraphStorage,
           // console.log("yScale(i)", height-yScale(data));
           return (height - yScale(barsDurationFn(data)));
       })
-    .delay(function(d, i) { return i * 25; })
+    .delay(function(d, i) { return i * 5; })
     .duration(500)
 
 });

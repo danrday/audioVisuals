@@ -80,16 +80,16 @@ app.controller("BeatChartCtrl2", function($scope, $rootScope, $sce, GraphStorage
 
   //SAVE TRACK CODE
 
-  $scope.newGraph = {
-    graphType: "barChartTrackBars",
-    trackId: trackId,
-    updateColor1: "#2ead16",
-    updateColor2: "#C61C6F",
-    updateColor3: "#dff0d8",
-    song: $scope.songGeneralInfo.song,
-    artist: $scope.songGeneralInfo.artist,
-    album: $scope.songGeneralInfo.album
-  }
+  // $scope.newGraph = {
+  //   graphType: "barChartTrackBars",
+  //   trackId: trackId,
+  //   updateColor1: "#2ead16",
+  //   updateColor2: "#C61C6F",
+  //   updateColor3: "#dff0d8",
+  //   song: $scope.songGeneralInfo.song,
+  //   artist: $scope.songGeneralInfo.artist,
+  //   album: $scope.songGeneralInfo.album
+  // }
 
   // if ($scope.isLoadingSavedTrack === true) {
   //   $scope.newGraph.updateColor1 = $scope.savedColors.color1;
@@ -98,29 +98,29 @@ app.controller("BeatChartCtrl2", function($scope, $rootScope, $sce, GraphStorage
   //   console.log("newGraph old color bg = dff0d8, new:", $scope.newGraph);
   // }
 
- //  $scope.$watch('newGraph.updateColor1', function(newVal, oldVal) {
- //          if (!newVal) {return};
+  $scope.$watch('newGraph.updateColor1', function(newVal, oldVal) {
+          if (!newVal) {return};
 
- //          let colors3 = d3.scaleLinear()
- //          .domain(d3.extent(trackAnalysis.bars, barsDurationFn))
- //          .range([`${newVal}`, `${$scope.newGraph.updateColor2}`]); 
+          let colors3 = d3.scaleLinear()
+          .domain(d3.extent(trackAnalysis.bars, barsDurationFn))
+          .range([`${newVal}`, `${$scope.newGraph.updateColor2}`]); 
 
- //          d3.selectAll('rect').style('fill', function(data) {
- //        return colors3(barsDurationFn(data));
- //      })
- //  });
+          beatChart2.selectAll('rect').style('fill', function(data) {
+        return colors3(barsDurationFn(data));
+      })
+  });
 
- //  $scope.$watch('newGraph.updateColor2', function(newVal, oldVal) {
- //          if (!newVal) {return};
+  $scope.$watch('newGraph.updateColor2', function(newVal, oldVal) {
+          if (!newVal) {return};
 
- //          let colors3 = d3.scaleLinear()
- //          .domain(d3.extent(trackAnalysis.bars, barsDurationFn))
- //          .range([`${$scope.newGraph.updateColor1}`, `${newVal}`]); 
+          let colors3 = d3.scaleLinear()
+          .domain(d3.extent(trackAnalysis.bars, barsDurationFn))
+          .range([`${$scope.newGraph.updateColor1}`, `${newVal}`]); 
 
- //          d3.selectAll('rect').style('fill', function(data) {
- //        return colors3(barsDurationFn(data));
- //      })
- //  });
+          beatChart2.selectAll('rect').style('fill', function(data) {
+        return colors3(barsDurationFn(data));
+      })
+  });
 
  // $scope.$watch('newGraph.updateColor3', function(newVal, oldVal) {
  //        if (!newVal) {return};
@@ -289,7 +289,7 @@ app.controller("BeatChartCtrl2", function($scope, $rootScope, $sce, GraphStorage
           // console.log("yScale(i)", height-yScale(data));
           return (height - yScale(barsDurationFn(data)));
       })
-    .delay(function(d, i) { return i * 25; })
+    .delay(function(d, i) { return i * 20; })
     .duration(500)
 
 });

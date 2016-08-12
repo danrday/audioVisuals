@@ -28,13 +28,15 @@
   <h1>{{minute}}</h1>
 
 
- <div ui-view="beatChart"></div>
- 
  <div ui-view="beatChart2"></div>
 
-  <div id="bar-chart">
+ <div ui-view="beatChart"></div>
  
-    </div>
+
+
+  <!-- <div id="bar-chart"> -->
+ 
+    <!-- </div> -->
 
     <div ng-show="!openColorPicker"><button class="openColorButton" ui-sref="home.nav.chart3.colorpicker1" type="button" ng-click="toggleColorPicker()">Edit Colors</button></div>
 

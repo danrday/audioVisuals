@@ -94,29 +94,29 @@ app.controller("Chart3Ctrl", function($scope, $rootScope, $sce, GraphStorage, Au
     console.log("newGraph old color bg = dff0d8, new:", $scope.newGraph);
   }
 
-  $scope.$watch('newGraph.updateColor1', function(newVal, oldVal) {
-          if (!newVal) {return};
+  // $scope.$watch('newGraph.updateColor1', function(newVal, oldVal) {
+  //         if (!newVal) {return};
 
-          let colors3 = d3.scaleLinear()
-          .domain(d3.extent(trackAnalysis.bars, barsDurationFn))
-          .range([`${newVal}`, `${$scope.newGraph.updateColor2}`]); 
+  //         let colors3 = d3.scaleLinear()
+  //         .domain(d3.extent(trackAnalysis.bars, barsDurationFn))
+  //         .range([`${newVal}`, `${$scope.newGraph.updateColor2}`]); 
 
-          d3.selectAll('rect').style('fill', function(data) {
-        return colors3(barsDurationFn(data));
-      })
-  });
+  //         beatChart2.selectAll('rect').style('fill', function(data) {
+  //       return colors3(barsDurationFn(data));
+  //     })
+  // });
 
-  $scope.$watch('newGraph.updateColor2', function(newVal, oldVal) {
-          if (!newVal) {return};
+  // $scope.$watch('newGraph.updateColor2', function(newVal, oldVal) {
+  //         if (!newVal) {return};
 
-          let colors3 = d3.scaleLinear()
-          .domain(d3.extent(trackAnalysis.bars, barsDurationFn))
-          .range([`${$scope.newGraph.updateColor1}`, `${newVal}`]); 
+  //         let colors3 = d3.scaleLinear()
+  //         .domain(d3.extent(trackAnalysis.bars, barsDurationFn))
+  //         .range([`${$scope.newGraph.updateColor1}`, `${newVal}`]); 
 
-          d3.selectAll('rect').style('fill', function(data) {
-        return colors3(barsDurationFn(data));
-      })
-  });
+  //         beatChart2.selectAll('rect').style('fill', function(data) {
+  //       return colors3(barsDurationFn(data));
+  //     })
+  // });
 
  $scope.$watch('newGraph.updateColor3', function(newVal, oldVal) {
         if (!newVal) {return};
