@@ -63,6 +63,10 @@ app.controller("BeatChartCtrl", function($scope, $rootScope, $sce, GraphStorage,
 
   // toggles the color picker button on a graph
   //starts out display = false
+
+
+
+
   $scope.openColorPicker = false;
 
   $scope.toggleColorPicker = function () {
@@ -76,90 +80,90 @@ app.controller("BeatChartCtrl", function($scope, $rootScope, $sce, GraphStorage,
 
   //SAVE TRACK CODE
 
-  $scope.newGraph = {
-    graphType: "barChartTrackBars",
-    trackId: trackId,
-    updateColor1: "#2ead16",
-    updateColor2: "#C61C6F",
-    updateColor3: "#dff0d8",
-    song: $scope.songGeneralInfo.song,
-    artist: $scope.songGeneralInfo.artist,
-    album: $scope.songGeneralInfo.album
-  }
+  // $scope.newGraph = {
+  //   graphType: "barChartTrackBars",
+  //   trackId: trackId,
+  //   updateColor1: "#2ead16",
+  //   updateColor2: "#C61C6F",
+  //   updateColor3: "#dff0d8",
+  //   song: $scope.songGeneralInfo.song,
+  //   artist: $scope.songGeneralInfo.artist,
+  //   album: $scope.songGeneralInfo.album
+  // }
 
-  if ($scope.isLoadingSavedTrack === true) {
-    $scope.newGraph.updateColor1 = $scope.savedColors.color1;
-    $scope.newGraph.updateColor2 = $scope.savedColors.color2;
-    $scope.newGraph.updateColor3 = $scope.savedColors.color3;
-    console.log("newGraph old color bg = dff0d8, new:", $scope.newGraph);
-  }
+  // if ($scope.isLoadingSavedTrack === true) {
+  //   $scope.newGraph.updateColor1 = $scope.savedColors.color1;
+  //   $scope.newGraph.updateColor2 = $scope.savedColors.color2;
+  //   $scope.newGraph.updateColor3 = $scope.savedColors.color3;
+  //   console.log("newGraph old color bg = dff0d8, new:", $scope.newGraph);
+  // }
 
-  $scope.$watch('newGraph.updateColor1', function(newVal, oldVal) {
-          if (!newVal) {return};
+ //  $scope.$watch('newGraph.updateColor1', function(newVal, oldVal) {
+ //          if (!newVal) {return};
 
-          let colors3 = d3.scaleLinear()
-          .domain(d3.extent(trackAnalysis.bars, barsDurationFn))
-          .range([`${newVal}`, `${$scope.newGraph.updateColor2}`]); 
+ //          let colors3 = d3.scaleLinear()
+ //          .domain(d3.extent(trackAnalysis.bars, barsDurationFn))
+ //          .range([`${newVal}`, `${$scope.newGraph.updateColor2}`]); 
 
-          d3.selectAll('rect').style('fill', function(data) {
-        return colors3(barsDurationFn(data));
-      })
-  });
+ //          d3.selectAll('rect').style('fill', function(data) {
+ //        return colors3(barsDurationFn(data));
+ //      })
+ //  });
 
-  $scope.$watch('newGraph.updateColor2', function(newVal, oldVal) {
-          if (!newVal) {return};
+ //  $scope.$watch('newGraph.updateColor2', function(newVal, oldVal) {
+ //          if (!newVal) {return};
 
-          let colors3 = d3.scaleLinear()
-          .domain(d3.extent(trackAnalysis.bars, barsDurationFn))
-          .range([`${$scope.newGraph.updateColor1}`, `${newVal}`]); 
+ //          let colors3 = d3.scaleLinear()
+ //          .domain(d3.extent(trackAnalysis.bars, barsDurationFn))
+ //          .range([`${$scope.newGraph.updateColor1}`, `${newVal}`]); 
 
-          d3.selectAll('rect').style('fill', function(data) {
-        return colors3(barsDurationFn(data));
-      })
-  });
+ //          d3.selectAll('rect').style('fill', function(data) {
+ //        return colors3(barsDurationFn(data));
+ //      })
+ //  });
 
- $scope.$watch('newGraph.updateColor3', function(newVal, oldVal) {
-        if (!newVal) {return};
-        d3.select('svg').style('background', `${newVal}`)
-  });
+ // $scope.$watch('newGraph.updateColor3', function(newVal, oldVal) {
+ //        if (!newVal) {return};
+ //        d3.select('svg').style('background', `${newVal}`)
+ //  });
 
-  $scope.saveNewGraph = function() {
+  // $scope.saveNewGraph = function() {
 
-    let trackJSON = {
-      trackId: trackId,
-      trackAudioFeatures: $scope.trackAudioFeatures,
-      trackAnalysis: $scope.trackAnalysis,
-      trackDiscog: $scope.trackDiscog
-    }
+  //   let trackJSON = {
+  //     trackId: trackId,
+  //     trackAudioFeatures: $scope.trackAudioFeatures,
+  //     trackAnalysis: $scope.trackAnalysis,
+  //     trackDiscog: $scope.trackDiscog
+  //   }
 
-    console.log("trackJSON from dataCTRL", trackJSON)
+  //   console.log("trackJSON from dataCTRL", trackJSON)
 
-    $scope.newGraph.uid = AuthFactory.getUser();
+  //   $scope.newGraph.uid = AuthFactory.getUser();
 
-    GraphStorage.postNewGraph($scope.newGraph, trackId)
-    .then(function() {
-      GraphStorage.postJSONData(trackJSON)
-      // $location.url("/boards");
-    }).then(function() {
-      console.log("success")
-      // $location.url("/boards");
-    })
-  };
+  //   GraphStorage.postNewGraph($scope.newGraph, trackId)
+  //   .then(function() {
+  //     GraphStorage.postJSONData(trackJSON)
+  //     // $location.url("/boards");
+  //   }).then(function() {
+  //     console.log("success")
+  //     // $location.url("/boards");
+  //   })
+  // };
 
   //END SAVE TRACK
 
   // edit track
 
-  $scope.putEditTrack = function() {
-    $scope.newGraph.uid = AuthFactory.getUser();
-    console.log("SCOPE ID", $scope.fbId)
-      GraphStorage.putTrack($scope.fbId, $scope.newGraph)
-      .then(function(message) {
+  // $scope.putEditTrack = function() {
+  //   $scope.newGraph.uid = AuthFactory.getUser();
+  //   console.log("SCOPE ID", $scope.fbId)
+  //     GraphStorage.putTrack($scope.fbId, $scope.newGraph)
+  //     .then(function(message) {
 
-        console.log(message);
-        // $location.url("/boards");
-      })
-  };
+  //       console.log(message);
+  //       // $location.url("/boards");
+  //     })
+  // };
 
   // end edit track
 
@@ -221,25 +225,26 @@ app.controller("BeatChartCtrl", function($scope, $rootScope, $sce, GraphStorage,
 
   let tempColor = null;
 
-  var songChart = d3.select('#bar-chart').append('svg')
+  var beatChart = d3.select('#beat-chart').append('svg')
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
     .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 
-  songChart.append("g")
+  beatChart.append("g")
           .attr("transform", "translate(" + -5 + ",0)")
           .call(yAxis);
 
    // draw x axis with labels and move to the bottom of the chart area
-  songChart.append("g")
+  beatChart.append("g")
       .attr("class", "xaxis")   // give it a class so it can be used to select only xaxis labels  below
       .attr("transform", "translate(0," + (height + 5) + ")")
       .call(xAxis);
 
-    songChart.style('background', $scope.newGraph.updateColor3)
-    .selectAll('rect').data(trackAnalysis.bars)
+    d3.selectAll('svg').style('background', `{$scope.newGraph.updateColor3}`)
+
+    beatChart.selectAll('rect').data(trackAnalysis.bars)
     .enter().append('rect')
       .style('fill', function(data) {
         return colors(barsDurationFn(data));

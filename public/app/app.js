@@ -59,6 +59,12 @@ app.config(function($stateProvider, $urlRouterProvider, FBCreds) {
             'beatChart@home.nav.chart3': { 
                 templateUrl: 'app/partials/beatChart.html',
                 controller: 'BeatChartCtrl'
+            },
+
+             // for column two, we'll define a separate controller 
+            'beatChart2@home.nav.chart3': { 
+                templateUrl: 'app/partials/beatChart2.html',
+                controller: 'BeatChartCtrl2'
             }
         }
     })
