@@ -5,19 +5,22 @@ app.controller("Chart3Ctrl", function($scope, $rootScope, $sce, GraphStorage, Au
 
 // timer stuff
 
-// $scope.hundredthSecond = 0;
+$scope.hundredthSecond = -500;
 
-// $scope.second = 0;
+$scope.second = 0;
 
-// $scope.minute = 0;
+$scope.minute = 0;
 
-// $scope.countdown = 5;
+$scope.countdown = 5;
 
-// $scope.hundredthSecCountdown = 0;
+$scope.hundredthSecCountdown = 0;
 
 
 // $scope.setTimer = function () {
 //   setInterval(function() {
+
+// if ()
+
 //  $scope.hundredthSecond++
 //  $scope.$apply();
 
@@ -32,30 +35,42 @@ app.controller("Chart3Ctrl", function($scope, $rootScope, $sce, GraphStorage, Au
 //     }
 //  }
 
+
+
+
+
 //  console.log($scope.hundredthSecond)
 // }, 10)
 // }
 
 
-// $scope.armTrack = function () {
-//   setInterval(function() {
-//  $scope.hundredthSecCountdown++
-//  $scope.$apply();
+$scope.armTrack = function () {
+  setInterval(function() {
+ $scope.hundredthSecCountdown++
+ $scope.hundredthSecond++
+ $scope.$apply();
 
-//  if ($scope.hundredthSecCountdown%100 === 0) {
-//   if($scope.countdown === 1) {
-//     clearInterval(armTrack)
-//     $scope.setTimer();
-//     $scope.$apply();
-//   } else {
-//       $scope.countdown --;
-//       $scope.$apply();
-//     }
-//  }
+ if ($scope.hundredthSecCountdown%100 === 0) {
+  if($scope.countdown === 0) {
 
-//  console.log($scope.hundredthSecond)
-// }, 10)
-// }
+  if($scope.second === 59) {
+    $scope.second = 0;
+    $scope.minute++;
+    $scope.$apply();
+  } else {
+      $scope.second++
+      $scope.$apply();
+    }
+ 
+    
+  } else {
+      $scope.countdown --;
+      $scope.$apply();
+    }
+ }
+
+}, 10)
+}
 
 
 // timer stuff

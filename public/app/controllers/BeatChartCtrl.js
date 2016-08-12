@@ -122,6 +122,22 @@ app.controller("BeatChartCtrl", function($scope, $rootScope, $sce, GraphStorage,
       })
   });
 
+
+  let currentBeat = -1;
+
+  $scope.$watch('second', function (newVal, oldVal) {
+    if (!newVal) {return};
+
+    currentBeat++;
+
+    console.log(newVal)
+
+    beatChart.select(`rect:nth-child(${currentBeat})`).style('fill', 'yellow');
+    
+    });
+
+
+
  // $scope.$watch('newGraph.updateColor3', function(newVal, oldVal) {
  //        if (!newVal) {return};
  //        d3.select('svg').style('background', `${newVal}`)
