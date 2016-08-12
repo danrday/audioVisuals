@@ -1,6 +1,6 @@
 "use strict";
 
-app.controller("Chart3Ctrl", function($scope, $rootScope, $sce, GraphStorage, AuthFactory) {
+app.controller("BeatChartCtrl", function($scope, $rootScope, $sce, GraphStorage, AuthFactory) {
 
 
 // timer stuff

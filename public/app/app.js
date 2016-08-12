@@ -50,8 +50,17 @@ app.config(function($stateProvider, $urlRouterProvider, FBCreds) {
     })
      .state('home.nav.chart3', {
       url: "/chart3",
-      templateUrl: 'app/partials/chart3.html',
-      controller: 'Chart3Ctrl'
+      views: {
+
+            // the main template will be placed here (relatively named)
+            '': { templateUrl: 'app/partials/chart3.html', controller: 'Chart3Ctrl' },
+
+            // for column two, we'll define a separate controller 
+            'beatChart@home.nav.chart3': { 
+                templateUrl: 'app/partials/beatChart.html',
+                controller: 'BeatChartCtrl'
+            }
+        }
     })
      .state('home.nav.chart3.colorpicker1', {
       url: "/colorpicker1",
