@@ -147,6 +147,10 @@
   width: 100%;
 }
 
+.active {
+  background-color: orange;
+}
+
 #padding {
   padding: 0 10px 10px 10px;
 }
