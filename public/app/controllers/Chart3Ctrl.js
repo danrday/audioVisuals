@@ -97,6 +97,7 @@ $scope.armTrack = function () {
     updateColor1: "#2ead16",
     updateColor2: "#C61C6F",
     updateColor3: "#dff0d8",
+    trackImage: $scope.trackImage,
     song: $scope.songGeneralInfo.song,
     artist: $scope.songGeneralInfo.artist,
     album: $scope.songGeneralInfo.album

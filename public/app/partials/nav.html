@@ -39,7 +39,8 @@
  -->
 
       <div id="trackResults" ng-repeat="track in myTrackResults">
-        <div class="trackResult" ng-click="goToSavedTrack(track.trackId, track.id, track.updateColor1, track.updateColor2, track.updateColor3)">
+        <div class="trackResult" ng-click="goToSavedTrack(track.trackId, track.trackImage, track.id, track.updateColor1, track.updateColor2, track.updateColor3)">
+        <img class="myTrackImages" src="{{track.trackImage}}">
           Track: {{track.song}}
           Artist: {{track.artist}}
           Album: {{track.album}}

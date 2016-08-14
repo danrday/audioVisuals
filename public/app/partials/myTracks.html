@@ -9,10 +9,12 @@
 <body>
 
   <div id="trackResults" ng-repeat="track in trackResults">
-        <div class="trackResult" ui-sref="home.nav.savedtrack" ng-click="goToSavedTrack(track.trackId, track.updateColor1, track.updateColor2, track.updateColor3)">
+        <div class="trackResult" ui-sref="home.nav.savedtrack" ng-click="goToSavedTrack(track.trackId, track.trackImage, track.updateColor1, track.updateColor2, track.updateColor3)">
           Track: {{track.song}}
           Artist: {{track.artist}}
           Album: {{track.album}}
+          wat
+          <img src="{{track.trackImage}}">
         </div>
 
          <a id="deleteTrack" class="btn btn-primary" ng-click="deleteTrack(track.id)">Delete</a>

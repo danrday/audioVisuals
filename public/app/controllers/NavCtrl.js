@@ -4,6 +4,16 @@ app.controller("NavCtrl", function($http, $scope, $rootScope, $state, $location,
 
   $scope.customColors = null;
 
+    //gets user token on page load
+    $.ajax({
+      method: 'GET',
+      url: 'http://localhost:8888/getToken',
+      success: function(returnedToken) {
+        console.log(returnedToken);
+        authToken = returnedToken;
+      }
+    });
+
   // mytracks STUFF
 
   $scope.deleteTrack = function(trackID) {
@@ -24,6 +34,9 @@ app.controller("NavCtrl", function($http, $scope, $rootScope, $state, $location,
   $scope.myTrackResults = [];
 
   $scope.getMyTracks = function () {
+
+    $state.go('home.nav');
+
     $scope.clearSearch();
 
     TrackStorage.getTracks(AuthFactory.getUser())
@@ -110,16 +123,9 @@ app.controller("NavCtrl", function($http, $scope, $rootScope, $state, $location,
       console.log($scope.searchResults)
     });
 
-    //gets user token when user searches
-    $.ajax({
-      method: 'GET',
-      url: 'http://localhost:8888/getToken',
-      success: function(returnedToken) {
-        console.log(returnedToken);
-        authToken = returnedToken;
-      }
-    });
   };
+
+  $scope.trackImage = null;
 
   $scope.goToTrack = function(id, imageId) {
   $scope.trackImage = imageId;
@@ -143,8 +149,9 @@ app.controller("NavCtrl", function($http, $scope, $rootScope, $state, $location,
 
   $scope.fbId = null;
 
-  $scope.goToSavedTrack = function(id, fbid, color1, color2, color3) {
-  $scope.clearSearch();
+  $scope.goToSavedTrack = function(id, imageUrl, fbid, color1, color2, color3) {
+  $scope.trackImage = imageUrl;
+  $scope.clearMyTracks();
   $state.go('home.nav.loading')
   $scope.fbId = fbid;
   $scope.isLoadingSavedTrack = true;

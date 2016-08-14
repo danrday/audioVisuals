@@ -151,6 +151,11 @@
   margin: 20px;
 }
 
+.myTrackImages {
+  height: 120px;
+  margin-top: 10px;
+}
+
 .active {
   background-color: orange;
 }

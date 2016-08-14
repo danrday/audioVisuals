@@ -14,6 +14,7 @@ app.controller("DataCtrl", function($scope, $rootScope, $sce, GraphStorage, Auth
   $scope.newGraph = {
     graphType: "barChartTrackBars",
     trackId: trackId,
+    trackImage: $scope.trackImage,
     renderColor1: "#2ead16",
     renderColor2: "#C61C6F",
     renderColor3: "#dff0d8",
