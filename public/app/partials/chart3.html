@@ -1,13 +1,26 @@
-<div id="chart" class="container">
+<div id="chart">
 
 
-    <h1>Artist: {{songGeneralInfo.artist}} ::::::::
+    <h2>Artist: {{songGeneralInfo.artist}} ::::::::
    Album: {{songGeneralInfo.album}} ::::::::
-  Song: {{songGeneralInfo.song}}</h1> 
+  Song: {{songGeneralInfo.song}}</h2> 
 
-
+  <div id="iframe">
   <iframe ng-src="{{someUrl}}" width="300" height="80" frameborder="0" allowtransparency="true"></iframe>
+  </div>
+
+ <div id="timer">
  
+  <h2>countdown: {{countdown}}</h2>
+
+  <h2>hundredth seconds: {{hundredthSecond}}</h2>
+
+  <h2>seconds: {{second}}</h2>
+
+  <h2>minutes: {{minute}}</h2>
+
+
+</div>
 
   <a id="armTrack" ng-click="armTrack()" class="btn btn-primary">Sync</a>
 
@@ -15,17 +28,7 @@
 
   <a id="saveGraph" ng-click="putEditTrack()" class="btn btn-primary">Save</a>
 
-    <div>countdown</div>
-  <div>{{countdown}}</div>
 
-    <h1>hundredth seconds</h1>
-  <h1>{{hundredthSecond}}</h1>
-
-  <h1>seconds</h1>
-  <h1>{{second}}</h1>
-
-  <h1>minutes</h1>
-  <h1>{{minute}}</h1>
 
 
  <div ui-view="beatChart2"></div>
