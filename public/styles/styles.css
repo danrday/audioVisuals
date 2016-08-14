@@ -171,7 +171,6 @@
 #songDetails {
   font-size: 14px;
   width: 30px;
-  float: right;
   display: inline-block;
   line-height: 1.5;
 }
@@ -200,6 +199,16 @@ h2 {
 
 .searchResult {
   padding-top: 10px;
+}
+
+.trackResult:hover {
+  background-color: orange;
+    font-size: bigger;
+}
+
+#deleteTrack {
+  display: inline-block;
+  float: bottom;
 }
 
 .searchResult:hover { 

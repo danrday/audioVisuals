@@ -39,14 +39,19 @@
  -->
 
       <div id="trackResults" ng-repeat="track in myTrackResults">
+        <div>
         <div class="trackResult" ng-click="goToSavedTrack(track.trackId, track.trackImage, track.id, track.updateColor1, track.updateColor2, track.updateColor3)">
         <img class="myTrackImages" src="{{track.trackImage}}">
           Track: {{track.song}}
           Artist: {{track.artist}}
           Album: {{track.album}}
         </div>
+        <div>
+          <a id="deleteTrack" class="btn btn-primary" ng-click="deleteTrack(track.id)">Delete</a>
+        </div>
+        </div>
 
-         <a id="deleteTrack" class="btn btn-primary" ng-click="deleteTrack(track.id)">Delete</a>
+         
 
       </div>
 
