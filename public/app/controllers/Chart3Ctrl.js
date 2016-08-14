@@ -5,13 +5,13 @@ app.controller("Chart3Ctrl", function($scope, $rootScope, $sce, GraphStorage, Au
 
 // timer stuff
 
-$scope.hundredthSecond = -500;
+$scope.hundredthSecond = -300;
 
 $scope.second = 0;
 
 $scope.minute = 0;
 
-$scope.countdown = 5;
+$scope.countdown = 3;
 
 $scope.hundredthSecCountdown = 0;
 
