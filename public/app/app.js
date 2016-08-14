@@ -65,6 +65,26 @@ app.config(function($stateProvider, $urlRouterProvider, FBCreds) {
             'beatChart2@home.nav.chart3': { 
                 templateUrl: 'app/partials/beatChart2.html',
                 controller: 'BeatChartCtrl2'
+            },
+             // for column two, we'll define a separate controller 
+            'confidenceChart@home.nav.chart3': { 
+                templateUrl: 'app/partials/confidenceChart.html',
+                controller: 'ConfidenceChartCtrl'
+            },
+             // for column two, we'll define a separate controller 
+            'confidenceBeats@home.nav.chart3': { 
+                templateUrl: 'app/partials/confidenceBeats.html',
+                controller: 'ConfidenceBeatsCtrl'
+            },
+             // for column two, we'll define a separate controller 
+            'sectionsConfidence@home.nav.chart3': { 
+                templateUrl: 'app/partials/sectionsConfidence.html',
+                controller: 'SectionsConfidenceCtrl'
+            },
+             // for column two, we'll define a separate controller 
+            'sectionsTempo@home.nav.chart3': { 
+                templateUrl: 'app/partials/sectionsTempo.html',
+                controller: 'SectionsTempoCtrl'
             }
         }
     })

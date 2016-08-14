@@ -200,8 +200,8 @@ app.controller("BeatChartCtrl2", function($scope, $rootScope, $sce, GraphStorage
   let margin = {top: 20, right: 30, bottom: 30, left: 40}
 
   //chart 1 specs
-  var height = 250 - margin.top - margin.bottom,
-      width = 950 - margin.left - margin.right,
+  var height = 200 - margin.top - margin.bottom,
+      width = 1100 - margin.left - margin.right,
       barWidth = 40,
       barOffset = 20;
 
