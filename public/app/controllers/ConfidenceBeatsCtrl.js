@@ -127,6 +127,23 @@ app.controller("ConfidenceBeatsCtrl", function($scope, $rootScope, $sce, GraphSt
 
   let indexOfBar = 0;
 
+
+d3.selectAll("circle").transition()
+    .delay(function(d, i) { return i * 50; })
+    .on("start", function repeat() {
+        d3.active(this)
+            .style("fill", "red")
+          .transition()
+            .style("fill", "green")
+          .transition()
+            .style("fill", "blue")
+          .transition()
+            .on("start", repeat);
+      });
+
+
+  
+
   $scope.$watch('hundredthSecond', function (newVal, oldVal) {
     if (!newVal) {return};
 

@@ -195,7 +195,7 @@ h2 {
 }
 
 .searchPictures {
-  height: 75px;
+  height: 175px;
 }
 
 .searchResult {
@@ -204,6 +204,7 @@ h2 {
 
 .searchResult:hover { 
     background-color: yellow;
+    font-size: bigger;
 }
 
 #search {

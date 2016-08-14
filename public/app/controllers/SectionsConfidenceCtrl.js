@@ -133,7 +133,17 @@ app.controller("SectionsConfidenceCtrl", function($scope, $rootScope, $sce, Grap
 
     if ($scope.hundredthSecond >= (trackAnalysis.sections[indexOfBar].start * 100)) {
       currentBar++;
-      confidenceSectionTempo.select(`rect:nth-child(${currentBar})`).style('fill', 'yellow');
+      confidenceSectionTempo.select(`rect:nth-child(${currentBar})`).transition()
+    .on("start", function repeat() {
+        d3.active(this)
+            .style("fill", "red")
+          .transition()
+            .style("fill", "green")
+          .transition()
+            .style("fill", "blue")
+          .transition()
+            .on("start", repeat);
+      });
       indexOfBar ++;
       console.log(indexOfBar)
     }
