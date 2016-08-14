@@ -144,6 +144,15 @@
   display: inline-block;
   background-color: beige;
   margin-top: 10px;
+  width: 100%;
+}
+
+#padding {
+  padding: 0 10px 10px 10px;
+}
+
+.chartbtn {
+  margin-left: 5px;
 }
 
 #songDetails {

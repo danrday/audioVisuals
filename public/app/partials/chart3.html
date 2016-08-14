@@ -1,16 +1,18 @@
 <div id="chart">
 
+<div id="padding">
 
+<!-- 
     <h2>Artist: {{songGeneralInfo.artist}} ::::::::
    Album: {{songGeneralInfo.album}} ::::::::
-  Song: {{songGeneralInfo.song}}</h2> 
+  Song: {{songGeneralInfo.song}}</h2>  -->
 
   <div id="iframe">
   <iframe ng-src="{{someUrl}}" width="300" height="80" frameborder="0" allowtransparency="true"></iframe>
   </div>
 
  <div id="timer">
- 
+
   <h2>countdown: {{countdown}}</h2>
 
   <h2>hundredth seconds: {{hundredthSecond}}</h2>
@@ -22,11 +24,11 @@
 
 </div>
 
-  <a id="armTrack" ng-click="armTrack()" class="btn btn-primary">Sync</a>
+  <a id="armTrack" ng-click="armTrack()" class="btn btn-primary chartbtn">Sync</a>
 
-  <a id="saveNewGraph" ng-click="saveNewGraph()" class="btn btn-primary">Save As New</a>
+  <a id="saveNewGraph" ng-click="saveNewGraph()" class="btn btn-primary chartbtn">Save As New</a>
 
-  <a id="saveGraph" ng-click="putEditTrack()" class="btn btn-primary">Save</a>
+  <a id="saveGraph" ng-click="putEditTrack()" class="btn btn-primary chartbtn">Save</a>
 
 
 
@@ -88,6 +90,8 @@
 
        <!-- <button class="save" type="button" ng-click="save()">Save</button>
        <button class="saveAs" type="button" ng-click="saveAs()">Save As</button> -->
+
+</div>
 
 </div>
 

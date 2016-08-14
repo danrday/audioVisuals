@@ -18,7 +18,7 @@
 
       <a ui-sref="home.nav.chart2" id="loader" ng-model="loader"ng-Click="clearSearch()">{{loader}}</a>
 
-      <div ui-view id="uiView"></div>
+      <div ui-view></div>
 
       <div id="searchResults" ng-repeat="track in searchResults">
         <div class="searchResult" ng-click="goToTrack(track.id)">
