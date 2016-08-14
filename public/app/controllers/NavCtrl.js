@@ -144,6 +144,7 @@ app.controller("NavCtrl", function($http, $scope, $rootScope, $state, $location,
      // Handle Errors here.
      var errorCode = error.code;
      var errorMessage = error.message;
+     alert(errorMessage)
    }); 
   }
 
@@ -185,6 +186,7 @@ app.controller("NavCtrl", function($http, $scope, $rootScope, $state, $location,
      // Handle Errors here.
      var errorCode = error.code;
      var errorMessage = error.message;
+     alert(errorMessage)
    }); 
   }
 

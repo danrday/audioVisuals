@@ -169,9 +169,9 @@
 }
 
 #songDetails {
-  font-size: 17px;
-  width: 30px;
+  font-size: 25px;
   display: inline-block;
+  margin-left: 10px;
   line-height: 1.5;
 }
 
