@@ -133,17 +133,7 @@ app.controller("SectionsTempoCtrl", function($scope, $rootScope, $sce, GraphStor
 
     if ($scope.hundredthSecond >= (trackAnalysis.sections[indexOfBar].start * 100)) {
       currentBar++;
-      sectionsTempo.select(`rect:nth-child(${currentBar})`).transition()
-    .on("start", function repeat() {
-        d3.active(this)
-            .style("fill", "red")
-          .transition()
-            .style("fill", "green")
-          .transition()
-            .style("fill", "blue")
-          .transition()
-            .on("start", repeat);
-      });
+      sectionsTempo.select(`rect:nth-child(${currentBar})`).style('fill', 'yellow');
       indexOfBar ++;
       console.log(indexOfBar)
     }

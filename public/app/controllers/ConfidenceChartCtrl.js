@@ -133,7 +133,17 @@ app.controller("ConfidenceChartCtrl", function($scope, $rootScope, $sce, GraphSt
 
     if ($scope.hundredthSecond >= (trackAnalysis.bars[indexOfBar].start * 100)) {
       currentBar++;
-      confidenceChart.select(`rect:nth-child(${currentBar})`).style('fill', 'yellow');
+      confidenceChart.select(`rect:nth-child(${currentBar})`).transition()
+    .on("start", function repeat() {
+        d3.active(this)
+            .style("fill", "red")
+          .transition()
+            .style("fill", "green")
+          .transition()
+            .style("fill", "blue")
+          .transition()
+            .on("start", repeat);
+      });
       indexOfBar ++;
       console.log(indexOfBar)
     }
