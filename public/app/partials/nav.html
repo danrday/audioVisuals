@@ -21,7 +21,7 @@
       <div ui-view></div>
 
       <div id="searchResults" ng-repeat="track in searchResults">
-        <div class="searchResult" ng-click="goToTrack(track.id)">
+        <div class="searchResult" ng-click="goToTrack(track.id, track.album.images[0].url)">
           <img src="{{track.album.images[0].url}}" class="searchPictures">
           Track: {{track.name}}
           Artist: {{track.artists[0].name}}

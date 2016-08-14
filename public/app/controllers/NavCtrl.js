@@ -121,7 +121,8 @@ app.controller("NavCtrl", function($http, $scope, $rootScope, $state, $location,
     });
   };
 
-  $scope.goToTrack = function(id) {
+  $scope.goToTrack = function(id, imageId) {
+  $scope.trackImage = imageId;
   $scope.isLoadingSavedTrack = false;
   $scope.clearSearch();
   $state.go('home.nav.loading')

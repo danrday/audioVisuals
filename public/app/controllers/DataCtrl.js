@@ -27,7 +27,6 @@ app.controller("DataCtrl", function($scope, $rootScope, $sce, GraphStorage, Auth
 
   console.log("scopeCustomColors", $scope.customColors)
 
-
   $scope.saveNewGraph = function() {
 
     let trackJSON = {

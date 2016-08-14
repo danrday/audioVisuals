@@ -147,6 +147,10 @@
   width: 100%;
 }
 
+#trackImage {
+  margin: 20px;
+}
+
 .active {
   background-color: orange;
 }
