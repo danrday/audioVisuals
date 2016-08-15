@@ -1,6 +1,6 @@
 "use strict";
 
-app.controller("NavCtrl", function($http, $scope, $rootScope, $state, $location, Spotify, AuthFactory, localStorageService, TrackStorage, SpotifyData ) {
+app.controller("NavCtrl", function($http, $scope, $rootScope, $state, $location, Spotify, AuthFactory, localStorageService, TrackStorage, SpotifyData) {
 
   $scope.customColors = null;
 
