@@ -11,16 +11,14 @@
 // var userTokens = require("./public/app/userTokens.js");
 
 //gets private credentials for my project
-var getClientId = require('getClientId');
-var getClientSecret = require ('getClientSecret');
+let clientId = process.env.clientId;
+let clientSecret = process.env.clientSecret;
 
 var express = require('express'); // Express web server framework
 var request = require('request'); // "Request" library
 var querystring = require('querystring');
 var cookieParser = require('cookie-parser');
 
-var client_id = getClientId(); // Your client id
-var client_secret = getClientSecret(); // Your secret
 var redirect_uri = 'http://localhost:8888/callback'; // Your redirect uri
 
 /**
