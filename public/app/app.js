@@ -77,8 +77,7 @@ app.config(function($stateProvider, $urlRouterProvider, FBCreds) {
     })
      .state('home.nav.loading', {
       url: "/loading",
-      templateUrl: 'app/partials/loading.html',
-      controller: 'LoadingCtrl'
+      templateUrl: 'app/partials/loading.html'
     });
 
 // For any unmatched url, redirect to /state1
