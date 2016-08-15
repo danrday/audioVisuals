@@ -1,21 +1,21 @@
 {
   "name": "Charting Variations in Song Tempo",
-  "description": "",
-  "main": "server.js",
-  "authors": [
-    "Dan Day <danday@gmail.com>"
-  ],
-  "license": "MIT",
-  "homepage": "https://github.com/danrday/audioVisuals",
-  "moduleType": [],
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "./public/lib/bower_components/"
-  ],
-  "dependencies": {
-    "angular": "1.5.8",
+  "description": "",
+  "main": "server.js",
+  "authors": [
+    "Dan Day <danday@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/danrday/audioVisuals",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "./public/lib/bower_components/"
+  ],
+  "dependencies": {
+    "angular": "1.5.8",
     "angular-color-picker": "1.0.10",
     "angular-local-storage": "0.2.7",
     "angular-route": "1.5.8",
@@ -23,5 +23,5 @@
     "angular-ui-router": "0.3.1",
     "firebase": "3.2.1",
     "jquery": "3.1.0"
-  }
+  }
 }
