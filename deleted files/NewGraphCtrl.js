@@ -13,7 +13,6 @@ app.controller("NewGraphCtrl", function($scope, $routeParams, GraphStorage, $loc
     GraphStorage.postNewGraph($scope.newGraph, boardId)
     .then(function() {
       console.log("success")
-      // $location.url("/boards");
     })
   };
 

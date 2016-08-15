@@ -137,57 +137,8 @@ app.controller("SectionsTempoCtrl", function($scope, $rootScope, $sce, GraphStor
       indexOfBar ++;
       console.log(indexOfBar)
     }
-
-    
-
-    // sectionsTempo.select("rect:nth-child(3)").style('fill', 'yellow');
     
     });
-
- // $scope.$watch('newGraph.updateColor3', function(newVal, oldVal) {
- //        if (!newVal) {return};
- //        d3.select('svg').style('background', `${newVal}`)
- //  });
-
-  // $scope.saveNewGraph = function() {
-
-  //   let trackJSON = {
-  //     trackId: trackId,
-  //     trackAudioFeatures: $scope.trackAudioFeatures,
-  //     trackAnalysis: $scope.trackAnalysis,
-  //     trackDiscog: $scope.trackDiscog
-  //   }
-
-  //   console.log("trackJSON from dataCTRL", trackJSON)
-
-  //   $scope.newGraph.uid = AuthFactory.getUser();
-
-  //   GraphStorage.postNewGraph($scope.newGraph, trackId)
-  //   .then(function() {
-  //     GraphStorage.postJSONData(trackJSON)
-  //     // $location.url("/boards");
-  //   }).then(function() {
-  //     console.log("success")
-  //     // $location.url("/boards");
-  //   })
-  // };
-
-  //END SAVE TRACK
-
-  // edit track
-
-  // $scope.putEditTrack = function() {
-  //   $scope.newGraph.uid = AuthFactory.getUser();
-  //   console.log("SCOPE ID", $scope.fbId)
-  //     GraphStorage.putTrack($scope.fbId, $scope.newGraph)
-  //     .then(function(message) {
-
-  //       console.log(message);
-  //       // $location.url("/boards");
-  //     })
-  // };
-
-  // end edit track
 
   // JSON DATA
 
