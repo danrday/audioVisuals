@@ -11,8 +11,8 @@
 // var userTokens = require("./public/app/userTokens.js");
 
 //gets private credentials for my project
-let clientId = process.env.clientId;
-let clientSecret = process.env.clientSecret;
+var clientId = process.env.clientId;
+var clientSecret = process.env.clientSecret;
 
 var express = require('express'); // Express web server framework
 var request = require('request'); // "Request" library
