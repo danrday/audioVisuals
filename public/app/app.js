@@ -28,50 +28,50 @@ app.config(function($stateProvider, $urlRouterProvider, FBCreds) {
       templateUrl: "app/partials/nav.html",
       controller: 'NavCtrl'
     })
-     .state('home.nav.chart3', {
-      url: "/chart3",
+     .state('home.nav.trackTempoCharts', {
+      url: "/trackTempoCharts",
       views: {
             // the main template will be placed here (relatively named)
-            '': { templateUrl: 'app/partials/chart3.html', controller: 'Chart3Ctrl' },
+            '': { templateUrl: 'app/partials/trackTempoCharts.html', controller: 'TrackTempoChartsCtrl' },
             // embedded charts
-            'beatsDuration@home.nav.chart3': { 
+            'beatsDuration@home.nav.trackTempoCharts': { 
                 templateUrl: 'app/partials/beatsDuration.html',
                 controller: 'BeatsDurationCtrl'
             },
-            'barsDuration@home.nav.chart3': { 
+            'barsDuration@home.nav.trackTempoCharts': { 
                 templateUrl: 'app/partials/barsDuration.html',
                 controller: 'BarsDurationCtrl'
             },
-            'barsConfidence@home.nav.chart3': { 
+            'barsConfidence@home.nav.trackTempoCharts': { 
                 templateUrl: 'app/partials/barsConfidence.html',
                 controller: 'BarsConfidenceCtrl'
             },
-            'beatsConfidence@home.nav.chart3': { 
+            'beatsConfidence@home.nav.trackTempoCharts': { 
                 templateUrl: 'app/partials/beatsConfidence.html',
                 controller: 'BeatsConfidenceCtrl'
             },
-            'sectionsConfidence@home.nav.chart3': { 
+            'sectionsConfidence@home.nav.trackTempoCharts': { 
                 templateUrl: 'app/partials/sectionsConfidence.html',
                 controller: 'SectionsConfidenceCtrl'
             },
-            'sectionsTempo@home.nav.chart3': { 
+            'sectionsTempo@home.nav.trackTempoCharts': { 
                 templateUrl: 'app/partials/sectionsTempo.html',
                 controller: 'SectionsTempoCtrl'
             }
         }
     })
      // low range color-picker
-     .state('home.nav.chart3.colorpicker1', {
+     .state('home.nav.trackTempoCharts.colorpicker1', {
       url: "/colorpicker1",
       templateUrl: 'app/partials/colorpicker/chart2.colorpicker1.html',
     })
      // high range color-picker
-     .state('home.nav.chart3.colorpicker2', {
+     .state('home.nav.trackTempoCharts.colorpicker2', {
       url: "/colorpicker2",
       templateUrl: 'app/partials/colorpicker/chart2.colorpicker2.html',
     })
      // background color-picker
-     .state('home.nav.chart3.colorpicker3', {
+     .state('home.nav.trackTempoCharts.colorpicker3', {
       url: "/colorpicker3",
       templateUrl: 'app/partials/colorpicker/chart2.colorpicker3.html',
     })
