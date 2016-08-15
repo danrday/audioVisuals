@@ -115,6 +115,8 @@ app.controller("NavCtrl", function($http, $scope, $rootScope, $state, $location,
   //search for tracks by search criteria 
   $scope.searchAlbums = function(query) {
 
+    $state.go('home.nav');
+
     // clears myTracks if open
     $scope.clearMyTracks();
 
