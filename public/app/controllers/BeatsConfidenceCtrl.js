@@ -1,6 +1,6 @@
 "use strict";
 
-app.controller("ConfidenceBeatsCtrl", function($scope, $rootScope, $sce, GraphStorage, AuthFactory) {
+app.controller("BeatsConfidenceCtrl", function($scope, $rootScope, $sce, GraphStorage, AuthFactory) {
 
 
 // timer stuff
@@ -105,7 +105,7 @@ app.controller("ConfidenceBeatsCtrl", function($scope, $rootScope, $sce, GraphSt
           .domain(d3.extent(trackAnalysis.beats, confidenceFn))
           .range([`${newVal}`, `${$scope.newGraph.updateColor2}`]); 
 
-          confidenceBeats.selectAll('rect').style('fill', function(data) {
+          beatsConfidence.selectAll('rect').style('fill', function(data) {
         return colors3(confidenceFn(data));
       })
   });
@@ -117,7 +117,7 @@ app.controller("ConfidenceBeatsCtrl", function($scope, $rootScope, $sce, GraphSt
           .domain(d3.extent(trackAnalysis.beats, confidenceFn))
           .range([`${$scope.newGraph.updateColor1}`, `${newVal}`]); 
 
-          confidenceBeats.selectAll('rect').style('fill', function(data) {
+          beatsConfidence.selectAll('rect').style('fill', function(data) {
         return colors3(confidenceFn(data));
       })
   });
@@ -142,7 +142,7 @@ d3.selectAll("circle").transition()
       });
 
 
-  
+
 
   $scope.$watch('hundredthSecond', function (newVal, oldVal) {
     if (!newVal) {return};
@@ -150,7 +150,7 @@ d3.selectAll("circle").transition()
 
     if ($scope.hundredthSecond >= (trackAnalysis.beats[indexOfBar].start * 100)) {
       currentBar++;
-      confidenceBeats.select(`rect:nth-child(${currentBar})`).transition()
+      beatsConfidence.select(`rect:nth-child(${currentBar})`).transition()
     .on("start", function repeat() {
         d3.active(this)
             .style("fill", "red")
@@ -167,7 +167,7 @@ d3.selectAll("circle").transition()
 
     
 
-    // confidenceBeats.select("rect:nth-child(3)").style('fill', 'yellow');
+    // beatsConfidence.select("rect:nth-child(3)").style('fill', 'yellow');
     
     });
 
@@ -274,26 +274,26 @@ d3.selectAll("circle").transition()
 
   let tempColor = null;
 
-  var confidenceBeats = d3.select('#confidenceBeats').append('svg')
+  var beatsConfidence = d3.select('#beatsConfidence').append('svg')
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
     .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 
-  confidenceBeats.append("g")
+  beatsConfidence.append("g")
           .attr("transform", "translate(" + -5 + ",0)")
           .call(yAxis);
 
    // draw x axis with labels and move to the bottom of the chart area
-  confidenceBeats.append("g")
+  beatsConfidence.append("g")
       .attr("class", "xaxis")   // give it a class so it can be used to select only xaxis labels  below
       .attr("transform", "translate(0," + (height + 5) + ")")
       .call(xAxis);
 
     d3.selectAll('svg').style('background', `{$scope.newGraph.updateColor3}`)
 
-    confidenceBeats.selectAll('rect').data(trackAnalysis.beats)
+    beatsConfidence.selectAll('rect').data(trackAnalysis.beats)
     .enter().append('rect')
       .style('fill', function(data) {
         return colors(confidenceFn(data));
@@ -330,7 +330,7 @@ d3.selectAll("circle").transition()
     });
 
 
-    confidenceBeats.selectAll("rect").transition()
+    beatsConfidence.selectAll("rect").transition()
     .attr('height', function (data) {
           return yScale(confidenceFn(data));
       })

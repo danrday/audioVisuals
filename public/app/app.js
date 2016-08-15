@@ -28,105 +28,52 @@ app.config(function($stateProvider, $urlRouterProvider, FBCreds) {
       templateUrl: "app/partials/nav.html",
       controller: 'NavCtrl'
     })
-     .state('home.nav.chart2', {
-      url: "/chart2",
-      templateUrl: 'app/partials/chart2.html',
-      controller: 'Chart2Ctrl'
-    })
-     .state('home.nav.chart2.colorpicker1', {
-      url: "/colorpicker1",
-      templateUrl: 'app/partials/colorpicker/chart2.colorpicker1.html',
-      // controller: 'ColorPicker1'
-    })
-     .state('home.nav.chart2.colorpicker2', {
-      url: "/colorpicker2",
-      templateUrl: 'app/partials/colorpicker/chart2.colorpicker2.html',
-      // controller: 'ColorPicker2'
-    })
-     .state('home.nav.chart2.colorpicker3', {
-      url: "/colorpicker3",
-      templateUrl: 'app/partials/colorpicker/chart2.colorpicker3.html',
-      // controller: 'ColorPicker3'
-    })
      .state('home.nav.chart3', {
       url: "/chart3",
       views: {
-
             // the main template will be placed here (relatively named)
             '': { templateUrl: 'app/partials/chart3.html', controller: 'Chart3Ctrl' },
-
-            // for column two, we'll define a separate controller 
-            'beatChart@home.nav.chart3': { 
-                templateUrl: 'app/partials/beatChart.html',
-                controller: 'BeatChartCtrl'
+            // embedded charts
+            'beatsDuration@home.nav.chart3': { 
+                templateUrl: 'app/partials/beatsDuration.html',
+                controller: 'BeatsDurationCtrl'
             },
-
-             // for column two, we'll define a separate controller 
-            'beatChart2@home.nav.chart3': { 
-                templateUrl: 'app/partials/beatChart2.html',
-                controller: 'BeatChartCtrl2'
+            'barsDuration@home.nav.chart3': { 
+                templateUrl: 'app/partials/barsDuration.html',
+                controller: 'BarsDurationCtrl'
             },
-             // for column two, we'll define a separate controller 
-            'confidenceChart@home.nav.chart3': { 
-                templateUrl: 'app/partials/confidenceChart.html',
-                controller: 'ConfidenceChartCtrl'
+            'barsConfidence@home.nav.chart3': { 
+                templateUrl: 'app/partials/barsConfidence.html',
+                controller: 'BarsConfidenceCtrl'
             },
-             // for column two, we'll define a separate controller 
-            'confidenceBeats@home.nav.chart3': { 
-                templateUrl: 'app/partials/confidenceBeats.html',
-                controller: 'ConfidenceBeatsCtrl'
+            'beatsConfidence@home.nav.chart3': { 
+                templateUrl: 'app/partials/beatsConfidence.html',
+                controller: 'BeatsConfidenceCtrl'
             },
-             // for column two, we'll define a separate controller 
             'sectionsConfidence@home.nav.chart3': { 
                 templateUrl: 'app/partials/sectionsConfidence.html',
                 controller: 'SectionsConfidenceCtrl'
             },
-             // for column two, we'll define a separate controller 
             'sectionsTempo@home.nav.chart3': { 
                 templateUrl: 'app/partials/sectionsTempo.html',
                 controller: 'SectionsTempoCtrl'
             }
         }
     })
+     // low range color-picker
      .state('home.nav.chart3.colorpicker1', {
       url: "/colorpicker1",
       templateUrl: 'app/partials/colorpicker/chart2.colorpicker1.html',
-      // controller: 'ColorPicker1'
     })
+     // high range color-picker
      .state('home.nav.chart3.colorpicker2', {
       url: "/colorpicker2",
       templateUrl: 'app/partials/colorpicker/chart2.colorpicker2.html',
-      // controller: 'ColorPicker2'
     })
+     // background color-picker
      .state('home.nav.chart3.colorpicker3', {
       url: "/colorpicker3",
       templateUrl: 'app/partials/colorpicker/chart2.colorpicker3.html',
-      // controller: 'ColorPicker3'
-    })
-     .state('home.nav.data', {
-      url: "/data",
-      templateUrl: 'app/partials/data.html',
-      controller: 'DataCtrl'
-    })
-     .state('home.nav.mytracks', {
-      url: "/mytracks",
-      templateUrl: 'app/partials/myTracks.html',
-      controller: 'TracksCtrl'
-    })
-     .state('home.nav.savedtrack', {
-      url: "/savedtrack",
-      templateUrl: 'app/partials/savedTrack.html',
-      controller: 'SavedTrackCtrl'
-    })
-     .state('home.nav.testChart', {
-      url: "/test",
-      templateUrl: 'app/partials/testChart.html',
-      controller: 'TestingCtrl'
-    })
-     .state('home.nav.testAxes', {
-      url: "/axes",
-      templateUrl: 'app/partials/axesChart.html',
-      controller: 'AxesCtrl'
     })
      .state('home.nav.loading', {
       url: "/loading",
@@ -138,7 +85,7 @@ app.config(function($stateProvider, $urlRouterProvider, FBCreds) {
   $urlRouterProvider.otherwise("/");  
     });
 
-//apparently this code console logs out any ui-provider errors that would not display by default
+//this code console logs out any ui-provider errors that would not display by default
 app.run(function($rootScope) {
   $rootScope.$on("$stateChangeError", console.log.bind(console));
 });

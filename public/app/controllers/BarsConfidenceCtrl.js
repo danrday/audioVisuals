@@ -1,6 +1,6 @@
 "use strict";
 
-app.controller("BeatChartCtrl2", function($scope, $rootScope, $sce, GraphStorage, AuthFactory) {
+app.controller("BarsConfidenceCtrl", function($scope, $rootScope, $sce, GraphStorage, AuthFactory) {
 
 
 // timer stuff
@@ -102,11 +102,11 @@ app.controller("BeatChartCtrl2", function($scope, $rootScope, $sce, GraphStorage
           if (!newVal) {return};
 
           let colors3 = d3.scaleLinear()
-          .domain(d3.extent(trackAnalysis.bars, barsDurationFn))
+          .domain(d3.extent(trackAnalysis.bars, confidenceFn))
           .range([`${newVal}`, `${$scope.newGraph.updateColor2}`]); 
 
-          beatChart2.selectAll('rect').style('fill', function(data) {
-        return colors3(barsDurationFn(data));
+          barsConfidence.selectAll('rect').style('fill', function(data) {
+        return colors3(confidenceFn(data));
       })
   });
 
@@ -114,11 +114,11 @@ app.controller("BeatChartCtrl2", function($scope, $rootScope, $sce, GraphStorage
           if (!newVal) {return};
 
           let colors3 = d3.scaleLinear()
-          .domain(d3.extent(trackAnalysis.bars, barsDurationFn))
+          .domain(d3.extent(trackAnalysis.bars, confidenceFn))
           .range([`${$scope.newGraph.updateColor1}`, `${newVal}`]); 
 
-          beatChart2.selectAll('rect').style('fill', function(data) {
-        return colors3(barsDurationFn(data));
+          barsConfidence.selectAll('rect').style('fill', function(data) {
+        return colors3(confidenceFn(data));
       })
   });
 
@@ -133,14 +133,24 @@ app.controller("BeatChartCtrl2", function($scope, $rootScope, $sce, GraphStorage
 
     if ($scope.hundredthSecond >= (trackAnalysis.bars[indexOfBar].start * 100)) {
       currentBar++;
-      beatChart2.select(`rect:nth-child(${currentBar})`).style('fill', 'yellow');
+      barsConfidence.select(`rect:nth-child(${currentBar})`).transition()
+    .on("start", function repeat() {
+        d3.active(this)
+            .style("fill", "red")
+          .transition()
+            .style("fill", "green")
+          .transition()
+            .style("fill", "blue")
+          .transition()
+            .on("start", repeat);
+      });
       indexOfBar ++;
       console.log(indexOfBar)
     }
 
     
 
-    // beatChart2.select("rect:nth-child(3)").style('fill', 'yellow');
+    // barsConfidence.select("rect:nth-child(3)").style('fill', 'yellow');
     
     });
 
@@ -195,7 +205,7 @@ app.controller("BeatChartCtrl2", function($scope, $rootScope, $sce, GraphStorage
 
   //these functions allow us to pass a d3 graph multiple dimensions of the json data
   let confidenceFn = function(d) { return d.confidence; }
-  let barsDurationFn = function(d) { return d.duration; }
+ 
 
   let margin = {top: 20, right: 30, bottom: 30, left: 40}
 
@@ -208,7 +218,7 @@ app.controller("BeatChartCtrl2", function($scope, $rootScope, $sce, GraphStorage
   var x = d3.scaleBand().rangeRound([0, width])
 
   var yScale = d3.scaleLinear()
-          .domain(d3.extent(trackAnalysis.bars, barsDurationFn))
+          .domain(d3.extent(trackAnalysis.bars, confidenceFn))
           .range([0, height]);
 
   var xScale = d3.scaleBand()
@@ -219,7 +229,7 @@ app.controller("BeatChartCtrl2", function($scope, $rootScope, $sce, GraphStorage
 // axis stuff
 
   var yAxisTicks = d3.scaleLinear()
-          .domain(d3.extent(trackAnalysis.bars, barsDurationFn))
+          .domain(d3.extent(trackAnalysis.bars, confidenceFn))
           .range([height, 0]);
 
   var xAxisTicks = d3.scaleLinear()
@@ -241,35 +251,35 @@ app.controller("BeatChartCtrl2", function($scope, $rootScope, $sce, GraphStorage
         .style('opacity', 0)
           
   var colors = d3.scaleLinear()
-          .domain(d3.extent(trackAnalysis.bars, barsDurationFn))
+          .domain(d3.extent(trackAnalysis.bars, confidenceFn))
           .range([`${$scope.newGraph.updateColor1}`, `${$scope.newGraph.updateColor2}`]);
 
 
   let tempColor = null;
 
-  var beatChart2 = d3.select('#beat-chart2').append('svg')
+  var barsConfidence = d3.select('#barsConfidence').append('svg')
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
     .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 
-  beatChart2.append("g")
+  barsConfidence.append("g")
           .attr("transform", "translate(" + -5 + ",0)")
           .call(yAxis);
 
    // draw x axis with labels and move to the bottom of the chart area
-  beatChart2.append("g")
+  barsConfidence.append("g")
       .attr("class", "xaxis")   // give it a class so it can be used to select only xaxis labels  below
       .attr("transform", "translate(0," + (height + 5) + ")")
       .call(xAxis);
 
     d3.selectAll('svg').style('background', `{$scope.newGraph.updateColor3}`)
 
-    beatChart2.selectAll('rect').data(trackAnalysis.bars)
+    barsConfidence.selectAll('rect').data(trackAnalysis.bars)
     .enter().append('rect')
       .style('fill', function(data) {
-        return colors(barsDurationFn(data));
+        return colors(confidenceFn(data));
       })
       .attr("width", function(data) {
         return xScale.bandwidth()*width;
@@ -285,7 +295,7 @@ app.controller("BeatChartCtrl2", function($scope, $rootScope, $sce, GraphStorage
         tooltip.transition()
             .style('opacity', .9)
 
-        tooltip.html(barsDurationFn(d))
+        tooltip.html(confidenceFn(d))
             .style('left', (d3.event.pageX - 35) + 'px')
             .style('top',  (d3.event.pageY - 30) + 'px')
 
@@ -303,13 +313,13 @@ app.controller("BeatChartCtrl2", function($scope, $rootScope, $sce, GraphStorage
     });
 
 
-    d3.selectAll("rect").transition()
+    barsConfidence.selectAll("rect").transition()
     .attr('height', function (data) {
-          return yScale(barsDurationFn(data));
+          return yScale(confidenceFn(data));
       })
     .attr('y', function (data) {
           // console.log("yScale(i)", height-yScale(data));
-          return (height - yScale(barsDurationFn(data)));
+          return (height - yScale(confidenceFn(data)));
       })
     .delay(function(d, i) { return i * 20; })
     .duration(500)

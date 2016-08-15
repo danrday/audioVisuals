@@ -1,6 +1,6 @@
 "use strict";
 
-app.controller("ConfidenceChartCtrl", function($scope, $rootScope, $sce, GraphStorage, AuthFactory) {
+app.controller("BeatsDurationCtrl", function($scope, $rootScope, $sce, GraphStorage, AuthFactory) {
 
 
 // timer stuff
@@ -102,11 +102,11 @@ app.controller("ConfidenceChartCtrl", function($scope, $rootScope, $sce, GraphSt
           if (!newVal) {return};
 
           let colors3 = d3.scaleLinear()
-          .domain(d3.extent(trackAnalysis.bars, confidenceFn))
+          .domain(d3.extent(trackAnalysis.beats, barsDurationFn))
           .range([`${newVal}`, `${$scope.newGraph.updateColor2}`]); 
 
-          confidenceChart.selectAll('rect').style('fill', function(data) {
-        return colors3(confidenceFn(data));
+          beatsDuration.selectAll('rect').style('fill', function(data) {
+        return colors3(barsDurationFn(data));
       })
   });
 
@@ -114,45 +114,37 @@ app.controller("ConfidenceChartCtrl", function($scope, $rootScope, $sce, GraphSt
           if (!newVal) {return};
 
           let colors3 = d3.scaleLinear()
-          .domain(d3.extent(trackAnalysis.bars, confidenceFn))
+          .domain(d3.extent(trackAnalysis.beats, barsDurationFn))
           .range([`${$scope.newGraph.updateColor1}`, `${newVal}`]); 
 
-          confidenceChart.selectAll('rect').style('fill', function(data) {
-        return colors3(confidenceFn(data));
+          beatsDuration.selectAll('rect').style('fill', function(data) {
+        return colors3(barsDurationFn(data));
       })
   });
 
-    //the first 'rect' is the 3rd child of beatChart, so we start at 2
-  let currentBar = 2;
+  //the first 'rect' is the 3rd child of beatsDuration, so we start at 2
+  let currentBeat = 2;
 
-  let indexOfBar = 0;
+  let indexOfBeat = 0;
 
   $scope.$watch('hundredthSecond', function (newVal, oldVal) {
     if (!newVal) {return};
 
 
-    if ($scope.hundredthSecond >= (trackAnalysis.bars[indexOfBar].start * 100)) {
-      currentBar++;
-      confidenceChart.select(`rect:nth-child(${currentBar})`).transition()
-    .on("start", function repeat() {
-        d3.active(this)
-            .style("fill", "red")
-          .transition()
-            .style("fill", "green")
-          .transition()
-            .style("fill", "blue")
-          .transition()
-            .on("start", repeat);
-      });
-      indexOfBar ++;
-      console.log(indexOfBar)
+    if ($scope.hundredthSecond >= (trackAnalysis.beats[indexOfBeat].start * 100)) {
+      currentBeat++;
+      beatsDuration.select(`rect:nth-child(${currentBeat})`).style('fill', 'yellow');
+      indexOfBeat ++;
+      console.log(indexOfBeat)
     }
 
     
 
-    // confidenceChart.select("rect:nth-child(3)").style('fill', 'yellow');
+    // beatsDuration.select("rect:nth-child(3)").style('fill', 'yellow');
     
     });
+
+
 
  // $scope.$watch('newGraph.updateColor3', function(newVal, oldVal) {
  //        if (!newVal) {return};
@@ -205,7 +197,7 @@ app.controller("ConfidenceChartCtrl", function($scope, $rootScope, $sce, GraphSt
 
   //these functions allow us to pass a d3 graph multiple dimensions of the json data
   let confidenceFn = function(d) { return d.confidence; }
- 
+  let barsDurationFn = function(d) { return d.duration; }
 
   let margin = {top: 20, right: 30, bottom: 30, left: 40}
 
@@ -218,22 +210,22 @@ app.controller("ConfidenceChartCtrl", function($scope, $rootScope, $sce, GraphSt
   var x = d3.scaleBand().rangeRound([0, width])
 
   var yScale = d3.scaleLinear()
-          .domain(d3.extent(trackAnalysis.bars, confidenceFn))
+          .domain(d3.extent(trackAnalysis.beats, barsDurationFn))
           .range([0, height]);
 
   var xScale = d3.scaleBand()
-          .domain(d3.range(0, trackAnalysis.bars.length))
+          .domain(d3.range(0, trackAnalysis.beats.length))
           .range(d3.range(0, width))
           .paddingInner(.2);
 
 // axis stuff
 
   var yAxisTicks = d3.scaleLinear()
-          .domain(d3.extent(trackAnalysis.bars, confidenceFn))
+          .domain(d3.extent(trackAnalysis.beats, barsDurationFn))
           .range([height, 0]);
 
   var xAxisTicks = d3.scaleLinear()
-          .domain([0, trackAnalysis.bars.length])
+          .domain([0, trackAnalysis.beats.length])
           .range([0, width]);
 
   var yAxis = d3.axisLeft()
@@ -251,35 +243,35 @@ app.controller("ConfidenceChartCtrl", function($scope, $rootScope, $sce, GraphSt
         .style('opacity', 0)
           
   var colors = d3.scaleLinear()
-          .domain(d3.extent(trackAnalysis.bars, confidenceFn))
+          .domain(d3.extent(trackAnalysis.beats, barsDurationFn))
           .range([`${$scope.newGraph.updateColor1}`, `${$scope.newGraph.updateColor2}`]);
 
 
   let tempColor = null;
 
-  var confidenceChart = d3.select('#confidenceChart').append('svg')
+  var beatsDuration = d3.select('#beatsDuration').append('svg')
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
     .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 
-  confidenceChart.append("g")
+  beatsDuration.append("g")
           .attr("transform", "translate(" + -5 + ",0)")
           .call(yAxis);
 
    // draw x axis with labels and move to the bottom of the chart area
-  confidenceChart.append("g")
+  beatsDuration.append("g")
       .attr("class", "xaxis")   // give it a class so it can be used to select only xaxis labels  below
       .attr("transform", "translate(0," + (height + 5) + ")")
       .call(xAxis);
 
     d3.selectAll('svg').style('background', `{$scope.newGraph.updateColor3}`)
 
-    confidenceChart.selectAll('rect').data(trackAnalysis.bars)
+    beatsDuration.selectAll('rect').data(trackAnalysis.beats)
     .enter().append('rect')
       .style('fill', function(data) {
-        return colors(confidenceFn(data));
+        return colors(barsDurationFn(data));
       })
       .attr("width", function(data) {
         return xScale.bandwidth()*width;
@@ -295,7 +287,7 @@ app.controller("ConfidenceChartCtrl", function($scope, $rootScope, $sce, GraphSt
         tooltip.transition()
             .style('opacity', .9)
 
-        tooltip.html(confidenceFn(d))
+        tooltip.html(barsDurationFn(d))
             .style('left', (d3.event.pageX - 35) + 'px')
             .style('top',  (d3.event.pageY - 30) + 'px')
 
@@ -313,15 +305,15 @@ app.controller("ConfidenceChartCtrl", function($scope, $rootScope, $sce, GraphSt
     });
 
 
-    confidenceChart.selectAll("rect").transition()
+    beatsDuration.selectAll("rect").transition()
     .attr('height', function (data) {
-          return yScale(confidenceFn(data));
+          return yScale(barsDurationFn(data));
       })
     .attr('y', function (data) {
           // console.log("yScale(i)", height-yScale(data));
-          return (height - yScale(confidenceFn(data)));
+          return (height - yScale(barsDurationFn(data)));
       })
-    .delay(function(d, i) { return i * 20; })
+    .delay(function(d, i) { return i * 5; })
     .duration(500)
 
 });
