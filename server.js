@@ -7,9 +7,6 @@
  * https://developer.spotify.com/web-api/authorization-guide/#authorization_code_flow
  */
 
-//sets user's tokens once we obtain them DELETE???
-// var userTokens = require("./public/app/userTokens.js");
-
 //gets private credentials for my project
 var clientId = process.env.clientId;
 var clientSecret = process.env.clientSecret;
