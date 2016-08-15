@@ -2,30 +2,6 @@
 
 app.factory("SpotifyData", function(FirebaseURL, $q, $http) {
 
-  // let trackId = null;
-
-  // let trackAudioFeatures = null;
-
-  // //contains detailed track information
-  // let trackAnalysis = null;
-
-  // //contains discography information
-  // let trackDiscog = null;
-
-  // let songGeneralInfo = {};
-
-  // let authToken = null;
-  //   $.ajax({
-  //     method: 'GET',
-  //     url: 'http://localhost:8888/getToken',
-  //     success: function(returnedToken) {
-  //       console.log(returnedToken);
-  //       authToken = returnedToken;
-  //     }
-  //   });
-
-  //   let trackSpecs = null;
-
   let getInitialData = function(id, authToken) {
 
     return $q(function(resolve, reject) {

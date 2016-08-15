@@ -21,21 +21,6 @@ app.factory("TrackStorage", function(FirebaseURL, $q, $http) {
     });
   };
 
-  // let postNewBoard = function(newBoard) {
-  //   return $q(function(resolve, reject) {
-  //     $http.post(
-  //       `${FirebaseURL}/board.json`,
-  //       JSON.stringify(newBoard)
-  //     )
-  //     .success(function(ObjFromFirebase) {
-  //       resolve(ObjFromFirebase);
-  //     })
-  //     .error(function(error) {
-  //       reject(error);
-  //     });
-  //   });
-  // };
-
   let deleteTrack = function (trackID) {
     console.log("id", trackID)
     return $q(function(resolve, reject) {
@@ -51,13 +36,8 @@ app.factory("TrackStorage", function(FirebaseURL, $q, $http) {
     });
   };
 
-  // return {
-  //   getBoards, postNewBoard, deleteBoard
-  // };
-
 return {
     getTracks, deleteTrack
   };
-
 
 });
