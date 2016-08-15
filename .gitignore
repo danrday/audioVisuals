@@ -1,3 +1,5 @@
 .DS_Store
-lib/node_modules
-lib/bower_components
+node_modules
+public/lib/bower_components
+private
+public/app/private

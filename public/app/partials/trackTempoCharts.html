@@ -1,0 +1,76 @@
+<div id="chart">
+
+<div id="padding">
+
+<!-- 
+    <h2>Artist: {{songGeneralInfo.artist}} ::::::::
+   Album: {{songGeneralInfo.album}} ::::::::
+  Song: {{songGeneralInfo.song}}</h2>  -->
+
+  <div id="iframe">
+  <iframe ng-src="{{someUrl}}" width="300" height="80" frameborder="0" allowtransparency="true"></iframe>
+  </div>
+
+ <div id="timer">
+
+  <h2>countdown: {{countdown}}</h2>
+
+  <h2>hundredth seconds: {{hundredthSecond}}</h2>
+
+  <h2>seconds: {{second}}</h2>
+
+  <h2>minutes: {{minute}}</h2>
+
+
+</div>
+
+  <a id="armTrack" ng-click="armTrack()" class="btn btn-primary chartbtn">Sync</a>
+
+  <a id="saveNewGraph" ng-click="saveNewGraph()" class="btn btn-primary chartbtn">Save As New</a>
+
+  <a id="saveGraph" ng-click="putEditTrack()" class="btn btn-primary chartbtn">Save</a>
+
+  <div ui-view="barsDuration"></div>
+
+  <div ui-view="barsConfidence"></div>
+
+  <div ui-view="beatsDuration"></div>
+
+  <div ui-view="beatsConfidence"></div>
+
+  <div ui-view="sectionsTempo"></div>
+
+  <div ui-view="sectionsConfidence"></div>
+
+
+    <div ng-show="!openColorPicker"><button class="openColorButton" ui-sref="home.nav.trackTempoCharts.colorpicker1" type="button" ng-click="toggleColorPicker()">Edit Colors</button></div>
+
+    <div ng-show="openColorPicker">
+
+      <div id="colorPicker01" ui-view></div>
+
+      <div id="colorRadioButtons">
+
+        <a ui-sref="home.nav.trackTempoCharts.colorpicker1" ui-sref-active="active"> Low Range<br> </a>
+
+        <a ui-sref="home.nav.trackTempoCharts.colorpicker2" ui-sref-active="active">
+         High Range<br>
+        </a>
+
+        <a ui-sref="home.nav.trackTempoCharts.colorpicker3" ui-sref-active="active">
+        Background
+        </a>
+
+      </div>
+
+    </div>
+
+
+</div>
+
+
+</div>
+
+</div>
+
+  

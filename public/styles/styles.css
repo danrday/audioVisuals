@@ -1,0 +1,240 @@
+/*body {
+  background-color: salmon;
+  font-size: 16px;
+  font-family: "Courier New";
+}*/
+
+/*d3*/
+
+#loginSpotify {
+  margin-top: 14px;
+  margin-left: 4px;
+}
+
+#iframe {
+  display: inline-block;
+}
+
+#query {
+  width: 50%;
+  display: inline-block;
+}
+
+#timer {
+  display: inline-block;
+  font-size: 12px;
+  line-height: 90%;
+  position: absolute;
+  margin-left: 15px;
+}
+
+.bar {
+  fill: steelblue;
+}
+
+.axis text {
+  font: 10px sans-serif;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.x.axis path {
+  display: none;
+}
+
+/*d3*/
+
+#loader {
+  margin: auto;
+}
+
+#nav {
+  background-color: #EAE3CB;
+  padding: 5px;
+}
+
+#data {
+  background-color: #A57706;
+}
+
+#saveNewGraph {
+  display: inline-block;
+  float: right;
+}
+
+#saveGraph {
+  display: inline-block;
+  float: right;
+}
+
+#armTrack {
+  display: inline-block;
+  float: right;
+}
+
+#title {
+  display: inline-block
+  float: left;
+}
+
+#navContainer {
+    display: inline-block;
+    float: right;
+}
+
+#loginSpotify {
+   display: inline;
+   float: right;
+}
+
+#spotifyLogin {
+  height: 50px;
+}
+
+#boxSize {
+  width: 450px;
+  height: 242px;
+  background-color: #819090;
+}
+
+#colorRadioButtons {
+  display: inline-block;
+  margin-left: 3px;
+  margin-top: 45px;
+  position: absolute;
+}
+
+.minimizeColorButton {
+  display: inline-block;
+  font-size: 14px;
+  height: 22px;
+  padding-top: 0px;
+  margin-left: 3px;
+  float: left;
+  position: absolute;
+}
+
+#colorPickerGroup {
+  display: inline-block;
+}
+
+#colorPicker01 {
+  display: inline-block;
+}
+
+#colorPicker {
+  display: inline-block;
+  /*width: 100px;*/
+}
+
+#colorPicker2 {
+  display: inline-block;
+}
+
+#colorPicker3 {
+  display: inline-block;
+}
+
+#chart {
+  display: inline-block;
+  background-color: beige;
+  margin-top: 10px;
+  width: 100%;
+}
+
+#trackImage {
+  margin: 20px;
+}
+
+.myTrackImages {
+  height: 120px;
+  margin-top: 10px;
+}
+
+.active {
+  background-color: orange;
+}
+
+#padding {
+  padding: 0 10px 10px 10px;
+}
+
+.chartbtn {
+  margin-left: 5px;
+}
+
+#songDetails {
+  font-size: 25px;
+  display: inline-block;
+  margin-left: 10px;
+  line-height: 1.5;
+}
+
+h1 {
+  margin-top: 20px;
+  font-size: 19px;
+}
+
+h2 {
+  margin-top: 10px;
+  font-size: 15px;
+}
+
+.media {
+  margin-left: 0x;
+}
+
+#padding {
+  padding-top: 20px;
+}
+
+.searchPictures {
+  height: 175px;
+}
+
+.searchResult {
+  padding-top: 10px;
+}
+
+.trackResult:hover {
+  background-color: orange;
+    font-size: bigger;
+}
+
+#deleteTrack {
+  display: inline-block;
+  float: bottom;
+}
+
+.searchResult:hover { 
+    background-color: yellow;
+    font-size: bigger;
+}
+
+#search {
+  /*margin-top: 10px;*/
+  display: inline-block;
+}
+
+.highlight  {
+  color: #C64C6F;
+  font-weight: 600;
+}
+
+.item {
+  padding-left: 30px;
+}
+
+.bigger {
+  font-size: 150%;
+}
+
+iframe {
+    margin-bottom: 5px;
+    margin-top: 5px;
+}

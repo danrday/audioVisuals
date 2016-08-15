@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title></title>
+<!--   <link rel="stylesheet" href=""> -->
+</head>
+<body id="data">
+
+<div id="chart" class="container">
+
+
+    <h1>Artist: {{songGeneralInfo.artist}} ::::::::
+   Album: {{songGeneralInfo.album}} ::::::::
+  Song: {{songGeneralInfo.song}}</h1> 
+
+  <iframe ng-src="{{someUrl}}" width="300" height="80" frameborder="0" allowtransparency="true"></iframe>
+ 
+
+  <a id="armTrack" ng-click="armTrack()" class="btn btn-primary">Sync</a>
+
+  <a id="saveNewGraph" ng-click="saveNewGraph()" class="btn btn-primary">Save As New</a>
+
+  <a id="saveGraph" ng-click="putEditTrack()" class="btn btn-primary">Save</a>
+
+  <div id="bar-chart">
+ 
+    </div>
+
+
+    <div id=colorPickerGroup>
+
+    <div class="colorPicker">
+      <color-picker ng-model="newGraph.updateColor1">
+      </color-picker>
+   <!--    <input type="text"
+       ng-model="colorTest"
+       ng-init="color = '#f05a28'"> -->
+    </div>
+
+    <div class="colorPicker">
+      <color-picker ng-model="newGraph.updateColor2">
+      </color-picker>
+    <!--   <input type="text"
+       ng-model="colorTest2"
+       ng-init="color = '#f05a28'"> -->
+    </div>
+
+    <div class="colorPicker">
+      <color-picker ng-model="newGraph.updateColor3">
+      </color-picker>
+      <!-- <input type="text"
+       ng-model="colorTest2"
+       ng-init="color = '#f05a28'"> -->
+    </div>
+
+    </div>
+
+
+    <form id="colorRadioButtons">
+       <input type="radio" name="color" value="Low Range" checked>Low Range<br>
+       <input type="radio" name="color" value="High Range"> High Range<br>
+       <input type="radio" name="color" value="Background"> Background
+</form>
+
+
+<div id="songDetails">
+
+<ul>
+    <li>Acousticness: {{trackAudioFeatures.acousticness}}</li>
+    <li>Danceability: {{trackAudioFeatures.danceability}}</li>
+
+    <li>Duration(ms): {{trackAudioFeatures.duration_ms}}</li>
+    <li>Energy: {{trackAudioFeatures.energy}}</li>
+    <li>Instrumentalness: {{trackAudioFeatures.instrumentalness}}</li>
+    <li>Key: {{trackAudioFeatures.key}}</li>
+    <li>Liveness: {{trackAudioFeatures.liveness}}</li>
+    <li>Loudness: {{trackAudioFeatures.loudness}}</li>
+    <li>Tempo: {{trackAudioFeatures.tempo}}</li>
+    <li>Time Signature: {{trackAudioFeatures.time_signature}}</li>
+    <li>Speechiness: {{trackAudioFeatures.speechiness}}</li>
+    <li>Mode: {{trackAudioFeatures.mode}}</li>
+    <li>Valence: {{trackAudioFeatures.valence}}</li>
+  </ul>
+
+</div>
+
+       <!-- <button class="save" type="button" ng-click="save()">Save</button>
+       <button class="saveAs" type="button" ng-click="saveAs()">Save As</button> -->
+
+</div>
+
+  
+
+  
+</body>
+</html>

@@ -1,0 +1,61 @@
+<nav ng-controller="NavCtrl">
+  <div class="container" id="nav">
+    <div id="navContainer">
+      <div ng-show="notLoggedIn" id="notLoggedIn">
+      <a ng-click="googleLogin()" class="btn btn-primary">Login with Google</a>
+      </div>
+
+      <div ng-show="!notLoggedIn" id="notLoggedIn">
+      <a ng-click="googleLogout()" class="btn btn-primary">Logout Of Google</a>
+      <a ng-click="getMyTracks()" class="btn btn-primary">Saved Tracks</a>
+      </div>
+    </div>
+ 
+      <form id="search-form">
+          <input type="text" ng-model="searchText" id="query" value="" class="form-control" placeholder="Search for a track"/>
+          <input type="submit" ng-click="searchAlbums(searchText)" id="search" class="btn btn-primary" value="Search" />
+      </form>
+
+      <a ui-sref="home.nav.chart2" id="loader" ng-model="loader"ng-Click="clearSearch()">{{loader}}</a>
+
+      <div ui-view></div>
+
+      <div id="searchResults" ng-repeat="track in searchResults">
+        <div class="searchResult" ng-click="goToTrack(track.id, track.album.images[0].url)">
+          <img src="{{track.album.images[0].url}}" class="searchPictures">
+          {{track.name}}
+          by {{track.artists[0].name}}
+        </div>
+      </div>
+
+<!-- 
+      <div id="savedTracks" ng-repeat="track in myTrackResults">
+        <div class="savedTrack" ng-click="goToTrack(track.id)">
+          <img src="{{track.album.images[0].url}}" class="searchPictures">
+          Track: {{track.name}}
+          Artist: {{track.artists[0].name}}
+        </div>
+      </div>
+ -->
+
+      <div id="trackResults" ng-repeat="track in myTrackResults">
+        <div>
+        <div class="trackResult" ng-click="goToSavedTrack(track.trackId, track.trackImage, track.id, track.updateColor1, track.updateColor2, track.updateColor3)">
+        <img class="myTrackImages" src="{{track.trackImage}}">
+          Track: {{track.song}}
+          Artist: {{track.artist}}
+          Album: {{track.album}}
+        </div>
+        <div>
+          <a id="deleteTrack" class="btn btn-primary" ng-click="deleteTrack(track.id)">Delete</a>
+        </div>
+        </div>
+
+         
+
+      </div>
+
+
+
+  </div>
+</nav>
