@@ -37,6 +37,11 @@ var stateKey = 'spotify_auth_state';
 
 var app = express();
 
+app.use(function(err, req, res, next) {
+  console.error(err.stack);
+  res.status(500).send('Something broke!');
+});
+
 app.use(express.static(__dirname + '/public'))
    .use(cookieParser());
 
@@ -154,5 +159,9 @@ app.get('/refresh_token', function(req, res) {
   });
 });
 
+
+
 // console.log('Listening on 8888');
-app.listen(process.env.PORT || 8888);
+app.listen(process.env.PORT || 8888, function () {
+  console.log('started')
+});
