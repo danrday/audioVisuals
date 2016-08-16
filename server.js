@@ -8,8 +8,8 @@
  */
 
 //gets private credentials for my project
-var clientId = process.env.clientId;
-var clientSecret = process.env.clientSecret;
+var client_id = process.env.clientId;
+var client_secret = process.env.clientSecret;
 
 var express = require('express'); // Express web server framework
 var request = require('request'); // "Request" library
