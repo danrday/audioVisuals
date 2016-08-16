@@ -1,8 +1,8 @@
 "use strict";
 
 app.constant("FBCreds", {
-  apiKey: process.env.apiKey,
-  authDomain: process.env.authDomain,
-  databaseURL: process.env.databaseURL,
-  storageBucket: process.env.storageBucket
+  apiKey: "AIzaSyAgqpqJcnSW4hPnHmG_MfgY47XZ76S-zwg",
+  authDomain: "audiovisuals-85fa6.firebaseapp.com",
+  databaseURL: "https://audiovisuals-85fa6.firebaseio.com",
+  storageBucket: "audiovisuals-85fa6.appspot.com"
 })
