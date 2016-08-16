@@ -63,7 +63,7 @@ app.config(function($stateProvider, $urlRouterProvider, FBCreds) {
      // low range color-picker
      .state('home.nav.trackTempoCharts.colorpicker1', {
       url: "/colorpicker1",
-      templateUrl: 'app/partials/colorpicker/trackTempoCharts.colorpicker1.html',
+      templateUrl: 'app/partials/colorpicker/trackTempoCharts.colorPicker1.html',
     })
      // high range color-picker
      .state('home.nav.trackTempoCharts.colorpicker2', {
