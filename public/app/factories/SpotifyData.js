@@ -8,7 +8,7 @@ app.factory("SpotifyData", function(FirebaseURL, $q, $http) {
 
       $.ajax({
         method:'GET',
-        url: `http://api.spotify.com/v1/audio-features/${id}?access_token=${authToken}`,
+        url: `https://api.spotify.com/v1/audio-features/${id}?access_token=${authToken}`,
         success: function(basicTrackData) {
           resolve(basicTrackData)
         },
