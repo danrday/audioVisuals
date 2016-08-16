@@ -7,7 +7,7 @@ app.controller("NavCtrl", function($http, $scope, $rootScope, $state, $location,
     //gets user token on page load
     $.ajax({
       method: 'GET',
-      url: 'http://localhost:8888/getToken',
+      url: 'https://songtempo.herokuapp.com/getToken',
       success: function(returnedToken) {
         console.log(returnedToken);
         authToken = returnedToken;
