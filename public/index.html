@@ -11,10 +11,10 @@
       <script src="lib/node_modules/angular-ui-router/release/angular-ui-router.js"></script>
      <script src="lib/node_modules/angular-spotify/dist/angular-spotify.min.js"></script>
      <script src="lib/node_modules/angular-color-picker/angular-color-picker.js"></script>
-     
+
 
     <style type="text/css">
-      #login, #loggedin {
+      #login, #loggedin{
         display: none;
       }
       .text-overflow {
@@ -31,11 +31,17 @@
 
 
     <div id="spotifyLogin" class="container">
-     
+
         <h1 id="title">Charting Variations in Song Tempo</h1>
          <div id="login">
+
+
         <a id="loginSpotify" href="/login" class="btn btn-primary">Log in with Spotify</a>
+
       </div>
+
+
+
       <div id="loggedin">
         <div id="user-profile">
         </div>
@@ -46,8 +52,8 @@
 
       </div>
 
-   
-      
+
+
     </div>
 
     <script id="user-profile-template" type="text/x-handlebars-template">
@@ -130,18 +136,22 @@
                   userProfilePlaceholder.innerHTML = userProfileTemplate(response);
 
                   $('#login').hide();
+                  $('#instructions').hide();
                   $('#loggedin').show();
                 }
             });
           } else {
               // render initial screen
               $('#login').show();
+              $('#instructions').show();
               $('#loggedin').hide();
           }
 
           document.getElementById('hide').addEventListener('click', function() {
             $('#loggedin').hide();
           })
+
+
 
           document.getElementById('obtain-new-token').addEventListener('click', function() {
             $.ajax({
@@ -165,7 +175,7 @@
   <!-- main view -->
   <div ui-view></div>
 
-    <script src="lib/node_modules/d3/d3.min.js"></script>
+    <script src="lib/node_modules/d3/build/d3.min.js"></script>
     <script src="lib/node_modules/d3-scale/build/d3-scale.js"></script>
     <script src="lib/node_modules/d3-array/build/d3-array.min.js"></script>
     <script src="lib/node_modules/d3-scale/build/d3-scale.min.js"></script>
@@ -176,7 +186,7 @@
 
 
     <!-- html color picker script -->
-   
+
 
     <script src="app/app.js"></script>
     <script src="app/private/firebaseCreds.js"></script>
@@ -202,4 +212,3 @@
 
   </body>
 </html>
-

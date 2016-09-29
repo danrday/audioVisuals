@@ -10,7 +10,7 @@
       <a ng-click="getMyTracks()" class="btn btn-primary">Saved Tracks</a>
       </div>
     </div>
- 
+
       <form id="search-form">
           <input type="text" ng-model="searchText" id="query" value="" class="form-control" placeholder="Search for a track"/>
           <input type="submit" ng-click="searchAlbums(searchText)" id="search" class="btn btn-primary" value="Search" />
@@ -28,7 +28,7 @@
         </div>
       </div>
 
-<!-- 
+<!--
       <div id="savedTracks" ng-repeat="track in myTrackResults">
         <div class="savedTrack" ng-click="goToTrack(track.id)">
           <img src="{{track.album.images[0].url}}" class="searchPictures">
@@ -37,6 +37,8 @@
         </div>
       </div>
  -->
+
+
 
       <div id="trackResults" ng-repeat="track in myTrackResults">
         <div>
@@ -51,11 +53,35 @@
         </div>
         </div>
 
-         
-
       </div>
 
+      <div id="instructions"><h1>Instructions:</h1><h2> You must login to a Spotify account to access the song data needed by this app.
+      </h2>
+      <h2>Optional: To save tracks and custom colors, login with your Google account.
+      </h2>
+      <h1>
+        Project Goals:
+      </h1>
+      <ul>
+        <h1>
+        <li>
+          Find the variation in a given song's tempo.
+        </li>
+        <li>
+        Use D3.js (Data Driven Documents), a data visualization framework, to chart the variation in a song's tempo.
+        </li>
+        <li>
+        SYNC Button: To sync music with the graphs, press SYNC, which starts a 3-second countdown to zero. At zero, press the play button on the embedded spotify player.
+      </li><li>Currently Spotify does not allow event listeners on its play button, so this countown sync is a rough workaround. Version 2 should have an auto-sync function.
+        </li>
+      </ul>
+        <h2>My GitHub Repo for this project is <a href='https://github.com/danrday/audioVisuals'>here.</a></h2>
+      <h2>Sample of graphed song data, showing changes in tempo throughout a song:
+      </h2>
+      <img id='example' src='/lib/images/graphs.png'>
 
+
+    </div>
 
   </div>
 </nav>

@@ -2,12 +2,16 @@
 
 app.controller("NavCtrl", function($http, $scope, $rootScope, $state, $location, Spotify, AuthFactory, localStorageService, TrackStorage, SpotifyData) {
 
+  document.getElementById('search').addEventListener('click', function() {
+    $('#instructions').hide();
+  })
+
   $scope.customColors = null;
 
     //gets user token on page load
     $.ajax({
       method: 'GET',
-      url: 'http://localhost:8888/getToken',
+      url: '/getToken',
       success: function(returnedToken) {
         console.log(returnedToken);
         authToken = returnedToken;
@@ -48,7 +52,7 @@ app.controller("NavCtrl", function($http, $scope, $rootScope, $state, $location,
 
   // BEGINNING LOGIN STUFF
 
-  $scope.notLoggedIn = true; 
+  $scope.notLoggedIn = true;
 
   firebase.auth().onAuthStateChanged(function(){
     let user = AuthFactory.getUser();
@@ -77,7 +81,7 @@ app.controller("NavCtrl", function($http, $scope, $rootScope, $state, $location,
      // The firebase.auth.AuthCredential type that was used.
      var credential = error.credential;
      // ...
-   });  
+   });
   };
 
   $scope.googleLogout = function() {
@@ -112,7 +116,7 @@ app.controller("NavCtrl", function($http, $scope, $rootScope, $state, $location,
     $scope.searchResults = {};
   }
 
-  //search for tracks by search criteria 
+  //search for tracks by search criteria
   $scope.searchAlbums = function(query) {
 
     $state.go('home.nav');
@@ -147,7 +151,7 @@ app.controller("NavCtrl", function($http, $scope, $rootScope, $state, $location,
      var errorCode = error.code;
      var errorMessage = error.message;
      alert(errorMessage)
-   }); 
+   });
   }
 
   $scope.fbId = null;
@@ -174,14 +178,14 @@ app.controller("NavCtrl", function($http, $scope, $rootScope, $state, $location,
      // Handle Errors here.
      var errorCode = error.code;
      var errorMessage = error.message;
-   }); 
+   });
   }
 
 
   let getDetailedAnalysis = function (analysisUrl, authToken) {
     SpotifyData.getTrackAnalysis(analysisUrl, authToken)
     .then(function(returnedAnalysisData) {
-     $scope.trackAnalysis = JSON.parse(returnedAnalysisData);
+     $scope.trackAnalysis = returnedAnalysisData;
             console.log($scope.trackAnalysis);
       $state.go('home.nav.trackTempoCharts')
    }).catch(function(error) {
@@ -189,7 +193,7 @@ app.controller("NavCtrl", function($http, $scope, $rootScope, $state, $location,
      var errorCode = error.code;
      var errorMessage = error.message;
      alert(errorMessage)
-   }); 
+   });
   }
 
   let getTrackDiscog = function (discogUrl) {
@@ -207,7 +211,7 @@ app.controller("NavCtrl", function($http, $scope, $rootScope, $state, $location,
      // Handle Errors here.
      var errorCode = error.code;
      var errorMessage = error.message;
-   }); 
+   });
   }
 
 });

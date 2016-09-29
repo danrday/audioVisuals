@@ -3,6 +3,18 @@
   margin-left: 4px;
 }
 
+#instructions {
+  /*margin-top: -40px;*/
+  /*display: inline-block;*/
+  /*float: right*/
+}
+
+#example {
+  margin: auto;
+  width: 80%;
+  display: block;
+}
+
 #iframe {
   display: inline-block;
 }
@@ -203,7 +215,7 @@ h2 {
   float: bottom;
 }
 
-.searchResult:hover { 
+.searchResult:hover {
     background-color: yellow;
     font-size: bigger;
 }

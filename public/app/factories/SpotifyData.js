@@ -27,12 +27,14 @@ app.factory("SpotifyData", function(FirebaseURL, $q, $http) {
       $.ajax({
         method:'GET',
         url: `${analysisUrl}?access_token=${authToken}`,
-         success: function(returnedAnalysisData) {  
+         success: function(returnedAnalysisData) {
           resolve(returnedAnalysisData)
+          console.log("returnedAnalysisData", returnedAnalysisData)
          },
-         error: function() {
+         error: function(err) {
           alert("Error... did you login with Spotify?");
-          reject(error)
+          // alert(err)
+          reject(err)
          }
       })
     })
@@ -45,13 +47,13 @@ app.factory("SpotifyData", function(FirebaseURL, $q, $http) {
       $.ajax({
         method: 'GET',
         url: `${trackSpecs}`,
-        success: function(returnedDiscogData) {  
+        success: function(returnedDiscogData) {
           resolve(returnedDiscogData)
         },
         error: function(error) {
           reject(error)
         }
-      })   
+      })
     })
   }
 
@@ -59,4 +61,3 @@ app.factory("SpotifyData", function(FirebaseURL, $q, $http) {
     getInitialData, getTrackAnalysis, getTrackDiscog
   };
 });
-
