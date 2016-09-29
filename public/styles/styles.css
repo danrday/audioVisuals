@@ -3,6 +3,10 @@
   margin-left: 4px;
 }
 
+#user-profile-template {
+  display: block;
+}
+
 #instructions {
   /*margin-top: -40px;*/
   /*display: inline-block;*/
